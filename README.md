@@ -1,1 +1,2 @@
-# <https://github.com/ythy/blog/wiki/Home>
+ # 
+ [blog](https://github.com/ythy/blog/wiki/Home)
