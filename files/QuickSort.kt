@@ -42,12 +42,11 @@ fun quickSort(array:IntArray, left:Int, right:Int):IntArray{
         }
     }
 
-    if(right - left > 1){
-        if(i - 1 - left > 0)
-            quickSort(array, left, i - 1)
-        if(right - i > 0)
-            quickSort(array, i, right)
-    }
+    if(j > left)
+        quickSort(array, left, j)
+    if(right > i)
+        quickSort(array, i, right)
+    
     return array
 }
 
