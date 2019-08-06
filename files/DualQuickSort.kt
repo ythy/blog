@@ -40,9 +40,9 @@ fun dualQuickSort(array:IntArray, left:Int, right:Int):IntArray{
         }
     }
 
-    while(lt == left)
+    if(lt == left)
         lt++
-    while(gt == right)
+    if(gt == right)
         gt--
 
     if(lt - 1  > left)
