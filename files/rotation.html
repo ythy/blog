@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8" />
+   <style type="text/css">
+    
+    * {
+      font-size: 24px;
+    }
+
+    html{
+      height: 100%;
+      background-color: #464A4E;
+    }
+
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    div{
+      position: absolute;
+    }
+
+    span:hover{
+      background-color: #000000;
+      transform: rotateX( 90deg );
+    } 
+
+    /*此处旋转元素*/
+    span {
+      background-color: #464A4E;
+      display: block;
+      position: relative;
+      padding: 0;
+      color: #fb8;
+      transition: all 400ms ease;
+      transform-origin: 0 0;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /*此处旋转后显示元素*/
+
+    span:after {
+      background-color: #464A4E;
+      color: #FFFF00;
+      content: attr(data-title);
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 0;
+      transform-origin: 0 0;
+      transform: translate3d( 0, 100%, 0 ) rotateX( -90deg );
+    }
+   
+
+   </style>
+ </head>
+
+<script>
+ 
+</script>	
+ 
+<div>
+    <span data-title="Jeremy Ashkenas's list">Jeremy Ashkenas's list</span>
+</div> 
+
+</body>
+
+
+</html>
