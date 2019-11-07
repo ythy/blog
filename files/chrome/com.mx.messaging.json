@@ -1,0 +1,9 @@
+{
+  "name": "com.mx.messaging",
+  "description": "native messaging",
+  "path": "run.bat",
+  "type": "stdio",
+  "allowed_origins": [ 
+    "chrome-extension://gflmlpmkmdlacgfnjnjppjalmfdfkaah/" 
+  ]
+}
