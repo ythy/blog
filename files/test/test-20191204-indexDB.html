@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8" />
+ </head>
+
+
+ <body>
+    <button onclick="get()">get</button>
+ </body>
+
+
+<script>
+
+  // Let us open our database
+let DBOpenRequest = window.indexedDB.open("mx", 1);
+let db;
+
+// these two event handlers act on the IDBDatabase object,
+// when the database is opened successfully, or not
+DBOpenRequest.onerror = function(event) {
+  console.log('Error loading database.');
+};
+ 
+DBOpenRequest.onsuccess = function(event) {
+  console.log('Database initialised.');
+  db = DBOpenRequest.result;    
+  addData();
+};
+
+DBOpenRequest.onupgradeneeded = function(event) {
+  console.log('onupgradeneeded');
+  db = event.target.result;
+  db.onerror = function(event) {
+   console.log('Error upgrade database.');
+  };
+
+  const objectStore = db.createObjectStore("messages", { keyPath: "id" });
+  objectStore.createIndex('ageYear', ['age', 'year']);
+  objectStore.createIndex('userGroup', ['name', 'group']);
+};
+
+
+
+function get(){
+  const transaction = db.transaction(["messages"], "readwrite");
+  const objectStore = transaction.objectStore("messages");
+  const index = objectStore.index('ageYear');
+  const lowerBound = [10, 2000];
+  const upperBound = [30, 2019];
+  const range = IDBKeyRange.bound(lowerBound, upperBound);
+  const request = index.openCursor(range);
+  request.onsuccess = function(event) {
+    const cursor = event.target.result;
+    if(cursor) {
+      console.log(cursor.value);
+      cursor.continue();
+    } 
+  };
+}
+ 
+function addData(){
+  console.log('addData');
+  const newItem = [ { id: getRandomInt(90000000),  name:"maoxin", group: "UX",  age: getRandomInt(50), year: getRandomInt(2019) } ];
+  const transaction = db.transaction(["messages"], "readwrite");
+  const objectStore = transaction.objectStore("messages");
+  const objectStoreRequest = objectStore.add(newItem[0]);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+</script>	
+
+</html>
