@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>MX</title>
+  </head>
+  <body>  
+    <button id="btnTransform" >transform</button>
+    <button id="btnAnimate" >animate</button>
+    <button id="btnClear" >clear</button>
+    <svg width="600" height="600" style="background-color:green" >     
+      <circle cx="304" cy="204" r="100" stroke="green" stroke-width="4" fill="red" />
+      <line x1="50" y1="50" x2="304" y2="204" stroke="black" stroke-width="4" />
+    </svg>
+
+  </body>
+  <script type="text/javascript">
+    
+
+    Object.prototype.toMatrixString = function(){
+        return `matrix(${this.a}, ${this.b}, ${this.c}, ${this.d}, ${this.e}, ${this.f} )`
+    }
+
+    Object.prototype.matrixMultiply = function(multiplicand){
+        return  {
+          a: this.a * multiplicand.a + this.c * multiplicand.b,
+          b: this.b * multiplicand.a + this.d * multiplicand.b,
+          c: this.a * multiplicand.c + this.c * multiplicand.d,
+          d: this.b * multiplicand.c + this.d * multiplicand.d,
+          e: this.a * multiplicand.e + this.c * multiplicand.f + this.e,
+          f: this.b * multiplicand.e + this.d * multiplicand.f + this.f,
+        }
+    }
+
+
+    const btnTransform = document.querySelector('#btnTransform');
+    const btnAnimate = document.querySelector('#btnAnimate');
+    const circle = document.querySelector('svg').children[0];
+    const line = document.querySelector('svg').children[1];
+    const point = {
+        x: 0,
+        y: 0,
+        degree: 20,
+      };
+    document.querySelector('#btnClear').addEventListener('click', clear);
+
+
+    btnTransform.addEventListener('click', ()=>{ 
+      clear();
+      
+      const matrix = rotateObj(point.degree, point.x, point.y).toMatrixString();
+      circle.setAttribute('transform', matrix); 
+      line.setAttribute("transform", matrix);
+    });
+
+
+    btnAnimate.addEventListener('click', ()=>{
+      clear();
+      //如果并发多个动画，注意additive属性，默认值是replace，需要设为sum，否则会替换掉
+      createTransformAnimation(line, 'rotate', '500ms', `0, ${point.x}, ${point.y}`, `${point.degree}, ${point.x}, ${point.y}` );
+      createTransformAnimation(circle, 'rotate', '500ms', `0, ${point.x}, ${point.y}`, `${point.degree}, ${point.x}, ${point.y}` );
+      document.querySelector('svg').setCurrentTime(0); //重要
+    });
+
+
+    function clear(){
+      while(line.firstChild)
+        line.removeChild(line.firstChild)
+      while(circle.firstChild)
+        circle.removeChild(circle.firstChild)
+
+      line.removeAttribute('transform');
+      circle.removeAttribute('transform');
+    }
+
+
+
+    function scaleObj(x, y){
+      return getMatrixObj(x, 0, 0, y);
+    }
+
+
+    function translateObj(x, y){
+      return getMatrixObj(1, 0, 0, 1, x, y);
+    }
+
+
+    function rotateObj(degree, e = 0, f = 0){
+      //注意不是从原点旋转的情况
+      const radian = degree * Math.PI / 180;
+      const a = Math.cos(radian);
+      const b = Math.sin(radian);
+      const c = - Math.sin(radian);
+      const d = Math.cos(radian);
+      return getMatrixObj(a, b, c, d, e, f).matrixMultiply(translateObj(-e, -f));
+    }   
+
+    function skewObj(x, y = 0){
+      const xAaxis =  Math.tan(x * Math.PI / 180)
+      const yAaxis =  Math.tan(y * Math.PI / 180)
+      return getMatrixObj(1, yAaxis, xAaxis, 1, 0, 0);
+    }
+
+
+    function getMatrixObj(a = 1, b, c, d = 1, e = 0, f = 0){    
+      return {a, b, c, d, e, f}
+    }   
+
+ 
+    function createTransformAnimation(shape, type, duration, from, to) {
+      const animation = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform")
+      animation.setAttribute("attributeName", "transform")
+      animation.setAttribute("type", type)
+      animation.setAttribute("dur", duration)
+      animation.setAttribute("to", to)
+      animation.setAttribute("fill", "freeze")
+      animation.setAttribute("additive", "sum")
+      if(from)
+        animation.setAttribute("from", from)
+      shape.appendChild(animation)
+    }
+
+  </script>
+
+</html>
+
+
