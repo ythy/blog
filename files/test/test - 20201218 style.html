@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
  <head>
  <meta charset="utf-8" />
-   <!--link rel="stylesheet" type="text/css" href="css/yellow.css"-->
-   <style type="text/css">
+ 
+  <link rel="stylesheet" type="text/css" href="css/yellow.css">
+  <style type="text/css">
      div{
         border-style: solid;
         border-width: 2px;
@@ -23,19 +24,31 @@
   `;
 
 
-  function clickHandler(){
+  function insertAt(parentElement, newElement, index){
+    parentElement.insertBefore(newElement, parentElement.children[index]);
+  }
+
+  function clickHandler(index){
     const element = document.createElement('style');
-    document.head.appendChild(element);
+    if(!index && index !== 0)
+      document.head.appendChild(element);
+    else 
+      insertAt(document.head, element, index);
+
     const sheet = element.sheet;
     sheet.insertRule(newStyles, 0);
   }
 
-  function clickHandlerYellow(){
+  function clickHandlerYellow(index){
     const link  = document.createElement('link');
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'css/yellow.css';
-    document.head.appendChild(link);
+
+     if(!index && index !== 0)
+      document.head.appendChild(link);
+    else 
+      insertAt(document.head, link, index);
   }
 
  
@@ -48,7 +61,12 @@
   <button onclick="clickHandler()">changed border color to blue</button>
 </div>
 <div style="clear:both; float: left; margin-top: 20px"> 
+  <button onclick="clickHandler(0)">changed border color to blue AT 0</button>
+</div>
+<div style="clear:both; float: left; margin-top: 20px"> 
   <button onclick="clickHandlerYellow()">changed border color to yellow</button>
 </div>
-
+<div style="clear:both; float: left; margin-top: 20px"> 
+  <button onclick="clickHandlerYellow(0)">changed border color to yellow AT 0</button>
+</div>
 </html>
