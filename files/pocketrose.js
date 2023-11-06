@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex-1.0
+// @version      4.2.15-ex-1.1
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -13675,12 +13675,10 @@ class MapDashboardPageProcessor extends PageProcessorCredentialSupport_1.default
     doProcess(credential, context) {
         return __awaiter(this, void 0, void 0, function* () {
             const page = MapDashboardPage_1.default.parse(PageUtils_1.default.currentPageHtml());
-            $("center:first")
-                .attr("id", "systemAnnouncement");
-            $("#systemAnnouncement")
-                .after($("<div id='version' style='color:navy;font-weight:bold;text-align:center;width:100%'></div>"));
+            $("center:first").attr("id", "systemAnnouncement");
+            $("#systemAnnouncement").after($("<div id='version' style='color:navy;font-weight:bold;text-align:center;width:100%'></div>"));
             // @ts-ignore
-            $("#version").html("Pocketrose Assistant (4.2.15-ex-1.0) Build: 2023/11/3 16:00:08");
+            //$("#version").html(__VERSION__);
             if (SetupLoader_1.default.isQiHanTitleEnabled()) {
                 $("table:first")
                     .find("> tbody:first")
@@ -13705,9 +13703,7 @@ class MapDashboardPageProcessor extends PageProcessorCredentialSupport_1.default
                 .find("tbody:first")
                 .find("> tr:eq(2)")
                 .attr("id", "mapRow");
-            let travelJournals = $("#mapRow")
-                .find("> td:last")
-                .html();
+            let travelJournals = $("#mapRow").find("> td:last").html();
             $("#mapRow").html("" +
                 "<td colspan='2'>" +
                 "<table style='background-color:transparent;margin:auto;width:100%'>" +
@@ -13725,9 +13721,7 @@ class MapDashboardPageProcessor extends PageProcessorCredentialSupport_1.default
             const roleTask = yield new TaskGuideManager_1.default(credential).currentTask();
             if (roleTask === null || roleTask === "") {
                 // 如果有必要的话绘制城堡
-                new CastleInformation_1.default()
-                    .load(page.role.name)
-                    .then(castle => {
+                new CastleInformation_1.default().load(page.role.name).then((castle) => {
                     const coordinate = castle.coordinate;
                     const buttonId = "location_" + coordinate.x + "_" + coordinate.y;
                     $("#" + buttonId)
@@ -13783,15 +13777,9 @@ _MapDashboardPageProcessor_instances = new WeakSet(), _MapDashboardPageProcessor
         if (!confirmation) {
             return;
         }
-        $("#mapRow")
-            .next().hide()
-            .next().hide()
-            .next().hide()
-            .next().hide();
+        $("#mapRow").next().hide().next().hide().next().hide().next().hide();
         MessageBoard_1.default.createMessageBoardStyleC("travelJournals");
-        $("#messageBoard")
-            .closest("table")
-            .css("height", "100%");
+        $("#messageBoard").closest("table").css("height", "100%");
         $("#messageBoard")
             .parent()
             .before($("<tr style='background-color:#EFE0C0'>" +
@@ -13856,22 +13844,23 @@ _MapDashboardPageProcessor_instances = new WeakSet(), _MapDashboardPageProcessor
         .find("td:first")
         .attr("id", "eventBoard");
     const eventHtmlList = [];
-    $("#eventBoard").html()
+    $("#eventBoard")
+        .html()
         .split("<br>")
-        .filter(it => it.endsWith(")"))
+        .filter((it) => it.endsWith(")"))
         .map(function (it) {
         // noinspection HtmlDeprecatedTag,XmlDeprecatedElement,HtmlDeprecatedAttribute
-        const header = "<font color=\"navy\">●</font>";
+        const header = '<font color="navy">●</font>';
         return StringUtils_1.default.substringAfter(it, header);
     })
         .map(function (it) {
         return EventHandler_1.default.handleWithEventHtml(it);
     })
-        .forEach(it => eventHtmlList.push(it));
+        .forEach((it) => eventHtmlList.push(it));
     let html = "";
     html += "<table style='border-width:0;width:100%;height:100%;margin:auto'>";
     html += "<tbody>";
-    eventHtmlList.forEach(it => {
+    eventHtmlList.forEach((it) => {
         html += "<tr>";
         html += "<th style='color:navy;vertical-align:top'>●</th>";
         html += "<td style='width:100%'>";
@@ -13883,13 +13872,14 @@ _MapDashboardPageProcessor_instances = new WeakSet(), _MapDashboardPageProcessor
     html += "</table>";
     $("#eventBoard").html(html);
 }, _MapDashboardPageProcessor_doTravelToLocation = function _MapDashboardPageProcessor_doTravelToLocation(credential, location) {
-    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" + location.asText() + "</span>");
+    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" +
+        location.asText() +
+        "</span>");
     const plan = TravelPlanBuilder_1.default.initializeTravelPlan(PageUtils_1.default.currentPageHtml());
     plan.destination = location;
     plan.credential = credential;
     const executor = new TravelPlanExecutor_1.default(plan);
-    executor.execute()
-        .then(() => {
+    executor.execute().then(() => {
         MessageBoard_1.default.publishMessage("旅途愉快，下次再见。");
         $("#refreshButton")
             .prop("disabled", false)
@@ -13902,25 +13892,33 @@ _MapDashboardPageProcessor_instances = new WeakSet(), _MapDashboardPageProcessor
 function processTask(credential, roleTask) {
     // 当前有任务
     let html = "";
-    html += "<table style='background-color:transparent;margin:auto;width:100%;height:100%'>";
+    html +=
+        "<table style='background-color:transparent;margin:auto;width:100%;height:100%'>";
     html += "<tbody>";
     html += "<tr>";
-    html += "<td style='text-align:center;font-weight:bold;background-color:navy;color:yellowgreen'>" + roleTask + "</td>";
+    html +=
+        "<td style='text-align:center;font-weight:bold;background-color:navy;color:yellowgreen'>" +
+            roleTask +
+            "</td>";
     html += "</tr>";
     html += "<tr>";
-    html += "<td style='text-align:left;background-color:#D4D4D4' id='walkthrough'></td>";
+    html +=
+        "<td style='text-align:left;background-color:#D4D4D4' id='walkthrough'></td>";
     html += "</tr>";
     html += "<tr>";
-    html += "<td style='text-align:left'>坐标点：<span id='roleLocation' style='color:red'>-</span></td>";
+    html +=
+        "<td style='text-align:left'>坐标点：<span id='roleLocation' style='color:red'>-</span></td>";
     html += "</tr>";
     html += "<tr>";
-    html += "<td style='text-align:left'>计时器：<span id='countDownTimer' style='color:red'>-</span></td>";
+    html +=
+        "<td style='text-align:left'>计时器：<span id='countDownTimer' style='color:red'>-</span></td>";
     html += "</tr>";
     html += "<tr>";
     html += "<td id='messageBoardContainer'></td>";
     html += "</tr>";
     html += "<tr style='display:none;text-align:center'>";
-    html += "<td><button role='button' id='refreshButton' disabled>移动中......</button></td>";
+    html +=
+        "<td><button role='button' id='refreshButton' disabled>移动中......</button></td>";
     html += "</tr>";
     html += "</tbody>";
     html += "</table>";
@@ -13990,11 +13988,7 @@ function doBindLocationButton(credential) {
         if (!confirmation) {
             return;
         }
-        $("#mapRow")
-            .next().hide()
-            .next().hide()
-            .next().hide()
-            .next().hide();
+        $("#mapRow").next().hide().next().hide().next().hide().next().hide();
         $("#refreshButton").parent().parent().show();
         MessageBoard_1.default.resetMessageBoard("实时旅途动态播报：<br>");
         $(".location_button_class")
@@ -14005,13 +13999,14 @@ function doBindLocationButton(credential) {
     });
 }
 function doTravelToLocation(credential, location) {
-    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" + location.asText() + "</span>");
+    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" +
+        location.asText() +
+        "</span>");
     const plan = TravelPlanBuilder_1.default.initializeTravelPlan(PageUtils_1.default.currentPageHtml());
     plan.destination = location;
     plan.credential = credential;
     const executor = new TravelPlanExecutor_1.default(plan);
-    executor.execute()
-        .then(() => {
+    executor.execute().then(() => {
         MessageBoard_1.default.publishMessage("旅途愉快，下次再见。");
         $("#refreshButton")
             .prop("disabled", false)
@@ -14023,7 +14018,8 @@ function doTravelToLocation(credential, location) {
 }
 function doRenderTask1() {
     let html = "";
-    html += "<li>(7,10)找瓦格纳对话，答题，答完后找他要奖励（每人只能做一次）</li>";
+    html +=
+        "<li>(7,10)找瓦格纳对话，答题，答完后找他要奖励（每人只能做一次）</li>";
     html += "<li>关于雷姆力亚的问题；你知道个人天真报名时间吗？：除周三外</li>";
     html += "<li>本游戏是否允许注册多ID？：不允许</li>";
     html += "<li>回答完毕返回，然后再次拜访 瓦格纳 选择 索取奖励</li>";
@@ -14213,7 +14209,8 @@ function doRenderTask9() {
 function doRenderTask10() {
     let html = "";
     html += "<li>【狙击手】第一次转狙击手时接到任务</li>";
-    html += "<li>(0,4)问孟获一次按提示顺序依次打一个，每次打前都要问孟获，打完后问</li>";
+    html +=
+        "<li>(0,4)问孟获一次按提示顺序依次打一个，每次打前都要问孟获，打完后问</li>";
     html += "<li>好处:移动力+2</li>";
     $("#walkthrough").html(html);
     let buttonId = "location_0_4";
@@ -14625,12 +14622,10 @@ function renderAnnouncement() {
     // --------------------------------------------------------------------
     // 系统公告
     // --------------------------------------------------------------------
-    $("center:first")
-        .attr("id", "systemAnnouncement");
-    $("#systemAnnouncement")
-        .after($("<div id='version' style='color:navy;font-weight:bold;text-align:center;width:100%'></div>"));
+    $("center:first").attr("id", "systemAnnouncement");
+    $("#systemAnnouncement").after($("<div id='version' style='color:navy;font-weight:bold;text-align:center;width:100%'></div>"));
     // @ts-ignore
-    $("#version").html("Pocketrose Assistant (4.2.15-ex-1.0) Build: 2023/11/3 16:00:08");
+    // $("#version").html(__VERSION__);
 }
 function renderMobilization() {
     // --------------------------------------------------------------------
@@ -14705,22 +14700,23 @@ function renderEventBoard() {
         .find("td:first")
         .attr("id", "eventBoard");
     const eventHtmlList = [];
-    $("#eventBoard").html()
+    $("#eventBoard")
+        .html()
         .split("<br>")
-        .filter(it => it.endsWith(")"))
+        .filter((it) => it.endsWith(")"))
         .map(function (it) {
         // noinspection HtmlDeprecatedTag,XmlDeprecatedElement,HtmlDeprecatedAttribute
-        const header = "<font color=\"navy\">●</font>";
+        const header = '<font color="navy">●</font>';
         return StringUtils_1.default.substringAfter(it, header);
     })
         .map(function (it) {
         return EventHandler_1.default.handleWithEventHtml(it);
     })
-        .forEach(it => eventHtmlList.push(it));
+        .forEach((it) => eventHtmlList.push(it));
     let html = "";
     html += "<table style='border-width:0;width:100%;height:100%;margin:auto'>";
     html += "<tbody>";
-    eventHtmlList.forEach(it => {
+    eventHtmlList.forEach((it) => {
         html += "<tr>";
         html += "<th style='color:navy;vertical-align:top'>●</th>";
         html += "<td style='width:100%'>";
@@ -14776,16 +14772,21 @@ function renderMetroMap(credential, page) {
     html += "<td style='text-align:left' id='walkthrough'></td>";
     html += "</tr>";
     html += "<tr>";
-    html += "<td style='text-align:left'>坐标点：<span id='roleLocation' style='color:red'>" + page.coordinate.asText() + "</span></td>";
+    html +=
+        "<td style='text-align:left'>坐标点：<span id='roleLocation' style='color:red'>" +
+            page.coordinate.asText() +
+            "</span></td>";
     html += "</tr>";
     html += "<tr>";
-    html += "<td style='text-align:left'>计时器：<span id='countDownTimer' style='color:red'>-</span></td>";
+    html +=
+        "<td style='text-align:left'>计时器：<span id='countDownTimer' style='color:red'>-</span></td>";
     html += "</tr>";
     html += "<tr>";
     html += "<td id='messageBoardContainer'></td>";
     html += "</tr>";
     html += "<tr style='display:none;text-align:center'>";
-    html += "<td><button role='button' id='refreshButton' disabled>移动中......</button></td>";
+    html +=
+        "<td><button role='button' id='refreshButton' disabled>移动中......</button></td>";
     html += "</tr>";
     html += "</tbody>";
     html += "</table>";
@@ -14794,20 +14795,21 @@ function renderMetroMap(credential, page) {
     html += "<b style='color:navy'>感谢末末倾情提供的齐心丹攻略</b><br>";
     html += "<li>在(8,9)和白雪公主问话，选择‘齐心丹’</li>";
     html += "<li>去(10,10)，选择据点转移</li>";
-    html += "<li>重装跟匹诺曹战斗，失败的话吃药补HP和MP，继续跟匹诺曹战斗，直到打赢</li>";
+    html +=
+        "<li>重装跟匹诺曹战斗，失败的话吃药补HP和MP，继续跟匹诺曹战斗，直到打赢</li>";
     html += "<li>打赢后跟比诺曹谈话，选择‘抓住你了’</li>";
     html += "<li>点击回到枫丹按钮</li>";
-    html += "<li>去客栈住宿补满HP和MP，换好打葫芦娃的7hit装和面具，设置打葫芦娃的血宠</li>";
+    html +=
+        "<li>去客栈住宿补满HP和MP，换好打葫芦娃的7hit装和面具，设置打葫芦娃的血宠</li>";
     html += "<li>回到迪士尼</li>";
     html += "<li>在(8,9)和白雪公主问话，选择‘匹诺曹抓来了’</li>";
     html += "<li>在(8,9)和七个小矮人问话，选择‘把心都交出来炼齐心丹’</li>";
-    html += "<li>跟七个小矮人战斗。失败的话，就返回住宿，然后继续从枫丹到迪斯尼乐园，跟七个小矮人战斗，直到打赢</li>";
+    html +=
+        "<li>跟七个小矮人战斗。失败的话，就返回住宿，然后继续从枫丹到迪斯尼乐园，跟七个小矮人战斗，直到打赢</li>";
     html += "<li>打赢后跟小矮人谈话，七心宝石入手</li>";
     $("#walkthrough").html(html);
     MessageBoard_1.default.createMessageBoardStyleC("messageBoardContainer");
-    $("#messageBoard")
-        .closest("table")
-        .css("height", "100%");
+    $("#messageBoard").closest("table").css("height", "100%");
     doBindLocationButton(credential, page);
 }
 function doBindLocationButton(credential, page) {
@@ -14836,10 +14838,14 @@ function doBindLocationButton(credential, page) {
         }
         $("#mapContainer")
             .parent()
-            .next().hide()
-            .next().hide()
-            .next().hide()
-            .next().hide();
+            .next()
+            .hide()
+            .next()
+            .hide()
+            .next()
+            .hide()
+            .next()
+            .hide();
         $("#refreshButton").parent().parent().show();
         MessageBoard_1.default.resetMessageBoard("实时旅途动态播报：<br>");
         $(".location_button_class")
@@ -14850,7 +14856,9 @@ function doBindLocationButton(credential, page) {
     });
 }
 function doTravelToLocation(credential, page, location) {
-    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" + location.asText() + "</span>");
+    MessageBoard_1.default.publishMessage("目的地坐标：<span style='color:greenyellow'>" +
+        location.asText() +
+        "</span>");
     const plan = new TravelPlan_1.default();
     plan.scope = page.scope;
     plan.mode = page.mode;
@@ -14858,8 +14866,7 @@ function doTravelToLocation(credential, page, location) {
     plan.destination = location;
     plan.credential = credential;
     const executor = new TravelPlanExecutor_1.default(plan);
-    executor.execute()
-        .then(() => {
+    executor.execute().then(() => {
         MessageBoard_1.default.publishMessage("旅途愉快，下次再见。");
         $("#refreshButton")
             .prop("disabled", false)
@@ -21237,7 +21244,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex-1.0) Build: 2023/11/3 16:00:08";
+            const version = "Pocketrose Assistant (4.2.15-ex-1.1) Build: 2023/11/6 09:50:27";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -39847,7 +39854,7 @@ _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcess
             PageUtils_1.default.scrollIntoView(id);
             $(center).after($("<div id='version' style='color:navy;font-weight:bold;text-align:center;width:100%'></div>"));
             // @ts-ignore
-            $("#version").html("Pocketrose Assistant (4.2.15-ex-1.0) Build: 2023/11/3 16:00:08");
+            //$("#version").html(__VERSION__);
         });
         $("div:last").append($("" +
             "<p style='display:none' id='eden-1'></p>" +
@@ -40293,21 +40300,28 @@ function doRenderEventBoard(credential, page) {
     let td = $("td:contains('最近发生的事件')").filter(function () {
         return $(this).text() === "最近发生的事件";
     });
-    td.parent().hide().next().find("td:first").attr("id", "eventBoard");
-    TownUtils_1.default.loadTownStyle(page);
+    let eventpanel = td.parent().parent().parent();
+    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
     TownUtils_1.default.setOptionInTown();
-    //操作面板部分隐藏及间距调整
+    td.parent()
+        .hide()
+        .next()
+        .find("td:first")
+        .attr("id", "eventBoard")
+        .html(eventText);
+    if (eventText)
+        td.parent().next().show();
+    else
+        td.parent().next().hide();
     $("#countryAdvancedButton").parent().parent().hide();
     $("#countryNormalButton").css("margin", "15px 0 0 0");
     $("#townButton").css("margin", "15px 0 0 0");
     $("#exitButton").parent().parent().parent().next().hide();
-    //操作面板字号调整
     let townpanel = $("#exitButton").parent().parent().parent().parent();
     townpanel.find("input[type='submit'], button").css("font-size", 20);
     townpanel.find("select").css("font-size", 20);
     townpanel.find("form").css("margin", "0 auto");
     townpanel.find("tr:first").hide().next().hide();
-    //人物面板字号调整
     let trrole = $("td:contains('身份')")
         .filter((_, td) => $(td).text() === "身份")
         .parent();
@@ -40317,11 +40331,10 @@ function doRenderEventBoard(credential, page) {
         $(td).css("font-size", 20);
     });
     trrole.hide().prev().hide();
-    //在线列表等移动到最下面
     $("#online_list").hide().find("> div").appendTo($("body"));
     $("#systemAnnouncement").appendTo("body");
     $("br:first")[0].remove();
-    $("#eventBoard").parent().parent().parent().append(townpanel.parent());
+    eventpanel.parent().parent().parent().append(townpanel.parent());
 }
 function doRenderRoleStatus(credential, page) {
     // 如果满级并且没有关闭转职入口，则战斗标签红底显示
@@ -42015,7 +42028,13 @@ function _renderPalaceTask(credential) {
 }
 function _renderEventBoard(page) {
     //$("#eventBoard").html(page.processedEventBoardHtml!);
-    TownUtils_1.default.loadTownStyle(page);
+    const eventpanel = $("#eventBoard");
+    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
+    eventpanel.html(eventText);
+    if (eventText)
+        eventpanel.parent().show();
+    else
+        eventpanel.parent().hide();
 }
 function _renderConversation(page) {
     $("table:first")
@@ -42033,25 +42052,18 @@ module.exports = TownDashboardLayout007;
 "use strict";
 
 class TownUtils {
-    static loadTownStyle(page) {
+    static loadTownStyle(page, eventpanel) {
         var _a, _b, _c, _d;
         //处理不显示的事件
         const mine = (_b = (_a = page.role) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : "如水衔冰";
         const reg = new RegExp(ExcludeEventEntire.map((m) => `\\[${m}\\]`).join("|") +
             "|" +
             ExcludeEventPart.map((m) => `\\[${m}`).join("|"));
-        const evnt = page
+        const evntText = page
             .eventBoardHtml.split("<br>")
             .filter((it) => it.endsWith(")"))
             .filter((it) => it.indexOf(mine) > -1 || !reg.test(it))
             .join("<br>");
-        $("#eventBoard").html(evnt);
-        //事件如果全部不显示，隐藏事件面板
-        let eventpanel = $("#eventBoard");
-        if (evnt)
-            eventpanel.parent().show();
-        else
-            eventpanel.parent().hide();
         //增大显示事件文字
         eventpanel.find("form").css("margin", "auto");
         eventpanel.attr("height", "0pt");
@@ -42066,6 +42078,7 @@ class TownUtils {
             .parent();
         update.prev().css("font-size", 20).find("form").css("margin", "5px auto");
         (_d = (_c = update.prev().find("input")) === null || _c === void 0 ? void 0 : _c.css("width", 60)) === null || _d === void 0 ? void 0 : _d.css("height", 32);
+        return evntText;
     }
     static setOptionInTown() {
         $("option[value='MAKE_TOWN']").prop("selected", true);
