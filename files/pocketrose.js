@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.4
+// @version      4.2.15-ex+1.5
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21285,7 +21285,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.4) Build: 2023/11/6 16:00:50";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.5) Build: 2023/11/6 16:12:41";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29686,15 +29686,15 @@ function doGenerateSetupItem() {
     html +=
         "<textarea  id='text_" +
             code +
-            "1' size='60' rows='2'  style='margin: 10px 0px' placeholder='" +
+            "1' size='60' rows='2'  style='margin: 10px 0px;width:90%' placeholder='" +
             Constants_1.default.ExcludeEventEntire.join(",") +
-            "'>";
+            "'></textarea>";
     html +=
         "<textarea id='text_" +
             code +
-            "2' size='60' rows='1'  style='margin: 10px 0px'  placeholder='" +
+            "2' size='60' rows='1'  style='margin: 10px 0px;width:90%'  placeholder='" +
             Constants_1.default.ExcludeEventPart.join(",") +
-            "'>";
+            "'></textarea>";
     return html;
 }
 function doSaveSetupItem() {
@@ -29761,9 +29761,9 @@ function doGenerateSetupItem() {
     html +=
         "<textarea  id='text_" +
             code +
-            "' size='60' rows='2'  style='margin: 10px 0px'  placeholder='" +
+            "' size='60' rows='2'  style='margin: 10px 0px;width:90%'  placeholder='" +
             Constants_1.default.SPECIAL_MONSTER.join(",") +
-            "'>";
+            "'></textarea>";
     return html;
 }
 function doSaveSetupItem() {
