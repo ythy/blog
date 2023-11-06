@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.6
+// @version      4.2.15-ex+1.7
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21285,7 +21285,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.6) Build: 2023/11/6 16:29:00";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.7) Build: 2023/11/6 16:51:28";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29675,8 +29675,8 @@ function doRender() {
     html += "</tr>";
     $("#setup_item_table").append($(html));
     const value = SetupLoader_1.default.getEventExcludes();
-    $(`#text_${code}1`).html(value["whole"].join(","));
-    $(`#text_${code}2`).html(value["part"].join(","));
+    $(`#text_${code}1`).val(value["whole"].join(","));
+    $(`#text_${code}2`).val(value["part"].join(","));
     $("#setup_" + code).on("click", function () {
         doSaveSetupItem();
     });
@@ -29698,8 +29698,8 @@ function doGenerateSetupItem() {
     return html;
 }
 function doSaveSetupItem() {
-    let whole = $(`#text_${code}1`).html();
-    let part = $(`#text_${code}2`).html();
+    let whole = $(`#text_${code}1`).val();
+    let part = $(`#text_${code}2`).val();
     StorageUtils_1.default.set(key, JSON.stringify({
         whole: String(whole !== null && whole !== void 0 ? whole : "").split(","),
         part: String(part !== null && part !== void 0 ? part : "").split(","),
@@ -29751,7 +29751,7 @@ function doRender() {
     html += "</tr>";
     $("#setup_item_table").append($(html));
     const value = SetupLoader_1.default.getSpecialMonster();
-    $(`#text_${code}`).html(value.join(","));
+    $(`#text_${code}`).val(value.join(","));
     $("#setup_" + code).on("click", function () {
         doSaveSetupItem();
     });
@@ -29767,7 +29767,7 @@ function doGenerateSetupItem() {
     return html;
 }
 function doSaveSetupItem() {
-    let value = $(`#text_${code}`).html();
+    let value = $(`#text_${code}`).val();
     StorageUtils_1.default.set(key, String(value !== null && value !== void 0 ? value : ""));
     MessageBoard_1.default.publishMessage("<b style='color:red'>" + name + "</b>已经设置。");
     $("#refreshButton").trigger("click");
