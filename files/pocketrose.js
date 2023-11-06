@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.3
+// @version      4.2.15-ex+1.4
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -933,6 +933,7 @@ Constants.ExcludeEventEntire = [
     "宠物图鉴",
     "加速孵化",
     "宝藏",
+    "以旧换新",
 ];
 Constants.ExcludeEventPart = ["祭奠", "十二神殿", "拯救", "上洞"];
 Constants.MONSTER_DAMAGE_LEVEL = [0, 10000, 20000, 30000, 40000, 50000, 60000];
@@ -21284,7 +21285,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.3) Build: 2023/11/6 15:09:50";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.4) Build: 2023/11/6 16:00:50";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29683,15 +29684,15 @@ function doRender() {
 function doGenerateSetupItem() {
     let html = "";
     html +=
-        "<input type='text' id='text_" +
+        "<textarea  id='text_" +
             code +
-            "1' size='60' maxlength='60' placeholder='" +
+            "1' size='60' rows='2'  style='margin: 10px 0px' placeholder='" +
             Constants_1.default.ExcludeEventEntire.join(",") +
             "'>";
     html +=
-        "<input type='text' id='text_" +
+        "<textarea id='text_" +
             code +
-            "2' size='60' maxlength='60' placeholder='" +
+            "2' size='60' rows='1'  style='margin: 10px 0px'  placeholder='" +
             Constants_1.default.ExcludeEventPart.join(",") +
             "'>";
     return html;
@@ -29758,9 +29759,9 @@ function doRender() {
 function doGenerateSetupItem() {
     let html = "";
     html +=
-        "<input type='text' id='text_" +
+        "<textarea  id='text_" +
             code +
-            "' size='60' maxlength='60' placeholder='" +
+            "' size='60' rows='2'  style='margin: 10px 0px'  placeholder='" +
             Constants_1.default.SPECIAL_MONSTER.join(",") +
             "'>";
     return html;
