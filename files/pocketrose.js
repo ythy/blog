@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.8
+// @version      4.2.15-ex+1.9
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21285,7 +21285,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.8) Build: 2023/11/7 13:42:37";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.9) Build: 2023/11/7 14:32:15";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -42883,13 +42883,13 @@ class TownDashboardLayout009 extends TownDashboardLayout_1.default {
 }
 //maoxin
 function doAdvancedAction(credential, page) {
-    const eventpanel = $("#eventBoard");
+    const eventpanel = $("#eventBoard").parent().prev().hide().parent().parent();
     const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
-    eventpanel.html(eventText);
+    $("#eventBoard").html(eventText);
     if (eventText)
-        eventpanel.parent().show();
+        $("#eventBoard").parent().show();
     else
-        eventpanel.parent().hide();
+        $("#eventBoard").parent().hide();
     TownUtils_1.default.setOptionInTown();
     $("#countryAdvancedButton").parent().parent().hide();
     $("#countryNormalButton").css("margin", "15px 0 0 0");
@@ -42900,6 +42900,7 @@ function doAdvancedAction(credential, page) {
     townpanel.find("select").css("font-size", 20);
     townpanel.find("form").css("margin", "0 auto");
     townpanel.find("tr:first").hide().next().hide();
+    eventpanel.parent().parent().parent().append(townpanel.parent());
     let trrole = $("td:contains('身份')")
         .filter((_, td) => $(td).text() === "身份")
         .parent();
@@ -42912,7 +42913,6 @@ function doAdvancedAction(credential, page) {
     $("#online_list").hide().find("> div").appendTo($("body"));
     $("#systemAnnouncement").appendTo("body");
     $("br:first")[0].remove();
-    eventpanel.parent().parent().parent().append(townpanel.parent());
 }
 function doProcessBattleVerificationError(credential, html) {
     return __awaiter(this, void 0, void 0, function* () {
