@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.7
+// @version      4.2.15-ex+1.8
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -95,15 +95,15 @@ const TownAdventureGuildPageInterceptor_1 = __importDefault(__webpack_require__(
 const TownArmorHousePageInterceptor_1 = __importDefault(__webpack_require__(278));
 const TownBankPageInterceptor_1 = __importDefault(__webpack_require__(283));
 const TownDashboardPageInterceptor_1 = __importDefault(__webpack_require__(285));
-const TownForgePageInterceptor_1 = __importDefault(__webpack_require__(308));
-const TownGemHousePageInterceptor_1 = __importDefault(__webpack_require__(310));
-const TownInformationPageInterceptor_1 = __importDefault(__webpack_require__(320));
-const TownInnPageInterceptor_1 = __importDefault(__webpack_require__(322));
-const TownItemHousePageInterceptor_1 = __importDefault(__webpack_require__(324));
-const TownPetMapHousePageInterceptor_1 = __importDefault(__webpack_require__(329));
-const TownPetRankHousePageInterceptor_1 = __importDefault(__webpack_require__(331));
-const TownTaskHousePageInterceptor_1 = __importDefault(__webpack_require__(333));
-const TownWeaponHousePageInterceptor_1 = __importDefault(__webpack_require__(335));
+const TownForgePageInterceptor_1 = __importDefault(__webpack_require__(309));
+const TownGemHousePageInterceptor_1 = __importDefault(__webpack_require__(311));
+const TownInformationPageInterceptor_1 = __importDefault(__webpack_require__(321));
+const TownInnPageInterceptor_1 = __importDefault(__webpack_require__(323));
+const TownItemHousePageInterceptor_1 = __importDefault(__webpack_require__(325));
+const TownPetMapHousePageInterceptor_1 = __importDefault(__webpack_require__(330));
+const TownPetRankHousePageInterceptor_1 = __importDefault(__webpack_require__(332));
+const TownTaskHousePageInterceptor_1 = __importDefault(__webpack_require__(334));
+const TownWeaponHousePageInterceptor_1 = __importDefault(__webpack_require__(336));
 class PageInterceptorManager {
     constructor() {
         _PageInterceptorManager_interceptors.set(this, void 0);
@@ -21285,7 +21285,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.7) Build: 2023/11/6 16:51:28";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.8) Build: 2023/11/7 13:42:37";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29310,13 +29310,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
 const LayoutConfig_1 = __importDefault(__webpack_require__(225));
+//ythy
 class LayoutConfigLoader {
     static loadAll() {
         const configList = [];
         Object.keys(LAYOUTS)
-            .map(id => lodash_1.default.parseInt(id))
+            .map((id) => lodash_1.default.parseInt(id))
             .sort((a, b) => a - b)
-            .forEach(id => {
+            .forEach((id) => {
             // @ts-ignore
             const name = LAYOUTS[id];
             configList.push(new LayoutConfig_1.default(id, name));
@@ -29329,6 +29330,7 @@ const LAYOUTS = {
     4: "聊天布局",
     6: "手机布局",
     7: "战斗布局",
+    9: "手机战斗布局",
 };
 module.exports = LayoutConfigLoader;
 
@@ -40005,7 +40007,6 @@ const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
 const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const TownUtils_1 = __importDefault(__webpack_require__(298));
 const PageProcessorCredentialSupport_1 = __importDefault(__webpack_require__(83));
 const LAYOUT_MANAGER = new TownDashboardLayoutManager_1.default();
 //ythy
@@ -40483,44 +40484,15 @@ function doRenderMenu(credential, page) {
     $("option[value='DIANMING']").text("统计报告");
 }
 function doRenderEventBoard(credential, page) {
-    let td = $("td:contains('最近发生的事件')").filter(function () {
+    $("td:contains('最近发生的事件')")
+        .filter(function () {
         return $(this).text() === "最近发生的事件";
-    });
-    let eventpanel = td.parent().parent().parent();
-    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
-    TownUtils_1.default.setOptionInTown();
-    td.parent()
-        .hide()
+    })
+        .parent()
         .next()
         .find("td:first")
         .attr("id", "eventBoard")
-        .html(eventText);
-    if (eventText)
-        td.parent().next().show();
-    else
-        td.parent().next().hide();
-    $("#countryAdvancedButton").parent().parent().hide();
-    $("#countryNormalButton").css("margin", "15px 0 0 0");
-    $("#townButton").css("margin", "15px 0 0 0");
-    $("#exitButton").parent().parent().parent().next().hide();
-    let townpanel = $("#exitButton").parent().parent().parent().parent();
-    townpanel.find("input[type='submit'], button").css("font-size", 20);
-    townpanel.find("select").css("font-size", 20);
-    townpanel.find("form").css("margin", "0 auto");
-    townpanel.find("tr:first").hide().next().hide();
-    let trrole = $("td:contains('身份')")
-        .filter((_, td) => $(td).text() === "身份")
-        .parent();
-    let rolepanel = trrole.parent().parent();
-    rolepanel.attr("height", "100pt");
-    rolepanel.find("td, th").each((_, td) => {
-        $(td).css("font-size", 20);
-    });
-    trrole.hide().prev().hide();
-    $("#online_list").hide().find("> div").appendTo($("body"));
-    $("#systemAnnouncement").appendTo("body");
-    $("br:first")[0].remove();
-    eventpanel.parent().parent().parent().append(townpanel.parent());
+        .html(page.processedEventBoardHtml);
 }
 function doRenderRoleStatus(credential, page) {
     // 如果满级并且没有关闭转职入口，则战斗标签红底显示
@@ -40744,6 +40716,8 @@ const TownDashboardLayout001_1 = __importDefault(__webpack_require__(289));
 const TownDashboardLayout004_1 = __importDefault(__webpack_require__(293));
 const TownDashboardLayout006_1 = __importDefault(__webpack_require__(296));
 const TownDashboardLayout007_1 = __importDefault(__webpack_require__(297));
+const TownDashboardLayout009_1 = __importDefault(__webpack_require__(307));
+//ythy
 class TownDashboardLayoutManager {
     constructor() {
         _TownDashboardLayoutManager_buffer.set(this, void 0);
@@ -40753,8 +40727,9 @@ class TownDashboardLayoutManager {
             new TownDashboardLayout004_1.default(),
             new TownDashboardLayout006_1.default(),
             new TownDashboardLayout007_1.default(),
+            new TownDashboardLayout009_1.default(),
         ];
-        list.forEach(it => {
+        list.forEach((it) => {
             const id = it.id();
             __classPrivateFieldGet(this, _TownDashboardLayoutManager_buffer, "f").set(id, it);
         });
@@ -41684,22 +41659,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownUtils_1 = __importDefault(__webpack_require__(298));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const BattleButtonManager_1 = __importDefault(__webpack_require__(287));
 const BattleProcessor_1 = __importDefault(__webpack_require__(13));
 const BattleRecord_1 = __importDefault(__webpack_require__(34));
 const BattleRecordStorage_1 = __importDefault(__webpack_require__(35));
 const BattleReturnInterceptor_1 = __importDefault(__webpack_require__(38));
-const BattleScene_1 = __importDefault(__webpack_require__(299));
-const BattleSceneStorage_1 = __importDefault(__webpack_require__(300));
+const BattleScene_1 = __importDefault(__webpack_require__(298));
+const BattleSceneStorage_1 = __importDefault(__webpack_require__(299));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
-const TownForge_1 = __importDefault(__webpack_require__(301));
-const TownInn_1 = __importDefault(__webpack_require__(304));
+const TownForge_1 = __importDefault(__webpack_require__(300));
+const TownInn_1 = __importDefault(__webpack_require__(303));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
 const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(290));
-const DashboardPageUtils_1 = __importDefault(__webpack_require__(307));
+const DashboardPageUtils_1 = __importDefault(__webpack_require__(306));
 const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(291));
 const TownDashboardLayout_1 = __importDefault(__webpack_require__(292));
 const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
@@ -41712,30 +41686,20 @@ class TownDashboardLayout007 extends TownDashboardLayout_1.default {
     }
     render(credential, page) {
         return __awaiter(this, void 0, void 0, function* () {
-            //删掉国家动员行，不显示时间
-            $("#mobilization").parent().after($("<tr></tr>"));
-            $("#mobilization").hide();
-            // $("input[name='watch']")
-            //   .hide()
-            //   .after(
-            //     $(
-            //       "<span style='background-color:lightgreen;font-weight:bold;font-size:120%' " +
-            //         "id='watch2'></span>"
-            //     )
-            //   );
-            // _showTime();
+            $("input[name='watch']")
+                .hide()
+                .after($("<span style='background-color:lightgreen;font-weight:bold;font-size:120%' " +
+                "id='watch2'></span>"));
+            _showTime();
             $("#leftPanel")
-                .attr("colspan", 2)
                 .removeAttr("width")
-                .css("width", "100%")
+                .css("width", "40%")
                 .find("> table:first")
                 .removeAttr("width")
                 .css("width", "95%");
             $("#rightPanel")
                 .removeAttr("width")
-                .css("width", "100%")
-                .attr("colspan", 2)
-                .appendTo($("#leftPanel").parent().prev().prev().prev())
+                .css("width", "60%")
                 .find("> table:first")
                 .find("> tbody:first")
                 .find("> tr:eq(1)")
@@ -41746,10 +41710,10 @@ class TownDashboardLayout007 extends TownDashboardLayout_1.default {
                 .each((idx, tr) => {
                 const tax = page.townTax;
                 $(tr).after($("" +
-                    //   "<tr class='roleStatus'>" +
-                    //   "<td height='5'>职业</td><th id='roleCareer'>-</th>" +
-                    //   "<td>祭奠ＲＰ</td><th id='consecrateRP'>-</th>" +
-                    //   "</tr>" +
+                    "<tr class='roleStatus'>" +
+                    "<td height='5'>职业</td><th id='roleCareer'>-</th>" +
+                    "<td>祭奠ＲＰ</td><th id='consecrateRP'>-</th>" +
+                    "</tr>" +
                     "<tr class='roleStatus'>" +
                     "<td height='5'>收益</td><th id='townTax'>" +
                     tax +
@@ -41757,12 +41721,6 @@ class TownDashboardLayout007 extends TownDashboardLayout_1.default {
                     "<td>额外ＲＰ</td><th id='additionalRP'>-</th>" +
                     "</tr>"));
                 new TownDashboardTaxManager_1.default(credential, page).processTownTax($("#townTax"));
-                $(tr)
-                    .parent()
-                    .find("td, th")
-                    .each((_, td) => {
-                    $(td).css("font-size", 20);
-                });
             });
             new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
                 $("#roleCareer").text(role.career);
@@ -41802,7 +41760,6 @@ class TownDashboardLayout007 extends TownDashboardLayout_1.default {
                 .find("> table:first")
                 .find("> tbody:first")
                 .find("> tr:first")
-                .hide() //mx
                 .find("> th:first")
                 .find("> font:first")
                 .attr("id", "battlePanelTitle")
@@ -42154,17 +42111,6 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
     if (additionalRP !== undefined) {
         $("#additionalRP").html(() => DashboardPageUtils_1.default.generateAdditionalRPHtml(additionalRP));
     }
-    //设置人物面板字号
-    $("#additionalRP")
-        .parent()
-        .prev()
-        .hide()
-        .parent()
-        .find("td, th")
-        .each((_, td) => {
-        $(td).css("font-size", 20);
-    });
-    TownUtils_1.default.setOptionInTown();
     if (harvestList && harvestList.length > 0) {
         // 有入手，其中有可能是干拔了，重新刷新一下RP吧。毕竟入手是小概率事件。
         new PersonalStatus_1.default(credential).load().then((role) => {
@@ -42213,14 +42159,7 @@ function _renderPalaceTask(credential) {
     });
 }
 function _renderEventBoard(page) {
-    //$("#eventBoard").html(page.processedEventBoardHtml!);
-    const eventpanel = $("#eventBoard");
-    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
-    eventpanel.html(eventText);
-    if (eventText)
-        eventpanel.parent().show();
-    else
-        eventpanel.parent().hide();
+    $("#eventBoard").html(page.processedEventBoardHtml);
 }
 function _renderConversation(page) {
     $("table:first")
@@ -42233,69 +42172,6 @@ module.exports = TownDashboardLayout007;
 
 /***/ }),
 /* 298 */
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-const SetupLoader_1 = __importDefault(__webpack_require__(20));
-class TownUtils {
-    static loadTownStyle(page, eventpanel) {
-        var _a, _b, _c, _d;
-        //处理不显示的事件
-        const mine = (_b = (_a = page.role) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : "如水衔冰";
-        const reg = new RegExp(SetupLoader_1.default.getEventExcludes()
-            .whole.map((m) => `\\[${m}\\]`)
-            .join("|") +
-            "|" +
-            SetupLoader_1.default.getEventExcludes()
-                .part.map((m) => `\\[${m}`)
-                .join("|"));
-        const evntText = page
-            .eventBoardHtml.split("<br>")
-            .filter((it) => it.endsWith(")"))
-            .filter((it) => it.indexOf(mine) > -1 || !reg.test(it))
-            .join("<br>");
-        //增大显示事件文字
-        eventpanel.find("form").css("margin", "auto");
-        eventpanel.attr("height", "0pt");
-        eventpanel.find("td").each((_, td) => {
-            $(td).css("font-size", 19);
-        });
-        //增大更新按钮及相关行文字，倒计时
-        let update = $("input[value='更新']")
-            .css("font-size", 20)
-            .parent()
-            .css("margin", "5px auto")
-            .parent();
-        update.prev().css("font-size", 20).find("form").css("margin", "5px auto");
-        (_d = (_c = update.prev().find("input")) === null || _c === void 0 ? void 0 : _c.css("width", 60)) === null || _d === void 0 ? void 0 : _d.css("height", 32);
-        return evntText;
-    }
-    static setOptionInTown() {
-        $("option[value='MAKE_TOWN']").prop("selected", true);
-        $("option[value='LETTER']").prop("selected", true);
-        let ss = false;
-        $("select[name='level']")
-            .find("option")
-            .each((_, option) => {
-            if ($(option).text() === "秘宝之岛")
-                ss = true;
-        });
-        if (!ss) {
-            $("select[name='level']")
-                .find("option:contains('--')")
-                .prop("selected", true);
-        }
-    }
-}
-module.exports = TownUtils;
-
-
-/***/ }),
-/* 299 */
 /***/ ((module) => {
 
 "use strict";
@@ -42319,7 +42195,7 @@ module.exports = BattleScene;
 
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42337,7 +42213,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PocketDatabase_1 = __importDefault(__webpack_require__(10));
-const BattleScene_1 = __importDefault(__webpack_require__(299));
+const BattleScene_1 = __importDefault(__webpack_require__(298));
 class BattleSceneStorage {
     static getInstance() {
         return instance;
@@ -42391,7 +42267,7 @@ module.exports = BattleSceneStorage;
 
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42421,7 +42297,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownForge_credential, _TownForge_townId;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownForgePageParser_1 = __importDefault(__webpack_require__(302));
+const TownForgePageParser_1 = __importDefault(__webpack_require__(301));
 class TownForge {
     constructor(credential, townId) {
         _TownForge_credential.set(this, void 0);
@@ -42471,7 +42347,7 @@ module.exports = TownForge;
 
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42492,7 +42368,7 @@ const lodash_1 = __importDefault(__webpack_require__(4));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownForgePage_1 = __importDefault(__webpack_require__(303));
+const TownForgePage_1 = __importDefault(__webpack_require__(302));
 class TownForgePageParser {
     static parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42569,7 +42445,7 @@ module.exports = TownForgePageParser;
 
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ ((module) => {
 
 "use strict";
@@ -42584,7 +42460,7 @@ module.exports = TownForgePage;
 
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42614,7 +42490,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownInn_credential, _TownInn_townId;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownInnPageParser_1 = __importDefault(__webpack_require__(305));
+const TownInnPageParser_1 = __importDefault(__webpack_require__(304));
 class TownInn {
     constructor(credential, townId) {
         _TownInn_credential.set(this, void 0);
@@ -42654,7 +42530,7 @@ module.exports = TownInn;
 
 
 /***/ }),
-/* 305 */
+/* 304 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42674,7 +42550,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const lodash_1 = __importDefault(__webpack_require__(4));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownInnPage_1 = __importDefault(__webpack_require__(306));
+const TownInnPage_1 = __importDefault(__webpack_require__(305));
 class TownInnPageParser {
     parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42724,7 +42600,7 @@ module.exports = TownInnPageParser;
 
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ ((module) => {
 
 "use strict";
@@ -42739,7 +42615,7 @@ module.exports = TownInnPage;
 
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ ((module) => {
 
 "use strict";
@@ -42769,7 +42645,671 @@ module.exports = DashboardPageUtils;
 
 
 /***/ }),
+/* 307 */
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const lodash_1 = __importDefault(__webpack_require__(4));
+const NetworkUtils_1 = __importDefault(__webpack_require__(45));
+const TownUtils_1 = __importDefault(__webpack_require__(308));
+const PageUtils_1 = __importDefault(__webpack_require__(14));
+const BattleButtonManager_1 = __importDefault(__webpack_require__(287));
+const BattleProcessor_1 = __importDefault(__webpack_require__(13));
+const BattleRecord_1 = __importDefault(__webpack_require__(34));
+const BattleRecordStorage_1 = __importDefault(__webpack_require__(35));
+const BattleReturnInterceptor_1 = __importDefault(__webpack_require__(38));
+const BattleScene_1 = __importDefault(__webpack_require__(298));
+const BattleSceneStorage_1 = __importDefault(__webpack_require__(299));
+const SetupLoader_1 = __importDefault(__webpack_require__(20));
+const TownForge_1 = __importDefault(__webpack_require__(300));
+const TownInn_1 = __importDefault(__webpack_require__(303));
+const PersonalStatus_1 = __importDefault(__webpack_require__(105));
+const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(290));
+const DashboardPageUtils_1 = __importDefault(__webpack_require__(306));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(291));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(292));
+const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
+class TownDashboardLayout009 extends TownDashboardLayout_1.default {
+    id() {
+        return 9;
+    }
+    battleMode() {
+        return true;
+    }
+    render(credential, page) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //删掉国家动员行，不显示时间
+            $("#mobilization").parent().after($("<tr></tr>"));
+            $("#mobilization").hide();
+            // $("input[name='watch']")
+            //   .hide()
+            //   .after(
+            //     $(
+            //       "<span style='background-color:lightgreen;font-weight:bold;font-size:120%' " +
+            //         "id='watch2'></span>"
+            //     )
+            //   );
+            // _showTime();
+            $("#leftPanel")
+                .attr("colspan", 2)
+                .removeAttr("width")
+                .css("width", "100%")
+                .find("> table:first")
+                .removeAttr("width")
+                .css("width", "95%");
+            $("#rightPanel")
+                .removeAttr("width")
+                .css("width", "100%")
+                .attr("colspan", 2)
+                .appendTo($("#leftPanel").parent().prev().prev().prev())
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:eq(1)")
+                .find("> td:first")
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:eq(3)")
+                .each((idx, tr) => {
+                const tax = page.townTax;
+                $(tr).after($("" +
+                    //   "<tr class='roleStatus'>" +
+                    //   "<td height='5'>职业</td><th id='roleCareer'>-</th>" +
+                    //   "<td>祭奠ＲＰ</td><th id='consecrateRP'>-</th>" +
+                    //   "</tr>" +
+                    "<tr class='roleStatus'>" +
+                    "<td height='5'>收益</td><th id='townTax'>" +
+                    tax +
+                    "</th>" +
+                    "<td>额外ＲＰ</td><th id='additionalRP'>-</th>" +
+                    "</tr>"));
+                new TownDashboardTaxManager_1.default(credential, page).processTownTax($("#townTax"));
+                $(tr)
+                    .parent()
+                    .find("td, th")
+                    .each((_, td) => {
+                    $(td).css("font-size", 20);
+                });
+            });
+            new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
+                $("#roleCareer").text(role.career);
+                $("#consecrateRP").text(role.consecrateRP);
+                $("#additionalRP").html(() => DashboardPageUtils_1.default.generateAdditionalRPHtml(role.additionalRP));
+            });
+            $("#rightPanel")
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:eq(1)")
+                .find("> td:first")
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:first")
+                .find("> th:first")
+                .attr("id", "roleTitle")
+                .parent()
+                .next()
+                .addClass("roleStatus")
+                .next()
+                .addClass("roleStatus")
+                .next()
+                .addClass("roleStatus");
+            $("#roleTitle")
+                .parent()
+                .after($("<tr class='additionalStatus' style='display:none'><td colspan='4'></td></tr>"));
+            // 在右面板最后增加一个新行，高度100%，保证格式显示不会变形。
+            $("#rightPanel")
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:last")
+                .find("> td:first")
+                .removeAttr("colspan")
+                .parent()
+                .after($("<tr style='height:100%'><td></td></tr>"));
+            $("#leftPanel")
+                .find("> table:first")
+                .find("> tbody:first")
+                .find("> tr:first")
+                .hide() //maoxin
+                .find("> th:first")
+                .find("> font:first")
+                .attr("id", "battlePanelTitle")
+                .parent()
+                .parent()
+                .next()
+                .removeAttr("bgcolor")
+                .html("<td style='text-align:center' id='battlePanel'></td>")
+                .next()
+                .hide()
+                .find("> td:first")
+                .removeAttr("bgcolor")
+                .attr("id", "battleMenu")
+                .css("text-align", "center")
+                .html("")
+                .parent()
+                .next()
+                .css("height", "100%")
+                .find("> td:first")
+                .html("" +
+                "<div style='display:none' id='hidden-1'></div>" +
+                "<div style='display:none' id='hidden-2'></div>" +
+                "<div style='display:none' id='hidden-3'></div>" +
+                "<div style='display:none' id='hidden-4'></div>" +
+                "<div style='display:none' id='hidden-5'></div>" +
+                "");
+            doAdvancedAction(credential, page); //maoxin
+            BattleRecordStorage_1.default.getInstance()
+                .load(credential.id)
+                .then((record) => {
+                const lastBattle = record.html;
+                if (lastBattle.includes("领悟了") && lastBattle.includes("孵化成功")) {
+                    $("#battlePanel").css("background-color", "yellow");
+                }
+                else if (lastBattle.includes("领悟了")) {
+                    $("#battlePanel").css("background-color", "wheat");
+                }
+                else if (lastBattle.includes("孵化成功")) {
+                    $("#battlePanel").css("background-color", "skyblue");
+                }
+                $("#battlePanel").html(lastBattle);
+            });
+            const ksm = new KeyboardShortcutManager_1.default(credential, page);
+            if (page.battleLevelShortcut) {
+                // 只设置了一处战斗场所偏好
+                ksm.bind();
+            }
+            $("#battleButton")
+                .attr("type", "button")
+                .on("click", () => {
+                if (BattleButtonManager_1.default.isHiddenButtonEnabled()) {
+                    $("#refreshButton").hide();
+                    $("#battleButton").hide();
+                }
+                else {
+                    $("#refreshButton").prop("disabled", true);
+                    $("#battleButton").prop("disabled", true);
+                }
+                const request = credential.asRequestMap();
+                $("#battleCell")
+                    .find("> form[action='battle.cgi']")
+                    .find("> input:hidden")
+                    .filter((idx, input) => $(input).attr("name") !== "id")
+                    .filter((idx, input) => $(input).attr("name") !== "pass")
+                    .each((idx, input) => {
+                    const name = $(input).attr("name");
+                    const value = $(input).val();
+                    request.set(name, value);
+                });
+                $("#battleCell")
+                    .find("> form[action='battle.cgi']")
+                    .find("> select[name='level']")
+                    .each((idx, select) => {
+                    const value = $(select).val();
+                    // noinspection JSDeprecatedSymbols
+                    request.set("level", escape(value));
+                });
+                const battleCount = lodash_1.default.parseInt(request.get("ktotal"));
+                NetworkUtils_1.default.post("battle.cgi", request).then((html) => {
+                    if (html.includes("ERROR !")) {
+                        doProcessBattleVerificationError(credential, html).then(() => {
+                            $(".battleButton").trigger("click");
+                        });
+                        return;
+                    }
+                    const currentBattleCount = battleCount + 1;
+                    doBeforeProcessBattle(credential, currentBattleCount, PageUtils_1.default.currentPageHtml(), html, request).then(() => {
+                        // 开始处理战斗返回的结果
+                        doProcessBattle(credential, html, currentBattleCount).then(() => {
+                            // 战斗布局模式默认开启极速战斗
+                            $(".battleButton").trigger("click");
+                        });
+                    });
+                });
+            });
+        });
+    }
+}
+//maoxin
+function doAdvancedAction(credential, page) {
+    const eventpanel = $("#eventBoard");
+    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
+    eventpanel.html(eventText);
+    if (eventText)
+        eventpanel.parent().show();
+    else
+        eventpanel.parent().hide();
+    TownUtils_1.default.setOptionInTown();
+    $("#countryAdvancedButton").parent().parent().hide();
+    $("#countryNormalButton").css("margin", "15px 0 0 0");
+    $("#townButton").css("margin", "15px 0 0 0");
+    $("#exitButton").parent().parent().parent().next().hide();
+    let townpanel = $("#exitButton").parent().parent().parent().parent();
+    townpanel.find("input[type='submit'], button").css("font-size", 20);
+    townpanel.find("select").css("font-size", 20);
+    townpanel.find("form").css("margin", "0 auto");
+    townpanel.find("tr:first").hide().next().hide();
+    let trrole = $("td:contains('身份')")
+        .filter((_, td) => $(td).text() === "身份")
+        .parent();
+    let rolepanel = trrole.parent().parent();
+    rolepanel.attr("height", "100pt");
+    rolepanel.find("td, th").each((_, td) => {
+        $(td).css("font-size", 20);
+    });
+    trrole.hide().prev().hide();
+    $("#online_list").hide().find("> div").appendTo($("body"));
+    $("#systemAnnouncement").appendTo("body");
+    $("br:first")[0].remove();
+    eventpanel.parent().parent().parent().append(townpanel.parent());
+}
+function doProcessBattleVerificationError(credential, html) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let errMsg = $(html).find("font:first").html();
+        errMsg = "<p style='color:red;font-size:200%'>" + errMsg + "</p>";
+        $("#battlePanel").html(errMsg);
+        const record = new BattleRecord_1.default();
+        record.id = credential.id;
+        record.html = errMsg;
+        yield BattleRecordStorage_1.default.getInstance().write(record);
+        $("#battleMenu")
+            .html("" +
+            "<button role='button' class='battleButton' " +
+            "id='battleReturn' style='font-size:150%'>返回</button>" +
+            "")
+            .parent()
+            .show();
+        $("#battleReturn").on("click", () => {
+            $("#battleReturn").prop("disabled", true);
+            const request = credential.asRequestMap();
+            request.set("mode", "STATUS");
+            NetworkUtils_1.default.post("status.cgi", request).then((mainPage) => {
+                doProcessBattleReturn(credential, mainPage);
+            });
+        });
+        return yield (() => {
+            return new Promise((resolve) => resolve());
+        })();
+    });
+}
+function doBeforeProcessBattle(credential, currentBattleCount, beforePage, afterPage, request) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const scene = new BattleScene_1.default();
+        scene.id = credential.id;
+        scene.roleId = credential.id;
+        scene.beforePage = beforePage;
+        scene.afterPage = afterPage;
+        const r = {};
+        request.forEach((v, k) => {
+            // @ts-ignore
+            r[k] = v;
+        });
+        scene.request = JSON.stringify(r);
+        yield BattleSceneStorage_1.default.getInstance().upsert(scene);
+        return yield (() => {
+            return new Promise((resolve) => resolve());
+        })();
+    });
+}
+function doProcessBattle(credential, html, currentBattleCount) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const processor = new BattleProcessor_1.default(credential, html, currentBattleCount);
+        yield processor.doProcess();
+        $("#battlePanel").html(processor.obtainPage.reportHtml);
+        if (processor.obtainPage.reportHtml.includes("领悟了") &&
+            processor.obtainPage.reportHtml.includes("孵化成功")) {
+            $("#battlePanel")
+                .css("background-color", "wheat")
+                .css("text-align", "yellow");
+        }
+        else if (processor.obtainPage.reportHtml.includes("领悟了")) {
+            $("#battlePanel")
+                .css("background-color", "wheat")
+                .css("text-align", "center");
+        }
+        else if (processor.obtainPage.reportHtml.includes("孵化成功")) {
+            $("#battlePanel")
+                .css("background-color", "skyblue")
+                .css("text-align", "center");
+        }
+        else {
+            $("#battlePanel").removeAttr("style").css("text-align", "center");
+        }
+        const recommendation = processor.obtainRecommendation;
+        switch (recommendation) {
+            case "修":
+                $("#battleMenu")
+                    .html("" +
+                    "<button role='button' class='battleButton' " +
+                    "id='battleRepair' style='font-size:150%'>修理</button>" +
+                    "")
+                    .parent()
+                    .show();
+                break;
+            case "宿":
+                $("#battleMenu")
+                    .html("" +
+                    "<button role='button' class='battleButton' " +
+                    "id='battleLodge' style='font-size:150%'>住宿</button>" +
+                    "")
+                    .parent()
+                    .show();
+                break;
+            case "存":
+                $("#battleMenu")
+                    .html("" +
+                    "<button role='button' class='battleButton' " +
+                    "id='battleDeposit' style='font-size:150%'>存钱</button>" +
+                    "")
+                    .parent()
+                    .show();
+                break;
+            case "回":
+                $("#battleMenu")
+                    .html("" +
+                    "<button role='button' class='battleButton' " +
+                    "id='battleReturn' style='font-size:150%'>返回</button>" +
+                    "")
+                    .parent()
+                    .show();
+                break;
+        }
+        $("#battleReturn").on("click", () => {
+            $("#battleReturn").prop("disabled", true);
+            new BattleReturnInterceptor_1.default(credential, currentBattleCount)
+                .doBeforeReturn()
+                .then(() => {
+                const request = credential.asRequestMap();
+                request.set("mode", "STATUS");
+                NetworkUtils_1.default.post("status.cgi", request).then((mainPage) => {
+                    doProcessBattleReturn(credential, mainPage, processor.obtainPage.additionalRP, processor.obtainPage.harvestList);
+                });
+            });
+        });
+        $("#battleDeposit").on("click", () => {
+            $("#battleDeposit").prop("disabled", true);
+            new BattleReturnInterceptor_1.default(credential, currentBattleCount)
+                .doBeforeReturn()
+                .then(() => {
+                const request = credential.asRequestMap();
+                request.set("azukeru", "all");
+                request.set("mode", "BANK_SELL");
+                NetworkUtils_1.default.post("town.cgi", request).then((mainPage) => {
+                    if (processor.obtainPage.zodiacBattle) {
+                        new TownInn_1.default(credential).recovery().then((m) => {
+                            doProcessBattleReturn(credential, m, processor.obtainPage.additionalRP, processor.obtainPage.harvestList);
+                        });
+                    }
+                    else {
+                        doProcessBattleReturn(credential, mainPage, processor.obtainPage.additionalRP, processor.obtainPage.harvestList);
+                    }
+                });
+            });
+        });
+        $("#battleRepair").on("click", () => {
+            $("#battleRepair").prop("disabled", true);
+            new BattleReturnInterceptor_1.default(credential, currentBattleCount)
+                .doBeforeReturn()
+                .then(() => {
+                new TownForge_1.default(credential).repairAll().then((m) => {
+                    doProcessBattleReturn(credential, m, processor.obtainPage.additionalRP, processor.obtainPage.harvestList);
+                });
+            });
+        });
+        $("#battleLodge").on("click", () => {
+            $("#battleLodge").prop("disabled", true);
+            new BattleReturnInterceptor_1.default(credential, currentBattleCount)
+                .doBeforeReturn()
+                .then(() => {
+                new TownInn_1.default(credential).recovery().then((m) => {
+                    doProcessBattleReturn(credential, m, processor.obtainPage.additionalRP, processor.obtainPage.harvestList);
+                });
+            });
+        });
+        return yield (() => {
+            return new Promise((resolve) => resolve());
+        })();
+    });
+}
+function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) {
+    $("#systemAnnouncement").removeAttr("style");
+    $(".battleButton").off("click");
+    $("#battleMenu").html("").parent().hide();
+    if (BattleButtonManager_1.default.isHiddenButtonEnabled()) {
+        $("#refreshButton").show();
+        $("#battleButton").show();
+    }
+    else {
+        $("#refreshButton").prop("disabled", false);
+        $("#battleButton").prop("disabled", false);
+    }
+    const parser = new TownDashboardPageParser_1.default(credential, mainPage, true);
+    const page = parser.parse();
+    // 更新首页战斗相关的选项
+    // ktotal
+    $("input:hidden[name='ktotal']").val(page.obtainRole.battleCount);
+    // session id
+    $("input:hidden[name='sessionid']").val(page.battleSessionId);
+    // level
+    $("select[name='level']").html(page.processedBattleLevelSelectionHtml);
+    // verification code picture
+    $("select[name='level']")
+        .closest("form")
+        .find("> img:first")
+        .attr("src", page.battleVerificationSource);
+    $("a:contains('看不到图片按这里')")
+        .filter((idx, a) => $(a).text() === "看不到图片按这里")
+        .attr("href", page.battleVerificationSource);
+    // 更新战斗倒计时部分
+    $("#messageNotification")
+        .parent()
+        .next()
+        .next()
+        .find("> th:first")
+        .html(page.actionNotificationHtml);
+    if (SetupLoader_1.default.isConsecrateStateRecognizeEnabled(credential.id) &&
+        page.role.canConsecrate) {
+        $("#battleCell")
+            .parent()
+            .prev()
+            .find("> th:first")
+            .css("color", "red")
+            .css("font-size", "120%");
+    }
+    const clock = $("input:text[name='clock']");
+    if (clock.length > 0) {
+        const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
+        if (enlargeRatio > 0) {
+            let fontSize = 100 * enlargeRatio;
+            clock.css("font-size", fontSize + "%");
+        }
+        let timeout = lodash_1.default.parseInt(clock.val());
+        if (timeout > 0) {
+            const start = Date.now() / 1000;
+            _countDownClock(timeout, start, clock);
+        }
+    }
+    // 更新：在线列表
+    $("#online_list").html(page.onlineListHtml);
+    // 更新：动员指令
+    $("#mobilization")
+        .find("> form:first")
+        .find("> font:first")
+        .text(page.processedMobilizationText);
+    // 更新：消息通知
+    $("#messageNotification").html(page.messageNotificationHtml);
+    _renderPalaceTask(credential);
+    _renderEventBoard(page);
+    _renderConversation(page);
+    if (page.careerTransferNotification) {
+        $("#battleCell").css("background-color", "red");
+    }
+    if (page.capacityLimitationNotification) {
+        $("#battleCell").css("background-color", "yellow");
+    }
+    $("#role_battle_count").text(page.role.battleCount);
+    $("#role_health").text(page.role.health + "/" + page.role.maxHealth);
+    $("#role_mana").text(page.role.mana + "/" + page.role.maxMana);
+    $("#role_cash").html(page.cashHtml);
+    $("#role_experience").html(page.experienceHtml);
+    $("#townTax").off("click").text(page.townTax);
+    new TownDashboardTaxManager_1.default(credential, page).processTownTax($("#townTax"));
+    if (additionalRP !== undefined) {
+        $("#additionalRP").html(() => DashboardPageUtils_1.default.generateAdditionalRPHtml(additionalRP));
+    }
+    //设置人物面板字号 maoxin
+    $("#additionalRP")
+        .parent()
+        .prev()
+        .hide()
+        .parent()
+        .find("td, th")
+        .each((_, td) => {
+        $(td).css("font-size", 20);
+    });
+    TownUtils_1.default.setOptionInTown();
+    if (harvestList && harvestList.length > 0) {
+        // 有入手，其中有可能是干拔了，重新刷新一下RP吧。毕竟入手是小概率事件。
+        new PersonalStatus_1.default(credential).load().then((role) => {
+            $("#consecrateRP").text(role.consecrateRP);
+            $("#additionalRP").html(() => DashboardPageUtils_1.default.generateAdditionalRPHtml(role.additionalRP));
+        });
+    }
+    const ksm = new KeyboardShortcutManager_1.default(credential, page);
+    if (page.battleLevelShortcut) {
+        ksm.bind();
+    }
+    new BattleButtonManager_1.default().createSafeBattleButton().then();
+}
+function _showTime() {
+    const date = new Date();
+    const h = date.getHours(); // 0 - 23
+    const m = date.getMinutes(); // 0 - 59
+    const s = date.getSeconds(); // 0 - 59
+    const hour = lodash_1.default.padStart(h.toString(), 2, "0");
+    const minute = lodash_1.default.padStart(m.toString(), 2, "0");
+    const second = lodash_1.default.padStart(s.toString(), 2, "0");
+    const time = hour + ":" + minute + ":" + second;
+    $("#watch2").html("&nbsp;&nbsp;&nbsp;" + time + "&nbsp;&nbsp;&nbsp;");
+    setTimeout(_showTime, 1000);
+}
+function _countDownClock(timeout, start, clock) {
+    var _a;
+    let now = Date.now() / 1000;
+    let x = timeout - (now - start);
+    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
+    if (x > 0) {
+        setTimeout(() => {
+            _countDownClock(timeout, start, clock);
+        }, 100);
+    }
+    else {
+        // @ts-ignore
+        (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
+    }
+}
+function _renderPalaceTask(credential) {
+    new PalaceTaskManager_1.default(credential).monsterTaskHtml().then((monsterTask) => {
+        if (monsterTask !== "") {
+            $("#palaceTask").html(monsterTask).parent().show();
+        }
+    });
+}
+function _renderEventBoard(page) {
+    //$("#eventBoard").html(page.processedEventBoardHtml!);
+    const eventpanel = $("#eventBoard");
+    const eventText = TownUtils_1.default.loadTownStyle(page, eventpanel);
+    eventpanel.html(eventText);
+    if (eventText)
+        eventpanel.parent().show();
+    else
+        eventpanel.parent().hide();
+}
+function _renderConversation(page) {
+    $("table:first")
+        .next() // conversation table
+        .html(page.t1Html);
+    $("input:text[name='message']").attr("id", "messageInputText");
+}
+module.exports = TownDashboardLayout009;
+
+
+/***/ }),
 /* 308 */
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const SetupLoader_1 = __importDefault(__webpack_require__(20));
+class TownUtils {
+    static loadTownStyle(page, eventpanel) {
+        var _a, _b, _c, _d;
+        //处理不显示的事件
+        const mine = (_b = (_a = page.role) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : "如水衔冰";
+        const reg = new RegExp(SetupLoader_1.default.getEventExcludes()
+            .whole.map((m) => `\\[${m}\\]`)
+            .join("|") +
+            "|" +
+            SetupLoader_1.default.getEventExcludes()
+                .part.map((m) => `\\[${m}`)
+                .join("|"));
+        const evntText = page
+            .eventBoardHtml.split("<br>")
+            .filter((it) => it.endsWith(")"))
+            .filter((it) => it.indexOf(mine) > -1 || !reg.test(it))
+            .join("<br>");
+        //增大显示事件文字
+        eventpanel.find("form").css("margin", "auto");
+        eventpanel.attr("height", "0pt");
+        eventpanel.find("td").each((_, td) => {
+            $(td).css("font-size", 19);
+        });
+        //增大更新按钮及相关行文字，倒计时
+        let update = $("input[value='更新']")
+            .css("font-size", 20)
+            .parent()
+            .css("margin", "5px auto")
+            .parent();
+        update.prev().css("font-size", 20).find("form").css("margin", "5px auto");
+        (_d = (_c = update.prev().find("input")) === null || _c === void 0 ? void 0 : _c.css("width", 60)) === null || _d === void 0 ? void 0 : _d.css("height", 32);
+        return evntText;
+    }
+    static setOptionInTown() {
+        $("option[value='MAKE_TOWN']").prop("selected", true);
+        $("option[value='LETTER']").prop("selected", true);
+        let ss = false;
+        $("select[name='level']")
+            .find("option")
+            .each((_, option) => {
+            if ($(option).text() === "秘宝之岛")
+                ss = true;
+        });
+        if (!ss) {
+            $("select[name='level']")
+                .find("option:contains('--')")
+                .prop("selected", true);
+        }
+    }
+}
+module.exports = TownUtils;
+
+
+/***/ }),
+/* 309 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42784,7 +43324,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownForgePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownForgePageProcessor_1 = __importDefault(__webpack_require__(309));
+const TownForgePageProcessor_1 = __importDefault(__webpack_require__(310));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownForgePageInterceptor {
     constructor() {
@@ -42815,7 +43355,7 @@ module.exports = TownForgePageInterceptor;
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42833,8 +43373,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
-const TownForge_1 = __importDefault(__webpack_require__(301));
-const TownForgePageParser_1 = __importDefault(__webpack_require__(302));
+const TownForge_1 = __importDefault(__webpack_require__(300));
+const TownForgePageParser_1 = __importDefault(__webpack_require__(301));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
@@ -43013,7 +43553,7 @@ module.exports = TownForgePageProcessor;
 
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43028,7 +43568,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownGemHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownGemHousePageProcessor_1 = __importDefault(__webpack_require__(311));
+const TownGemHousePageProcessor_1 = __importDefault(__webpack_require__(312));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownGemHousePageInterceptor {
     constructor() {
@@ -43059,7 +43599,7 @@ module.exports = TownGemHousePageInterceptor;
 
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43084,9 +43624,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownGemHousePageProcessor_instances, _TownGemHousePageProcessor_renderImmutablePage, _TownGemHousePageProcessor_bindImmutableButtons, _TownGemHousePageProcessor_renderMutablePage, _TownGemHousePageProcessor_bindMutableButtons, _TownGemHousePageProcessor_refreshMutablePage, _TownGemHousePageProcessor__fuseAllGems;
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
-const TownGemHouse_1 = __importDefault(__webpack_require__(312));
-const TownGemHouseParser_1 = __importDefault(__webpack_require__(315));
-const TownGemMeltHouse_1 = __importDefault(__webpack_require__(317));
+const TownGemHouse_1 = __importDefault(__webpack_require__(313));
+const TownGemHouseParser_1 = __importDefault(__webpack_require__(316));
+const TownGemMeltHouse_1 = __importDefault(__webpack_require__(318));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const CommentBoard_1 = __importDefault(__webpack_require__(54));
@@ -43607,7 +44147,7 @@ module.exports = TownGemHousePageProcessor;
 
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43640,9 +44180,9 @@ const lodash_1 = __importDefault(__webpack_require__(4));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const GemFuseLog_1 = __importDefault(__webpack_require__(313));
-const GemFuseLogStorage_1 = __importDefault(__webpack_require__(314));
-const TownGemHouseParser_1 = __importDefault(__webpack_require__(315));
+const GemFuseLog_1 = __importDefault(__webpack_require__(314));
+const GemFuseLogStorage_1 = __importDefault(__webpack_require__(315));
+const TownGemHouseParser_1 = __importDefault(__webpack_require__(316));
 class TownGemHouse {
     constructor(credential, townId) {
         _TownGemHouse_credential.set(this, void 0);
@@ -43706,7 +44246,7 @@ module.exports = TownGemHouse;
 
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ ((module) => {
 
 "use strict";
@@ -43731,7 +44271,7 @@ module.exports = GemFuseLog;
 
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43778,7 +44318,7 @@ module.exports = GemFuseLogStorage;
 
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43810,8 +44350,8 @@ var _TownGemHouseParser_credential, _TownGemHouseParser_townId;
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownGemHousePage_1 = __importDefault(__webpack_require__(316));
-const TownGemMeltHouse_1 = __importDefault(__webpack_require__(317));
+const TownGemHousePage_1 = __importDefault(__webpack_require__(317));
+const TownGemMeltHouse_1 = __importDefault(__webpack_require__(318));
 class TownGemHouseParser {
     constructor(credential, townId) {
         _TownGemHouseParser_credential.set(this, void 0);
@@ -43913,7 +44453,7 @@ module.exports = TownGemHouseParser;
 
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ ((module) => {
 
 "use strict";
@@ -43940,7 +44480,7 @@ module.exports = TownGemHousePage;
 
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -43971,7 +44511,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownGemMeltHouse_credential, _TownGemMeltHouse_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownGemMeltHouseParser_1 = __importDefault(__webpack_require__(318));
+const TownGemMeltHouseParser_1 = __importDefault(__webpack_require__(319));
 class TownGemMeltHouse {
     constructor(credential, townId) {
         _TownGemMeltHouse_credential.set(this, void 0);
@@ -44020,7 +44560,7 @@ module.exports = TownGemMeltHouse;
 
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44040,7 +44580,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownGemMeltHousePage_1 = __importDefault(__webpack_require__(319));
+const TownGemMeltHousePage_1 = __importDefault(__webpack_require__(320));
 class TownGemMeltHouseParser {
     static parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -44108,7 +44648,7 @@ module.exports = TownGemMeltHouseParser;
 
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ ((module) => {
 
 "use strict";
@@ -44131,7 +44671,7 @@ module.exports = TownGemMeltHousePage;
 
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44145,7 +44685,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _TownInformationPageInterceptor_processor;
-const TownInformationPageProcessor_1 = __importDefault(__webpack_require__(321));
+const TownInformationPageProcessor_1 = __importDefault(__webpack_require__(322));
 class TownInformationPageInterceptor {
     constructor() {
         _TownInformationPageInterceptor_processor.set(this, new TownInformationPageProcessor_1.default());
@@ -44165,7 +44705,7 @@ module.exports = TownInformationPageInterceptor;
 
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44196,7 +44736,7 @@ module.exports = TownInformationPageProcessor;
 
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44211,7 +44751,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownInnPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownInnPageProcessor_1 = __importDefault(__webpack_require__(323));
+const TownInnPageProcessor_1 = __importDefault(__webpack_require__(324));
 class TownInnPageInterceptor {
     constructor() {
         _TownInnPageInterceptor_processor.set(this, new TownInnPageProcessor_1.default());
@@ -44239,7 +44779,7 @@ module.exports = TownInnPageInterceptor;
 
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44260,7 +44800,7 @@ const TownBank_1 = __importDefault(__webpack_require__(43));
 const Castle_1 = __importDefault(__webpack_require__(56));
 const CastleEntrance_1 = __importDefault(__webpack_require__(96));
 const CastleInformation_1 = __importDefault(__webpack_require__(55));
-const TownInnPageParser_1 = __importDefault(__webpack_require__(305));
+const TownInnPageParser_1 = __importDefault(__webpack_require__(304));
 const MapBuilder_1 = __importDefault(__webpack_require__(99));
 const TravelPlanExecutor_1 = __importDefault(__webpack_require__(103));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
@@ -44560,7 +45100,7 @@ module.exports = TownInnPageProcessor;
 
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44575,7 +45115,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownItemHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownItemHousePageProcessor_1 = __importDefault(__webpack_require__(325));
+const TownItemHousePageProcessor_1 = __importDefault(__webpack_require__(326));
 class TownItemHousePageInterceptor {
     constructor() {
         _TownItemHousePageInterceptor_processor.set(this, new TownItemHousePageProcessor_1.default());
@@ -44603,7 +45143,7 @@ module.exports = TownItemHousePageInterceptor;
 
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44629,8 +45169,8 @@ var _TownItemHousePageProcessor_instances, _TownItemHousePageProcessor_renderImm
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TownAccessoryHouse_1 = __importDefault(__webpack_require__(269));
-const TownItemHouse_1 = __importDefault(__webpack_require__(326));
-const TownItemHousePageParser_1 = __importDefault(__webpack_require__(327));
+const TownItemHouse_1 = __importDefault(__webpack_require__(327));
+const TownItemHousePageParser_1 = __importDefault(__webpack_require__(328));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const PocketUtils_1 = __importDefault(__webpack_require__(46));
@@ -44908,7 +45448,7 @@ module.exports = TownItemHousePageProcessor;
 
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -44939,7 +45479,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownItemHouse_credential, _TownItemHouse_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownItemHousePageParser_1 = __importDefault(__webpack_require__(327));
+const TownItemHousePageParser_1 = __importDefault(__webpack_require__(328));
 class TownItemHouse {
     constructor(credential, townId) {
         _TownItemHouse_credential.set(this, void 0);
@@ -45011,7 +45551,7 @@ module.exports = TownItemHouse;
 
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -45032,7 +45572,7 @@ const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
 const Merchandise_1 = __importDefault(__webpack_require__(271));
-const TownItemHousePage_1 = __importDefault(__webpack_require__(328));
+const TownItemHousePage_1 = __importDefault(__webpack_require__(329));
 class TownItemHousePageParser {
     parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -45143,7 +45683,7 @@ module.exports = TownItemHousePageParser;
 
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -45177,7 +45717,7 @@ module.exports = TownItemHousePage;
 
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -45192,7 +45732,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownPetMapHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownPetMapHousePageProcessor_1 = __importDefault(__webpack_require__(330));
+const TownPetMapHousePageProcessor_1 = __importDefault(__webpack_require__(331));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownPetMapHousePageInterceptor {
     constructor() {
@@ -45223,7 +45763,7 @@ module.exports = TownPetMapHousePageInterceptor;
 
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -45441,7 +45981,7 @@ module.exports = TownPetMapHousePageProcessor;
 
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -45456,7 +45996,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownPetRankHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownPetRankHousePageProcessor_1 = __importDefault(__webpack_require__(332));
+const TownPetRankHousePageProcessor_1 = __importDefault(__webpack_require__(333));
 class TownPetRankHousePageInterceptor {
     constructor() {
         _TownPetRankHousePageInterceptor_processor.set(this, new TownPetRankHousePageProcessor_1.default());
@@ -45484,7 +46024,7 @@ module.exports = TownPetRankHousePageInterceptor;
 
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -46164,7 +46704,7 @@ module.exports = TownPetRankHousePageProcessor;
 
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -46179,7 +46719,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownTaskHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownTaskHousePageProcessor_1 = __importDefault(__webpack_require__(334));
+const TownTaskHousePageProcessor_1 = __importDefault(__webpack_require__(335));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownTaskHousePageInterceptor {
     constructor() {
@@ -46210,7 +46750,7 @@ module.exports = TownTaskHousePageInterceptor;
 
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -46700,7 +47240,7 @@ module.exports = TownTaskHousePageProcessor;
 
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -46715,7 +47255,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownWeaponHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownWeaponHousePageProcessor_1 = __importDefault(__webpack_require__(336));
+const TownWeaponHousePageProcessor_1 = __importDefault(__webpack_require__(337));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownWeaponHousePageInterceptor {
     constructor() {
@@ -46746,7 +47286,7 @@ module.exports = TownWeaponHousePageInterceptor;
 
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -46765,8 +47305,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
-const TownWeaponHouse_1 = __importDefault(__webpack_require__(337));
-const TownWeaponHousePageParser_1 = __importDefault(__webpack_require__(338));
+const TownWeaponHouse_1 = __importDefault(__webpack_require__(338));
+const TownWeaponHousePageParser_1 = __importDefault(__webpack_require__(339));
 const Constants_1 = __importDefault(__webpack_require__(11));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
@@ -47074,7 +47614,7 @@ module.exports = TownWeaponHousePageProcessor;
 
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -47105,7 +47645,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownWeaponHouse_credential, _TownWeaponHouse_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownWeaponHousePageParser_1 = __importDefault(__webpack_require__(338));
+const TownWeaponHousePageParser_1 = __importDefault(__webpack_require__(339));
 class TownWeaponHouse {
     constructor(credential, townId) {
         _TownWeaponHouse_credential.set(this, void 0);
@@ -47184,7 +47724,7 @@ module.exports = TownWeaponHouse;
 
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -47204,7 +47744,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Merchandise_1 = __importDefault(__webpack_require__(271));
-const TownWeaponHousePage_1 = __importDefault(__webpack_require__(339));
+const TownWeaponHousePage_1 = __importDefault(__webpack_require__(340));
 class TownWeaponHousePageParser {
     parse(pageHtml) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -47329,7 +47869,7 @@ module.exports = TownWeaponHousePageParser;
 
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
