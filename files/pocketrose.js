@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.13
+// @version      4.2.15-ex+1.14
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -4659,7 +4659,7 @@ class BattlePageParser {
                     // 没有找到？那说明宠物图片和怪物图片是一个
                     petImageSrc = monsterImageSrc;
                 }
-                page.petImageHtml = `<img src='" + ${petImageSrc} + "' alt='' width='${zoom ? 128 : 64}' height='${zoom ? 128 : 64}'>`;
+                page.petImageHtml = `<img src="${petImageSrc}" alt='' width='${zoom ? 128 : 64}' height='${zoom ? 128 : 64}'>`;
             }
             battleTable
                 .find("> tbody:first")
@@ -21326,7 +21326,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.13) Build: 2023/11/8 10:47:12";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.14) Build: 2023/11/8 11:03:29";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
