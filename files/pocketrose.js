@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.12
+// @version      4.2.15-ex+1.13
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -4534,7 +4534,7 @@ class BattlePageParser {
                 page.monsterImageHtml = (spells
                     ? $(`<td style="display: flex;">
                   ${html}
-                   <div style="display:flex;font-size:20px;margin-left:2px" >
+                   <div style="display:flex;font-size:${zoom ? 20 : 16}px;margin-left:2px" >
                       <div style="border: 1px black solid; width: 40px;line-height:1.5; ">${monsterProfile["catchRatio"]}</div>
                       <div style="border: 1px black solid; border-left-width: 0; width: 50px;line-height:1.5;background-color:c8f4dd ">${monsterProfile["perfectHealth"]}</div>
                       <div style="border: 1px black solid; border-left-width: 0; width: 40px;line-height:1.5; ">${monsterProfile["perfectAttack"]}</div>
@@ -4551,7 +4551,7 @@ class BattlePageParser {
                       <div style="border: 1px black solid; border-left-width: 0; width:40px;background-color:#c8f4dd">速${monsterProfile["speedEffort"]}</div>
                       <div style="border: 1px black solid; border-left-width: 0; width:40px;line-height:1.5">${monsterProfile.growExperience}</div>
                   </div>
-                  <div onclick="javascript:$('#phyform').submit()" style="border:1px black solid;border-top-width:0; width:572px;font-size:20px;text-align:left;margin-left:2px;padding:0px 5px;">${spells}
+                  <div onclick="javascript:$('#phyform').submit()" style="border:1px black solid;border-top-width:0; width:572px;font-size:${zoom ? 20 : 16}px;text-align:left;margin-left:2px;padding:0px 5px;">${spells}
                      <form id="phyform" action="town.cgi" style="display:inline-block;">
                        <input type="hidden" name="id" value="${credential.id}" />
                        <input type="hidden" name="pass" value="${credential.pass}" />
@@ -4659,7 +4659,7 @@ class BattlePageParser {
                     // 没有找到？那说明宠物图片和怪物图片是一个
                     petImageSrc = monsterImageSrc;
                 }
-                page.petImageHtml = `<img src='" + petImageSrc + "' alt='' width='${zoom ? 128 : 64}' height='${zoom ? 128 : 64}'>`;
+                page.petImageHtml = `<img src='" + ${petImageSrc} + "' alt='' width='${zoom ? 128 : 64}' height='${zoom ? 128 : 64}'>`;
             }
             battleTable
                 .find("> tbody:first")
@@ -21326,7 +21326,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.12) Build: 2023/11/8 10:31:57";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.13) Build: 2023/11/8 10:47:12";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
