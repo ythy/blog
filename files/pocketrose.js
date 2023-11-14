@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.15
+// @version      4.2.15-ex+1.16
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21327,7 +21327,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.15) Build: 2023/11/14 16:15:58";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.16) Build: 2023/11/14 16:22:15";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29601,7 +29601,6 @@ const WEAPON_LIST = [
     "降魔杖",
     "2015.02.14情人节巧克力",
     "2005.5.1-2006.5.1劳动升级版",
-    "2006.05.01劳动了一年",
     "波斯弯刀",
     "女神之剑",
     "星夜之弓",
@@ -29664,6 +29663,7 @@ const WEAPON_LIST = [
     "瓦谕剑",
     "封神剑 天劫",
     "奥利哈钢匕首",
+    "2006.05.01劳动了一年",
 ];
 const ARMOR_LIST = [
     "千幻碧水猿洛克奇斯",
