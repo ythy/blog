@@ -5,12 +5,13 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.14
+// @version      4.2.15-ex+1.15
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
 // @require      https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js
 // @require      https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.min.js
+// @require      https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js
 // @run-at       document-start
 // @unwrap
 // ==/UserScript==
@@ -4966,8 +4967,8 @@ class BattleDeclarationManager {
             prefix = `发现<span style="color:red">${monsteSplit[0]}</span>！`;
         //提升掉率开始
         const ratioMulti = SetupLoader_1.default.getDropRatio();
-        const ratioTu = Math.floor(500 / ratioMulti);
-        const ratio = Math.floor(100000 / ((_a = monsterObj === null || monsterObj === void 0 ? void 0 : monsterObj.catchRatio) !== null && _a !== void 0 ? _a : 1) / ratioMulti);
+        const ratioTu = Math.floor(1000 / ratioMulti);
+        const ratio = Math.floor(50000 / Math.sqrt((_a = monsterObj === null || monsterObj === void 0 ? void 0 : monsterObj.catchRatio) !== null && _a !== void 0 ? _a : 1) / ratioMulti);
         if (Math.floor(Math.random() * ratioTu) == 0)
             suffix = `<br>${ratioMulti}倍出率,1/${ratioTu}！<span style="color:blue">${monster}图鉴</span>入手！`;
         if (Math.floor(Math.random() * ratio) == 0)
@@ -21326,7 +21327,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.14) Build: 2023/11/8 11:03:29";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.15) Build: 2023/11/14 16:15:58";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -29600,6 +29601,7 @@ const WEAPON_LIST = [
     "降魔杖",
     "2015.02.14情人节巧克力",
     "2005.5.1-2006.5.1劳动升级版",
+    "2006.05.01劳动了一年",
     "波斯弯刀",
     "女神之剑",
     "星夜之弓",
@@ -29661,7 +29663,7 @@ const WEAPON_LIST = [
     "寡妇制造器",
     "瓦谕剑",
     "封神剑 天劫",
-    "奥利哈钢匕首"
+    "奥利哈钢匕首",
 ];
 const ARMOR_LIST = [
     "千幻碧水猿洛克奇斯",
@@ -29733,7 +29735,7 @@ const ARMOR_LIST = [
     "咒袍 孤星",
     "巨人之铠",
     "孔雀袍",
-    "羽毛帽"
+    "羽毛帽",
 ];
 const ACCESSORY_LIST = [
     "魔盔 虚无",
@@ -29801,7 +29803,7 @@ const ACCESSORY_LIST = [
     "晶之冠",
     "金制胸针",
     "极光之翼",
-    "雪的结晶"
+    "雪的结晶",
 ];
 module.exports = EquipmentLoader;
 
