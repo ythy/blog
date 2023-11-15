@@ -5,13 +5,12 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.16
+// @version      4.2.15-ex+1.17
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
 // @require      https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js
 // @require      https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.min.js
-// @require      https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js
 // @run-at       document-start
 // @unwrap
 // ==/UserScript==
@@ -21327,7 +21326,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.16) Build: 2023/11/14 16:22:15";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.17) Build: 2023/11/15 14:10:37";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -40179,18 +40178,34 @@ function doRenderMenu(credential, page) {
                     buttonClass +
                     "' id='shortcut3' style='white-space:nowrap;width:100%'>&nbsp;宠物&nbsp;</button>";
             html += "</td>";
-            html += "<td>";
-            html +=
-                "<button role='button' class='" +
-                    buttonClass +
-                    "' id='shortcut7' style='white-space:nowrap;width:100%'>&nbsp;银行&nbsp;</button>";
-            html += "</td>";
-            html += "</tr>";
-            html += "</tbody>";
-            html += "</table>";
-            $(th).html(html);
-            _bindShortcutButton("shortcut3", "PETSTATUS");
-            _bindShortcutButton("shortcut7", "BANK");
+            if (SetupLoader_1.default.isCareerTransferEntranceDisabled(credential.id)) {
+                html += "<td>";
+                html +=
+                    "<button role='button' class='" +
+                        buttonClass +
+                        "' id='shortcut7' style='white-space:nowrap;width:100%'>&nbsp;银行&nbsp;</button>";
+                html += "</td>";
+                html += "</tr>";
+                html += "</tbody>";
+                html += "</table>";
+                $(th).html(html);
+                _bindShortcutButton("shortcut3", "PETSTATUS");
+                _bindShortcutButton("shortcut7", "BANK");
+            }
+            else {
+                html += "<td>";
+                html +=
+                    "<button role='button' class='" +
+                        buttonClass +
+                        "' id='shortcut8' style='white-space:nowrap;width:100%'>&nbsp;职业&nbsp;</button>";
+                html += "</td>";
+                html += "</tr>";
+                html += "</tbody>";
+                html += "</table>";
+                $(th).html(html);
+                _bindShortcutButton("shortcut3", "PETSTATUS");
+                _bindShortcutButton("shortcut8", "CHANGE_OCCUPATION");
+            }
         })
             .parent()
             .next()
@@ -42777,7 +42792,12 @@ function doAdvancedAction(credential, page) {
     rolepanel.find("td, th").each((_, td) => {
         $(td).css("font-size", 20);
     });
-    trrole.hide().prev().hide();
+    if (SetupLoader_1.default.isCareerTransferEntranceDisabled(credential.id)) {
+        trrole.hide().prev().hide();
+    }
+    else {
+        trrole.hide();
+    }
     $("#online_list").hide().find("> div").appendTo($("body"));
     $("#systemAnnouncement").appendTo("body");
     $("br:first")[0].remove();
