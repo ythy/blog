@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.18
+// @version      4.2.15-ex+1.19
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -20285,51 +20285,6 @@ function _parseBattleMenu(page, table, credential, battleMode) {
             .attr("src");
     });
     const s = $("<select>" + page.battleLevelSelectionHtml + "</select>");
-    if (battleMode) {
-        new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
-            s.find("option").each((idx, option) => {
-                var _a;
-                const text = $(option).text();
-                if (((_a = role.additionalRP) !== null && _a !== void 0 ? _a : 0) > 0) {
-                    if (text.startsWith("秘宝之岛")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("上级之洞")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("------")) {
-                        // do nothing, keep
-                    }
-                    else {
-                        $(option).remove();
-                    }
-                }
-                else {
-                    if (text.startsWith("秘宝之岛")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("初级之森")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("中级之塔")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("上级之洞")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("十二神殿")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("------")) {
-                        // do nothing, keep
-                    }
-                    else {
-                        $(option).remove();
-                    }
-                }
-            });
-        });
-    }
     const config = new BattleFieldConfigLoader_1.default(credential).loadConfig();
     page.battleLevelShortcut = config.count === 1;
     if (config.configured) {
@@ -20405,7 +20360,52 @@ function _parseBattleMenu(page, table, credential, battleMode) {
     if (s.find("option:first").text().startsWith("------")) {
         s.find("option:first").remove();
     }
-    page.processedBattleLevelSelectionHtml = s.html();
+    if (battleMode) {
+        new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
+            s.find("option").each((idx, option) => {
+                var _a;
+                const text = $(option).text();
+                if (((_a = role.additionalRP) !== null && _a !== void 0 ? _a : 0) > 0) {
+                    if (text.startsWith("秘宝之岛")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("上级之洞")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("------")) {
+                        // do nothing, keep
+                    }
+                    else {
+                        $(option).remove();
+                    }
+                }
+                else {
+                    if (text.startsWith("秘宝之岛")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("初级之森")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("中级之塔")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("上级之洞")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("十二神殿")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("------")) {
+                        // do nothing, keep
+                    }
+                    else {
+                        $(option).remove();
+                    }
+                }
+                page.processedBattleLevelSelectionHtml = s.html();
+            });
+        });
+    }
 }
 function _parseRoleStatus(page, table, div, credential) {
     $(table)
@@ -21369,7 +21369,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.18) Build: 2023/11/16 16:44:57";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.19) Build: 2023/11/16 16:51:56";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
