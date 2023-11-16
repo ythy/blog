@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.17
+// @version      4.2.15-ex+1.18
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -20119,6 +20119,7 @@ const RankTitleLoader_1 = __importDefault(__webpack_require__(93));
 const Role_1 = __importDefault(__webpack_require__(50));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const TownDashboardPage_1 = __importDefault(__webpack_require__(159));
+const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 class TownDashboardPageParser {
     constructor(credential, html, battleMode) {
         _TownDashboardPageParser_instances.add(this);
@@ -20200,7 +20201,9 @@ function _parseMobilization(page, table) {
         b = StringUtils_1.default.substringBefore(b, ")");
         const ss = lodash_1.default.split(b, " ");
         const b1 = lodash_1.default.replace(ss[0], "部队", "");
-        const b2 = SetupLoader_1.default.isQiHanTitleEnabled() ? RankTitleLoader_1.default.transformTitle(ss[1]) : ss[1];
+        const b2 = SetupLoader_1.default.isQiHanTitleEnabled()
+            ? RankTitleLoader_1.default.transformTitle(ss[1])
+            : ss[1];
         const b3 = ss[2];
         page.processedMobilizationText = a + "(" + b1 + " " + b2 + " " + b3 + ")";
     });
@@ -20235,7 +20238,8 @@ function _parseMessageNotification(page, table) {
         .html();
 }
 function _parseActionNotification(page, table) {
-    $(table).find("> tbody:first")
+    $(table)
+        .find("> tbody:first")
         .find("> tr:first")
         .find("> td:first")
         .find("> table:first")
@@ -20252,7 +20256,8 @@ function _parseActionNotification(page, table) {
     });
 }
 function _parseBattleMenu(page, table, credential, battleMode) {
-    $(table).find("> tbody:first")
+    $(table)
+        .find("> tbody:first")
         .find("> tr:first")
         .find("> td:first")
         .find("> table:first")
@@ -20269,35 +20274,60 @@ function _parseBattleMenu(page, table, credential, battleMode) {
         }
         let s = $(form).find("input:hidden[name='ktotal']").val();
         page.obtainRole.battleCount = lodash_1.default.parseInt(s);
-        page.battleSessionId = $(form).find("input:hidden[name='sessionid']").val();
-        page.battleLevelSelectionHtml = $(form).find("select[name='level']").html();
-        page.battleVerificationSource = $(form).find("img:first").attr("src");
+        page.battleSessionId = $(form)
+            .find("input:hidden[name='sessionid']")
+            .val();
+        page.battleLevelSelectionHtml = $(form)
+            .find("select[name='level']")
+            .html();
+        page.battleVerificationSource = $(form)
+            .find("img:first")
+            .attr("src");
     });
     const s = $("<select>" + page.battleLevelSelectionHtml + "</select>");
     if (battleMode) {
-        s.find("option").each((idx, option) => {
-            const text = $(option).text();
-            if (text.startsWith("秘宝之岛")) {
-                // do nothing, keep
-            }
-            else if (text.startsWith("初级之森")) {
-                // do nothing, keep
-            }
-            else if (text.startsWith("中级之塔")) {
-                // do nothing, keep
-            }
-            else if (text.startsWith("上级之洞")) {
-                // do nothing, keep
-            }
-            else if (text.startsWith("十二神殿")) {
-                // do nothing, keep
-            }
-            else if (text.startsWith("------")) {
-                // do nothing, keep
-            }
-            else {
-                $(option).remove();
-            }
+        new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
+            s.find("option").each((idx, option) => {
+                var _a;
+                const text = $(option).text();
+                if (((_a = role.additionalRP) !== null && _a !== void 0 ? _a : 0) > 0) {
+                    if (text.startsWith("秘宝之岛")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("上级之洞")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("------")) {
+                        // do nothing, keep
+                    }
+                    else {
+                        $(option).remove();
+                    }
+                }
+                else {
+                    if (text.startsWith("秘宝之岛")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("初级之森")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("中级之塔")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("上级之洞")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("十二神殿")) {
+                        // do nothing, keep
+                    }
+                    else if (text.startsWith("------")) {
+                        // do nothing, keep
+                    }
+                    else {
+                        $(option).remove();
+                    }
+                }
+            });
         });
     }
     const config = new BattleFieldConfigLoader_1.default(credential).loadConfig();
@@ -20378,7 +20408,8 @@ function _parseBattleMenu(page, table, credential, battleMode) {
     page.processedBattleLevelSelectionHtml = s.html();
 }
 function _parseRoleStatus(page, table, div, credential) {
-    $(table).find("> tbody:first")
+    $(table)
+        .find("> tbody:first")
         .find("> tr:first")
         .find("> td:first")
         .find("> table:first")
@@ -20391,7 +20422,8 @@ function _parseRoleStatus(page, table, div, credential) {
         let s = $(option).text();
         page.obtainRole.country = StringUtils_1.default.substringBefore(s, "国法");
     });
-    $(table).find("> tbody:first")
+    $(table)
+        .find("> tbody:first")
         .find("> tr:eq(1)")
         .find("> td:first")
         .find("> table:first")
@@ -20431,7 +20463,8 @@ function _parseRoleStatus(page, table, div, credential) {
         s = StringUtils_1.default.substringAfterLast(s, " ");
         page.obtainRole.rank = s;
     });
-    $(div).find("> table:first")
+    $(div)
+        .find("> table:first")
         .find("> tbody:first")
         .find("> tr:first")
         .find("> td:first")
@@ -20463,18 +20496,27 @@ function _parseRoleStatus(page, table, div, credential) {
         idx = s.indexOf("速度：");
         s = s.substring(idx);
         page.obtainRole.speed = lodash_1.default.parseInt(s.substring(3));
-        page.obtainRole.name = $(td).find("> font:first").find("> b:first").text();
+        page.obtainRole.name = $(td)
+            .find("> font:first")
+            .find("> b:first")
+            .text();
     });
-    if (page.obtainRole.level === 150 && !SetupLoader_1.default.isCareerTransferEntranceDisabled(credential.id)) {
+    if (page.obtainRole.level === 150 &&
+        !SetupLoader_1.default.isCareerTransferEntranceDisabled(credential.id)) {
         page.careerTransferNotification = true;
     }
-    if (page.obtainRole.level !== 150 && (page.obtainRole.attack === 375 || page.obtainRole.defense === 375
-        || page.obtainRole.specialAttack === 375 || page.obtainRole.specialDefense === 375 || page.obtainRole.speed === 375)) {
+    if (page.obtainRole.level !== 150 &&
+        (page.obtainRole.attack === 375 ||
+            page.obtainRole.defense === 375 ||
+            page.obtainRole.specialAttack === 375 ||
+            page.obtainRole.specialDefense === 375 ||
+            page.obtainRole.speed === 375)) {
         page.capacityLimitationNotification = true;
     }
 }
 function _parseEventBoard(page, table) {
-    $(table).find("> tbody:first")
+    $(table)
+        .find("> tbody:first")
         .find("> tr:eq(2)")
         .find("> td:first")
         .find("> table:first")
@@ -20485,19 +20527,21 @@ function _parseEventBoard(page, table) {
         page.eventBoardHtml = $(td).html();
     });
     const eventHtmlList = [];
-    page.eventBoardHtml.split("<br>")
-        .filter(it => it.endsWith(")"))
+    page
+        .eventBoardHtml.split("<br>")
+        .filter((it) => it.endsWith(")"))
         .map(function (it) {
         // noinspection HtmlDeprecatedTag,XmlDeprecatedElement,HtmlDeprecatedAttribute
-        const header = "<font color=\"navy\">●</font>";
+        const header = '<font color="navy">●</font>';
         return StringUtils_1.default.substringAfter(it, header);
     })
-        .map(it => EventHandler_1.default.handleWithEventHtml(it))
-        .forEach(it => eventHtmlList.push(it));
+        .map((it) => EventHandler_1.default.handleWithEventHtml(it))
+        .forEach((it) => eventHtmlList.push(it));
     let eventBoardHtml = "";
-    eventBoardHtml += "<table style='border-width:0;width:100%;height:100%;margin:auto'>";
+    eventBoardHtml +=
+        "<table style='border-width:0;width:100%;height:100%;margin:auto'>";
     eventBoardHtml += "<tbody>";
-    eventHtmlList.forEach(it => {
+    eventHtmlList.forEach((it) => {
         eventBoardHtml += "<tr>";
         eventBoardHtml += "<th style='color:navy;vertical-align:top'>●</th>";
         eventBoardHtml += "<td style='width:100%'>";
@@ -20510,9 +20554,7 @@ function _parseEventBoard(page, table) {
     page.processedEventBoardHtml = eventBoardHtml;
 }
 function _parseConversation(page, table) {
-    let td = $(table).find("> tbody:first")
-        .find("> tr:eq(2)")
-        .find("> td:first");
+    let td = $(table).find("> tbody:first").find("> tr:eq(2)").find("> td:first");
     const globalMessageHtml = $(td).find("> table:first").html();
     const personalMessageHtml = $(td).find("> table:eq(1)").html();
     const redPaperMessageHtml = $(td).find("> table:eq(2)").html();
@@ -20532,7 +20574,8 @@ function _calculateCollectTownTax(page) {
     if (SetupLoader_1.default.isCollectTownTaxDisabled()) {
         return;
     }
-    if (page.obtainRole.country !== "在野" && page.obtainRole.country === page.townCountry) {
+    if (page.obtainRole.country !== "在野" &&
+        page.obtainRole.country === page.townCountry) {
         const tax = page.townTax;
         if (tax >= 50000) {
             if (tax - Math.floor(tax / 50000) * 50000 <= 10000) {
@@ -21326,7 +21369,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.17) Build: 2023/11/15 14:10:37";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.18) Build: 2023/11/16 16:44:57";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
