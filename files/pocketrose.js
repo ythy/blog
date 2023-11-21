@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.21
+// @version      4.2.15-ex+1.23
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21383,7 +21383,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.21) Build: 2023/11/21 11:06:17";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.23) Build: 2023/11/21 13:15:52";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -42757,12 +42757,10 @@ class TownDashboardLayout009 extends TownDashboardLayout_1.default {
                 request.set("con_str", "50");
                 request.set("mode", "PET_TZ");
                 NetworkUtils_1.default.post("town.cgi", request).then((html) => {
-                    var _a, _b;
-                    $("#mPetTC").html((_b = (_a = /\<b\>※ (.+)\<\/b\>/.exec(html)) === null || _a === void 0 ? void 0 : _a[1]) !== null && _b !== void 0 ? _b : "");
                     const request = credential.asRequestMap();
                     request.set("mode", "STATUS");
                     NetworkUtils_1.default.post("status.cgi", request).then((mainPage) => {
-                        doProcessPetTZReturn(credential, mainPage);
+                        doProcessPetTZReturn(credential, mainPage, html);
                     });
                 });
             });
@@ -43204,7 +43202,8 @@ function _renderConversation(page) {
         .html(page.t1Html);
     $("input:text[name='message']").attr("id", "messageInputText");
 }
-function doProcessPetTZReturn(credential, mainPage) {
+function doProcessPetTZReturn(credential, mainPage, html) {
+    var _a, _b;
     const parser = new TownDashboardPageParser_1.default(credential, mainPage, true);
     const page = parser.parse();
     // 更新战斗倒计时部分
@@ -43238,6 +43237,7 @@ function doProcessPetTZReturn(credential, mainPage) {
     }
     // 更新：消息通知
     $("#messageNotification").html(page.messageNotificationHtml);
+    $("#mPetTC").html((_b = (_a = /\<b\>※ (.+)\<\/b\>/.exec(html)) === null || _a === void 0 ? void 0 : _a[1]) !== null && _b !== void 0 ? _b : "");
     _renderEventBoard(page);
 }
 module.exports = TownDashboardLayout009;
