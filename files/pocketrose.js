@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue,ythy
-// @version      4.2.15-ex+1.19
+// @version      4.2.15-ex+1.20
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -1404,7 +1404,7 @@ class PageUtils {
             .filter(function () {
             // @ts-ignore
             const src = $(this).attr("src");
-            return src !== undefined && src.includes("google-analytics");
+            return (src !== undefined && src.includes("google-analytics"));
         })
             .each(function (_idx, script) {
             script.remove();
@@ -1417,39 +1417,68 @@ class PageUtils {
     }
     static parseCredential(pageHtml) {
         const id = $(pageHtml).find("input:hidden[name='id']:last").val();
-        const pass = $(pageHtml).find("input:hidden[name='pass']:last").val();
+        const pass = $(pageHtml)
+            .find("input:hidden[name='pass']:last")
+            .val();
         return new Credential_1.default(id, pass);
     }
     static generateProgressBarHTML(ratio) {
         if (ratio === 0) {
-            return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar2.gif'  height='7' width='50' alt=''>";
+            return ("<img src='" +
+                Constants_1.default.POCKET_DOMAIN +
+                "/image/bg/bar2.gif'  height='7' width='50' alt=''>");
         }
         if (ratio === 1) {
-            return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar1.gif'  height='7' width='50' alt=''>";
+            return ("<img src='" +
+                Constants_1.default.POCKET_DOMAIN +
+                "/image/bg/bar1.gif'  height='7' width='50' alt=''>");
         }
         const w1 = Math.min(49, Math.ceil(50 * ratio));
         const w2 = 50 - w1;
-        return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar1.gif'  height='7' width='" + w1 + "' alt=''>" +
-            "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar2.gif'  height='7' width='" + w2 + "' alt=''>";
+        return ("<img src='" +
+            Constants_1.default.POCKET_DOMAIN +
+            "/image/bg/bar1.gif'  height='7' width='" +
+            w1 +
+            "' alt=''>" +
+            "<img src='" +
+            Constants_1.default.POCKET_DOMAIN +
+            "/image/bg/bar2.gif'  height='7' width='" +
+            w2 +
+            "' alt=''>");
     }
     static generateProgressBarWithPercentage(ratio) {
         if (ratio === 0) {
-            return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar2.gif'  height='7' width='50' alt=''>&nbsp;0%";
+            return ("<img src='" +
+                Constants_1.default.POCKET_DOMAIN +
+                "/image/bg/bar2.gif'  height='7' width='50' alt=''>&nbsp;0%");
         }
         if (ratio === 1) {
-            return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar1.gif'  height='7' width='50' alt=''>&nbsp;100%";
+            return ("<img src='" +
+                Constants_1.default.POCKET_DOMAIN +
+                "/image/bg/bar1.gif'  height='7' width='50' alt=''>&nbsp;100%");
         }
         const w1 = Math.min(49, Math.ceil(50 * ratio));
         const w2 = 50 - w1;
-        return "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar1.gif'  height='7' width='" + w1 + "' alt=''>" +
-            "<img src='" + Constants_1.default.POCKET_DOMAIN + "/image/bg/bar2.gif'  height='7' width='" + w2 + "' alt=''>&nbsp;" + (ratio * 100).toFixed(2) + "%";
+        return ("<img src='" +
+            Constants_1.default.POCKET_DOMAIN +
+            "/image/bg/bar1.gif'  height='7' width='" +
+            w1 +
+            "' alt=''>" +
+            "<img src='" +
+            Constants_1.default.POCKET_DOMAIN +
+            "/image/bg/bar2.gif'  height='7' width='" +
+            w2 +
+            "' alt=''>&nbsp;" +
+            (ratio * 100).toFixed(2) +
+            "%");
     }
     static findFirstRoleImageHtml() {
         let roleImage = "";
         $("img").each(function (_idx, img) {
             if (roleImage === "") {
                 const src = $(img).attr("src");
-                if (src !== undefined && src.startsWith(Constants_1.default.POCKET_DOMAIN + "/image/head/")) {
+                if (src !== undefined &&
+                    src.startsWith(Constants_1.default.POCKET_DOMAIN + "/image/head/")) {
                     // 发现了用户头像
                     roleImage = src;
                 }
@@ -1459,7 +1488,9 @@ class PageUtils {
             return null;
         }
         else {
-            return "<img src='" + roleImage + "' width='64' height='64' id='roleImage' alt=''>";
+            return ("<img src='" +
+                roleImage +
+                "' width='64' height='64' id='roleImage' alt=''>");
         }
     }
     static isColorBlue(id) {
@@ -1471,10 +1502,12 @@ class PageUtils {
         return color.toString() === "rgb(128, 128, 128)";
     }
     static generateInvisibleButton(backgroundColor) {
-        return "<input type='button' " +
+        return ("<input type='button' " +
             "value='　　' " +
-            "style='background-color:" + backgroundColor + ";border-width:0' " +
-            "tabindex='-1'>";
+            "style='background-color:" +
+            backgroundColor +
+            ";border-width:0' " +
+            "tabindex='-1'>");
     }
     static fixCurrentPageBrokenImages() {
         if ($("img").length === 0) {
@@ -1483,8 +1516,8 @@ class PageUtils {
         $("img")
             .filter(function () {
             const src = $(this).attr("src");
-            return src.startsWith("http://pocketrose.21sun.net:81/pocketrose") ||
-                src.startsWith("http://pocketrose.21sun.net/pocketrose");
+            return (src.startsWith("http://pocketrose.21sun.net:81/pocketrose") ||
+                src.startsWith("http://pocketrose.21sun.net/pocketrose"));
         })
             .each(function (_idx, img) {
             const src = $(img).attr("src");
@@ -1607,7 +1640,9 @@ class PageUtils {
         if (!handler)
             return;
         let count = 0;
-        $(document).off("keydown.city").on("keydown.city", event => {
+        $(document)
+            .off("keydown.city")
+            .on("keydown.city", (event) => {
             const key = event.key;
             if (!key)
                 return;
@@ -20119,7 +20154,6 @@ const RankTitleLoader_1 = __importDefault(__webpack_require__(93));
 const Role_1 = __importDefault(__webpack_require__(50));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const TownDashboardPage_1 = __importDefault(__webpack_require__(159));
-const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 class TownDashboardPageParser {
     constructor(credential, html, battleMode) {
         _TownDashboardPageParser_instances.add(this);
@@ -20285,6 +20319,32 @@ function _parseBattleMenu(page, table, credential, battleMode) {
             .attr("src");
     });
     const s = $("<select>" + page.battleLevelSelectionHtml + "</select>");
+    if (battleMode) {
+        s.find("option").each((idx, option) => {
+            const text = $(option).text();
+            if (text.startsWith("秘宝之岛")) {
+                // do nothing, keep
+            }
+            else if (text.startsWith("初级之森")) {
+                // do nothing, keep
+            }
+            else if (text.startsWith("中级之塔")) {
+                // do nothing, keep
+            }
+            else if (text.startsWith("上级之洞")) {
+                // do nothing, keep
+            }
+            else if (text.startsWith("十二神殿")) {
+                // do nothing, keep
+            }
+            else if (text.startsWith("------")) {
+                // do nothing, keep
+            }
+            else {
+                $(option).remove();
+            }
+        });
+    }
     const config = new BattleFieldConfigLoader_1.default(credential).loadConfig();
     page.battleLevelShortcut = config.count === 1;
     if (config.configured) {
@@ -20360,52 +20420,7 @@ function _parseBattleMenu(page, table, credential, battleMode) {
     if (s.find("option:first").text().startsWith("------")) {
         s.find("option:first").remove();
     }
-    if (battleMode) {
-        new PersonalStatus_1.default(credential, page.townId).load().then((role) => {
-            s.find("option").each((idx, option) => {
-                var _a;
-                const text = $(option).text();
-                if (((_a = role.additionalRP) !== null && _a !== void 0 ? _a : 0) > 0) {
-                    if (text.startsWith("秘宝之岛")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("上级之洞")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("------")) {
-                        // do nothing, keep
-                    }
-                    else {
-                        $(option).remove();
-                    }
-                }
-                else {
-                    if (text.startsWith("秘宝之岛")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("初级之森")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("中级之塔")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("上级之洞")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("十二神殿")) {
-                        // do nothing, keep
-                    }
-                    else if (text.startsWith("------")) {
-                        // do nothing, keep
-                    }
-                    else {
-                        $(option).remove();
-                    }
-                }
-                page.processedBattleLevelSelectionHtml = s.html();
-            });
-        });
-    }
+    page.processedBattleLevelSelectionHtml = s.html();
 }
 function _parseRoleStatus(page, table, div, credential) {
     $(table)
@@ -21369,7 +21384,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.19) Build: 2023/11/16 16:51:56";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.20) Build: 2023/11/21 10:04:27";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -40146,7 +40161,9 @@ function doRenderMenu(credential, page) {
                     });
                 }
                 else {
-                    _bindShortcutButton("shortcut0", es[1]);
+                    //maoxin 宠联修改  这里注释掉 快速战斗里执行
+                    //_bindShortcutButton("shortcut0", es[1]);
+                    //end
                 }
             }
         })
@@ -42735,6 +42752,21 @@ class TownDashboardLayout009 extends TownDashboardLayout_1.default {
                 "<div style='display:none' id='hidden-5'></div>" +
                 "");
             doAdvancedAction(credential, page); //maoxin
+            $("#shortcut0").on("click", () => {
+                const request = credential.asRequestMap();
+                request.set("town", "13");
+                request.set("con_str", "50");
+                request.set("mode", "PET_TZ");
+                NetworkUtils_1.default.post("town.cgi", request).then((html) => {
+                    var _a;
+                    alert((_a = /\<b\>※ (.+)\<\/b\>/.exec(html)) === null || _a === void 0 ? void 0 : _a[1]);
+                    const request = credential.asRequestMap();
+                    request.set("mode", "STATUS");
+                    NetworkUtils_1.default.post("status.cgi", request).then((mainPage) => {
+                        doProcessPetTZReturn(credential, mainPage);
+                    });
+                });
+            });
             BattleRecordStorage_1.default.getInstance()
                 .load(credential.id)
                 .then((record) => {
@@ -43172,6 +43204,42 @@ function _renderConversation(page) {
         .next() // conversation table
         .html(page.t1Html);
     $("input:text[name='message']").attr("id", "messageInputText");
+}
+function doProcessPetTZReturn(credential, mainPage) {
+    const parser = new TownDashboardPageParser_1.default(credential, mainPage, true);
+    const page = parser.parse();
+    // 更新战斗倒计时部分
+    $("#messageNotification")
+        .parent()
+        .next()
+        .next()
+        .find("> th:first")
+        .html(page.actionNotificationHtml);
+    if (SetupLoader_1.default.isConsecrateStateRecognizeEnabled(credential.id) &&
+        page.role.canConsecrate) {
+        $("#battleCell")
+            .parent()
+            .prev()
+            .find("> th:first")
+            .css("color", "red")
+            .css("font-size", "120%");
+    }
+    const clock = $("input:text[name='clock']");
+    if (clock.length > 0) {
+        const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
+        if (enlargeRatio > 0) {
+            let fontSize = 100 * enlargeRatio;
+            clock.css("font-size", fontSize + "%");
+        }
+        let timeout = lodash_1.default.parseInt(clock.val());
+        if (timeout > 0) {
+            const start = Date.now() / 1000;
+            _countDownClock(timeout, start, clock);
+        }
+    }
+    // 更新：消息通知
+    $("#messageNotification").html(page.messageNotificationHtml);
+    _renderEventBoard(page);
 }
 module.exports = TownDashboardLayout009;
 
