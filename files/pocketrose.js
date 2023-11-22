@@ -21383,7 +21383,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.26) Build: 2023/11/22 14:25:27";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.26) Build: 2023/11/22 14:31:26";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
