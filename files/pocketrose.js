@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.25
+// @version      4.2.15-ex+1.26
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21383,7 +21383,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.25) Build: 2023/11/22 14:20:15";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.26) Build: 2023/11/22 14:25:27";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -42850,7 +42850,7 @@ function doAdvancedAction(credential, page) {
     $("#countryNormalButton").css("margin", "15px 0 0 0");
     $("#townButton").css("margin", "15px 0 0 0");
     $("#exitButton").parent().parent().parent().next().hide();
-    $("#townButton, #personalButton, #countryNormalButton, #countryAdvancedButton").css("margin-left", "-50px");
+    $("#townButton, #personalButton, #countryNormalButton, #countryAdvancedButton").css("margin-left", "-80px");
     let townpanel = $("#exitButton").parent().parent().parent().parent();
     townpanel.find("input[type='submit'], button").css("font-size", 20);
     townpanel.find("select").css("font-size", 20);
