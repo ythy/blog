@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.26
+// @version      4.2.15-ex+1.27
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21383,7 +21383,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.26) Build: 2023/11/22 14:31:26";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.27) Build: 2023/11/23 14:51:35";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -43214,28 +43214,6 @@ function doProcessPetTZReturn(credential, mainPage, html) {
         .next()
         .find("> th:first")
         .html(page.actionNotificationHtml);
-    if (SetupLoader_1.default.isConsecrateStateRecognizeEnabled(credential.id) &&
-        page.role.canConsecrate) {
-        $("#battleCell")
-            .parent()
-            .prev()
-            .find("> th:first")
-            .css("color", "red")
-            .css("font-size", "120%");
-    }
-    const clock = $("input:text[name='clock']");
-    if (clock.length > 0) {
-        const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
-        if (enlargeRatio > 0) {
-            let fontSize = 100 * enlargeRatio;
-            clock.css("font-size", fontSize + "%");
-        }
-        let timeout = lodash_1.default.parseInt(clock.val());
-        if (timeout > 0) {
-            const start = Date.now() / 1000;
-            _countDownClock(timeout, start, clock);
-        }
-    }
     // 更新：消息通知
     $("#messageNotification").html(page.messageNotificationHtml);
     $("#mPetTC").html((_b = (_a = /\<b\>※ (.+)\<\/b\>/.exec(html)) === null || _a === void 0 ? void 0 : _a[1]) !== null && _b !== void 0 ? _b : "");
