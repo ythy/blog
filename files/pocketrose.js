@@ -927,15 +927,12 @@ Constants.ExcludeEventEntire = [
     "探险",
     "雅典娜",
     "任务",
-    "个人天真",
-    "天上掉馅饼",
-    "宠物",
     "宠物图鉴",
     "加速孵化",
     "宝藏",
     "以旧换新",
 ];
-Constants.ExcludeEventPart = ["祭奠", "十二神殿", "拯救", "上洞"];
+Constants.ExcludeEventPart = ["祭奠", "十二神殿", "拯救"];
 Constants.MONSTER_DAMAGE_LEVEL = [0, 10000, 20000, 30000, 40000, 50000, 60000];
 Constants.WIN_DECLARATIONS = [
     `<span style="color:indigo">%ROLE%</span><span style="color:black">的攻击！</span><br><span style="color:green">%HIT%</span><span style="color:black">回合！</span>%MONSTER%受到%DAMAGE%点伤害！`,
@@ -21383,7 +21380,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.27) Build: 2023/11/23 14:51:35";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.27) Build: 2023/11/23 15:47:51";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
