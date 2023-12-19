@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.29
+// @version      4.2.15-ex+1.30
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21380,7 +21380,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.29) Build: 2023/12/19 11:23:33";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.30) Build: 2023/12/19 11:31:58";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -41655,6 +41655,19 @@ class TownDashboardLayout007 extends TownDashboardLayout_1.default {
                 "<div style='display:none' id='hidden-5'></div>" +
                 "");
             doAdvancedAction(credential, page); //maoxin
+            $("#shortcut0").on("click", () => {
+                const request = credential.asRequestMap();
+                request.set("town", "13");
+                request.set("con_str", "50");
+                request.set("mode", "PET_TZ");
+                NetworkUtils_1.default.post("town.cgi", request).then((html) => {
+                    const request = credential.asRequestMap();
+                    request.set("mode", "STATUS");
+                    NetworkUtils_1.default.post("status.cgi", request).then((mainPage) => {
+                        doProcessPetTZReturn(credential, mainPage, html);
+                    });
+                });
+            });
             BattleRecordStorage_1.default.getInstance()
                 .load(credential.id)
                 .then((record) => {
@@ -42013,17 +42026,20 @@ function _showTime() {
 }
 function _countDownClock(timeout, start, clock) {
     var _a;
-    let now = Date.now() / 1000;
-    let x = timeout - (now - start);
-    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
-    if (x > 0) {
-        setTimeout(() => {
-            _countDownClock(timeout, start, clock);
-        }, 100);
-    }
-    else {
-        // @ts-ignore
-        (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
+    const clocknow = $("input:text[name='clock']");
+    if (clock[0].isSameNode(clocknow[0])) {
+        let now = Date.now() / 1000;
+        let x = timeout - (now - start);
+        clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
+        if (x > 0) {
+            setTimeout(() => {
+                _countDownClock(timeout, start, clock);
+            }, 100);
+        }
+        else {
+            // @ts-ignore
+            (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
+        }
     }
 }
 function _renderPalaceTask(credential) {
@@ -42041,6 +42057,44 @@ function _renderConversation(page) {
         .next() // conversation table
         .html(page.t1Html);
     $("input:text[name='message']").attr("id", "messageInputText");
+}
+function doProcessPetTZReturn(credential, mainPage, html) {
+    var _a, _b;
+    const parser = new TownDashboardPageParser_1.default(credential, mainPage, true);
+    const page = parser.parse();
+    // 更新战斗倒计时部分
+    $("#messageNotification")
+        .parent()
+        .next()
+        .next()
+        .find("> th:first")
+        .html(page.actionNotificationHtml);
+    if (SetupLoader_1.default.isConsecrateStateRecognizeEnabled(credential.id) &&
+        page.role.canConsecrate) {
+        $("#battleCell")
+            .parent()
+            .prev()
+            .find("> th:first")
+            .css("color", "red")
+            .css("font-size", "120%");
+    }
+    const clock = $("input:text[name='clock']");
+    if (clock.length > 0) {
+        const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
+        if (enlargeRatio > 0) {
+            let fontSize = 100 * enlargeRatio;
+            clock.css("font-size", fontSize + "%");
+        }
+        let timeout = lodash_1.default.parseInt(clock.val());
+        if (timeout > 0) {
+            const start = Date.now() / 1000;
+            _countDownClock(timeout, start, clock);
+        }
+    }
+    // 更新：消息通知
+    $("#messageNotification").html(page.messageNotificationHtml);
+    $("#mPetTC").html((_b = (_a = /\<b\>※ (.+)\<\/b\>/.exec(html)) === null || _a === void 0 ? void 0 : _a[1]) !== null && _b !== void 0 ? _b : "");
+    _renderEventBoard(page);
 }
 module.exports = TownDashboardLayout007;
 
