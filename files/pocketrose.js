@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.28
+// @version      4.2.15-ex+1.29
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21380,7 +21380,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.28) Build: 2023/11/29 10:44:27";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.29) Build: 2023/12/19 11:23:33";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -43095,9 +43095,7 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
             const start = Date.now() / 1000;
-            inBattle = true;
-            inPetPT = false;
-            _countDownClock(timeout, start, clock);
+            _countDownClock1(timeout, start, clock);
         }
     }
     // 更新：在线列表
@@ -43164,40 +43162,22 @@ function _showTime() {
     $("#watch2").html("&nbsp;&nbsp;&nbsp;" + time + "&nbsp;&nbsp;&nbsp;");
     setTimeout(_showTime, 1000);
 }
-var inBattle = false;
-function _countDownClock(timeout, start, clock) {
+function _countDownClock1(timeout, start, clock) {
     var _a;
-    let now = Date.now() / 1000;
-    let x = timeout - (now - start);
-    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
-    if (x > 0) {
-        if (inBattle) {
+    const clocknow = $("input:text[name='clock']");
+    if (clock[0].isSameNode(clocknow[0])) {
+        let now = Date.now() / 1000;
+        let x = timeout - (now - start);
+        clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
+        if (x > 0) {
             setTimeout(() => {
-                _countDownClock(timeout, start, clock);
+                _countDownClock1(timeout, start, clock);
             }, 100);
         }
-    }
-    else {
-        // @ts-ignore
-        (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
-    }
-}
-var inPetPT = false;
-function _countDownClock2(timeout, start, clock) {
-    var _a;
-    let now = Date.now() / 1000;
-    let x = timeout - (now - start);
-    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
-    if (x > 0) {
-        if (inPetPT) {
-            setTimeout(() => {
-                _countDownClock2(timeout, start, clock);
-            }, 100);
+        else {
+            // @ts-ignore
+            (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
         }
-    }
-    else {
-        // @ts-ignore
-        (_a = document.getElementById("mplayer")) === null || _a === void 0 ? void 0 : _a.play();
     }
 }
 function _renderPalaceTask(credential) {
@@ -43253,9 +43233,7 @@ function doProcessPetTZReturn(credential, mainPage, html) {
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
             const start = Date.now() / 1000;
-            inBattle = false;
-            inPetPT = true;
-            _countDownClock2(timeout, start, clock);
+            _countDownClock1(timeout, start, clock);
         }
     }
     // 更新：消息通知
