@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.32
+// @version      4.2.15-ex+1.33
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21400,7 +21400,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.32) Build: 2024/1/3 16:48:23";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.33) Build: 2024/1/3 17:19:16";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -43189,15 +43189,16 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
-            //const start = Date.now() / 1000;
+            const start = Date.now() / 1000;
             //_countDownClock1(timeout, start, clock);
             clockInterval = setInterval(() => {
-                timeout--;
-                if (timeout < 0) {
+                let now = Date.now() / 1000;
+                let x = timeout - (now - start);
+                if (x < 0) {
                     clearInterval(clockInterval);
                 }
                 else {
-                    clock.val(timeout);
+                    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
                 }
             }, 1000);
         }
@@ -43337,13 +43338,15 @@ function doProcessPetTZReturn(credential, mainPage, html) {
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
+            const start = Date.now() / 1000;
             clockInterval = setInterval(() => {
-                timeout--;
-                if (timeout < 0) {
+                let now = Date.now() / 1000;
+                let x = timeout - (now - start);
+                if (x < 0) {
                     clearInterval(clockInterval);
                 }
                 else {
-                    clock.val(timeout);
+                    clock.val(lodash_1.default.max([lodash_1.default.ceil(x), 0]));
                 }
             }, 1000);
         }
