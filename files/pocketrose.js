@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.31
+// @version      4.2.15-ex+1.32
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -4112,7 +4112,9 @@ class NpcLoader {
             return null;
         }
         let id;
-        if (name.startsWith("M_") || name.startsWith("F_") || name.startsWith("U_")) {
+        if (name.startsWith("M_") ||
+            name.startsWith("F_") ||
+            name.startsWith("U_")) {
             id = name;
         }
         else {
@@ -4120,45 +4122,57 @@ class NpcLoader {
             id = StringUtils_1.default.substringBefore(s, ".gif");
             id = "p_" + id;
         }
-        return "<img src='" + image + "' width='64' height='64' alt='" + name + "' id='" + id + "'>";
+        return ("<img src='" +
+            image +
+            "' width='64' height='64' alt='" +
+            name +
+            "' id='" +
+            id +
+            "'>");
     }
     static randomMaleNpcImageHtml() {
         const names = [];
         Object.keys(POCKET_NPC_IMAGES)
-            .filter(value => value.startsWith("M_"))
-            .forEach(value => names.push(value));
+            .filter((value) => value.startsWith("M_"))
+            .forEach((value) => names.push(value));
         const name = RandomUtils_1.default.randomElement(names);
         return NpcLoader.getNpcImageHtml(name);
     }
     static randomFemaleNpcImageHtml() {
         const names = [];
         Object.keys(POCKET_NPC_IMAGES)
-            .filter(value => value.startsWith("F_"))
-            .forEach(value => names.push(value));
+            .filter((value) => value.startsWith("F_"))
+            .forEach((value) => names.push(value));
         const name = RandomUtils_1.default.randomElement(names);
         return NpcLoader.getNpcImageHtml(name);
     }
     static randomNpcImageHtml() {
         const names = [];
         Object.keys(POCKET_NPC_IMAGES)
-            .filter(value => value.startsWith("M_") || value.startsWith("F_") || value.startsWith("U_"))
-            .forEach(value => names.push(value));
+            .filter((value) => value.startsWith("M_") ||
+            value.startsWith("F_") ||
+            value.startsWith("U_"))
+            .forEach((value) => names.push(value));
         const name = RandomUtils_1.default.randomElement(names);
         return NpcLoader.getNpcImageHtml(name);
     }
     static randomPlayerImageHtml() {
         const names = [];
         Object.keys(POCKET_NPC_IMAGES)
-            .filter(value => !value.startsWith("M_") && !value.startsWith("F_") && !value.startsWith("U_"))
-            .forEach(value => names.push(value));
+            .filter((value) => !value.startsWith("M_") &&
+            !value.startsWith("F_") &&
+            !value.startsWith("U_"))
+            .forEach((value) => names.push(value));
         const name = RandomUtils_1.default.randomElement(names);
         return NpcLoader.getNpcImageHtml(name);
     }
     static playerNpcNames() {
         const names = [];
         Object.keys(POCKET_NPC_IMAGES)
-            .filter(value => !value.startsWith("M_") && !value.startsWith("F_") && !value.startsWith("U_"))
-            .forEach(value => names.push(value));
+            .filter((value) => !value.startsWith("M_") &&
+            !value.startsWith("F_") &&
+            !value.startsWith("U_"))
+            .forEach((value) => names.push(value));
         return names;
     }
     static getTaskNpcImageHtml(name) {
@@ -4170,7 +4184,13 @@ class NpcLoader {
         let s = StringUtils_1.default.substringAfterLast(image, "/");
         let id = StringUtils_1.default.substringBefore(s, ".");
         id = "n_" + id;
-        return "<img src='" + image + "' width='64' height='64' alt='" + name + "' id='" + id + "'>";
+        return ("<img src='" +
+            image +
+            "' width='64' height='64' alt='" +
+            name +
+            "' id='" +
+            id +
+            "'>");
     }
 }
 const ZODIAC_NPC_LIST = [
@@ -4188,93 +4208,93 @@ const ZODIAC_NPC_LIST = [
     "阿布罗迪",
 ];
 const POCKET_TASK_NPC_IMAGES = {
-    "大司徒": Constants_1.default.POCKET_DOMAIN + "/image/npc/684.jpg",
-    "大司马": Constants_1.default.POCKET_DOMAIN + "/image/npc/018.jpg",
-    "大司空": Constants_1.default.POCKET_DOMAIN + "/image/npc/669.jpg",
-    "大司寇": Constants_1.default.POCKET_DOMAIN + "/image/npc/395.jpg",
-    "大司农": Constants_1.default.POCKET_DOMAIN + "/image/npc/348.jpg",
-    "瓦格纳": Constants_1.default.POCKET_DOMAIN + "/image/npc/005.jpg",
-    "吕布": Constants_1.default.POCKET_DOMAIN + "/image/npc/293.jpg",
-    "庞统": Constants_1.default.POCKET_DOMAIN + "/image/npc/348.jpg",
-    "司马懿": Constants_1.default.POCKET_DOMAIN + "/image/npc/395.jpg",
-    "赵云": Constants_1.default.POCKET_DOMAIN + "/image/npc/657.jpg",
-    "诸葛亮": Constants_1.default.POCKET_DOMAIN + "/image/npc/684.jpg",
-    "蒋干": Constants_1.default.POCKET_DOMAIN + "/image/npc/211.jpg",
-    "黄盖": Constants_1.default.POCKET_DOMAIN + "/image/npc/193.jpg",
-    "周瑜": Constants_1.default.POCKET_DOMAIN + "/image/npc/669.jpg",
-    "曹操": Constants_1.default.POCKET_DOMAIN + "/image/npc/018.jpg",
-    "关羽": Constants_1.default.POCKET_DOMAIN + "/image/npc/142.jpg",
-    "吕蒙": Constants_1.default.POCKET_DOMAIN + "/image/npc/299.jpg",
-    "徐晃": Constants_1.default.POCKET_DOMAIN + "/image/npc/536.jpg",
-    "孟获": Constants_1.default.POCKET_DOMAIN + "/image/npc/326.jpg",
-    "董荼那": Constants_1.default.POCKET_DOMAIN + "/image/npc/093.jpg",
-    "孟优": Constants_1.default.POCKET_DOMAIN + "/image/npc/327.jpg",
-    "带来洞主": Constants_1.default.POCKET_DOMAIN + "/image/npc/070.jpg",
-    "祝融": Constants_1.default.POCKET_DOMAIN + "/image/npc/688.jpg",
-    "黄忠": Constants_1.default.POCKET_DOMAIN + "/image/npc/197.jpg",
-    "张飞": Constants_1.default.POCKET_DOMAIN + "/image/npc/611.jpg",
-    "马超": Constants_1.default.POCKET_DOMAIN + "/image/npc/306.jpg",
-    "孔秀": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "孟坦": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "韩福": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "卞喜": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "王植": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "秦琪": Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
-    "东方不败": Constants_1.default.POCKET_DOMAIN + "/image/npc/dfbb.jpg", // 5,10
+    大司徒: Constants_1.default.POCKET_DOMAIN + "/image/npc/684.jpg",
+    大司马: Constants_1.default.POCKET_DOMAIN + "/image/npc/018.jpg",
+    大司空: Constants_1.default.POCKET_DOMAIN + "/image/npc/669.jpg",
+    大司寇: Constants_1.default.POCKET_DOMAIN + "/image/npc/395.jpg",
+    大司农: Constants_1.default.POCKET_DOMAIN + "/image/npc/348.jpg",
+    瓦格纳: Constants_1.default.POCKET_DOMAIN + "/image/npc/005.jpg",
+    吕布: Constants_1.default.POCKET_DOMAIN + "/image/npc/293.jpg",
+    庞统: Constants_1.default.POCKET_DOMAIN + "/image/npc/348.jpg",
+    司马懿: Constants_1.default.POCKET_DOMAIN + "/image/npc/395.jpg",
+    赵云: Constants_1.default.POCKET_DOMAIN + "/image/npc/657.jpg",
+    诸葛亮: Constants_1.default.POCKET_DOMAIN + "/image/npc/684.jpg",
+    蒋干: Constants_1.default.POCKET_DOMAIN + "/image/npc/211.jpg",
+    黄盖: Constants_1.default.POCKET_DOMAIN + "/image/npc/193.jpg",
+    周瑜: Constants_1.default.POCKET_DOMAIN + "/image/npc/669.jpg",
+    曹操: Constants_1.default.POCKET_DOMAIN + "/image/npc/018.jpg",
+    关羽: Constants_1.default.POCKET_DOMAIN + "/image/npc/142.jpg",
+    吕蒙: Constants_1.default.POCKET_DOMAIN + "/image/npc/299.jpg",
+    徐晃: Constants_1.default.POCKET_DOMAIN + "/image/npc/536.jpg",
+    孟获: Constants_1.default.POCKET_DOMAIN + "/image/npc/326.jpg",
+    董荼那: Constants_1.default.POCKET_DOMAIN + "/image/npc/093.jpg",
+    孟优: Constants_1.default.POCKET_DOMAIN + "/image/npc/327.jpg",
+    带来洞主: Constants_1.default.POCKET_DOMAIN + "/image/npc/070.jpg",
+    祝融: Constants_1.default.POCKET_DOMAIN + "/image/npc/688.jpg",
+    黄忠: Constants_1.default.POCKET_DOMAIN + "/image/npc/197.jpg",
+    张飞: Constants_1.default.POCKET_DOMAIN + "/image/npc/611.jpg",
+    马超: Constants_1.default.POCKET_DOMAIN + "/image/npc/306.jpg",
+    孔秀: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    孟坦: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    韩福: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    卞喜: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    王植: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    秦琪: Constants_1.default.POCKET_DOMAIN + "/image/npc/699.jpg",
+    东方不败: Constants_1.default.POCKET_DOMAIN + "/image/npc/dfbb.jpg", // 5,10
 };
 const POCKET_NPC_IMAGES = {
-    "M_000": Constants_1.default.POCKET_DOMAIN + "/image/etc/0.gif",
-    "M_001": Constants_1.default.POCKET_DOMAIN + "/image/etc/1.gif",
-    "M_002": Constants_1.default.POCKET_DOMAIN + "/image/etc/2.gif",
-    "M_003": Constants_1.default.POCKET_DOMAIN + "/image/etc/3.gif",
-    "M_004": Constants_1.default.POCKET_DOMAIN + "/image/etc/4.gif",
-    "M_005": Constants_1.default.POCKET_DOMAIN + "/image/etc/5.gif",
-    "M_006": Constants_1.default.POCKET_DOMAIN + "/image/etc/6.gif",
-    "M_007": Constants_1.default.POCKET_DOMAIN + "/image/etc/7.gif",
-    "M_008": Constants_1.default.POCKET_DOMAIN + "/image/etc/8.gif",
-    "M_009": Constants_1.default.POCKET_DOMAIN + "/image/etc/9.gif",
-    "M_011": Constants_1.default.POCKET_DOMAIN + "/image/etc/11.gif",
-    "M_012": Constants_1.default.POCKET_DOMAIN + "/image/etc/12.gif",
-    "M_013": Constants_1.default.POCKET_DOMAIN + "/image/etc/13.gif",
-    "M_014": Constants_1.default.POCKET_DOMAIN + "/image/etc/14.gif",
-    "M_015": Constants_1.default.POCKET_DOMAIN + "/image/etc/15.gif",
-    "M_016": Constants_1.default.POCKET_DOMAIN + "/image/etc/16.gif",
-    "M_017": Constants_1.default.POCKET_DOMAIN + "/image/etc/17.gif",
-    "M_018": Constants_1.default.POCKET_DOMAIN + "/image/etc/18.gif",
-    "M_019": Constants_1.default.POCKET_DOMAIN + "/image/etc/19.gif",
-    "M_020": Constants_1.default.POCKET_DOMAIN + "/image/etc/20.gif",
-    "M_021": Constants_1.default.POCKET_DOMAIN + "/image/etc/21.gif",
-    "M_022": Constants_1.default.POCKET_DOMAIN + "/image/etc/22.gif",
-    "M_023": Constants_1.default.POCKET_DOMAIN + "/image/etc/23.gif",
-    "F_026": Constants_1.default.POCKET_DOMAIN + "/image/etc/26.gif",
-    "F_027": Constants_1.default.POCKET_DOMAIN + "/image/etc/27.gif",
-    "F_028": Constants_1.default.POCKET_DOMAIN + "/image/etc/28.gif",
-    "F_030": Constants_1.default.POCKET_DOMAIN + "/image/etc/30.gif",
-    "F_031": Constants_1.default.POCKET_DOMAIN + "/image/etc/31.gif",
-    "F_032": Constants_1.default.POCKET_DOMAIN + "/image/etc/32.gif",
-    "F_037": Constants_1.default.POCKET_DOMAIN + "/image/etc/37.gif",
-    "F_039": Constants_1.default.POCKET_DOMAIN + "/image/etc/39.gif",
-    "F_040": Constants_1.default.POCKET_DOMAIN + "/image/etc/40.gif",
-    "U_041": Constants_1.default.POCKET_DOMAIN + "/image/etc/41.gif",
-    "夜三": Constants_1.default.POCKET_DOMAIN + "/image/head/1117.gif",
-    "花子": Constants_1.default.POCKET_DOMAIN + "/image/head/1126.gif",
-    "骨头": Constants_1.default.POCKET_DOMAIN + "/image/head/1160.gif",
-    "狐狸": Constants_1.default.POCKET_DOMAIN + "/image/head/1196.gif",
-    "七七": Constants_1.default.POCKET_DOMAIN + "/image/head/1368.gif",
-    "豚豚": Constants_1.default.POCKET_DOMAIN + "/image/head/1389.gif",
-    "夜九": Constants_1.default.POCKET_DOMAIN + "/image/head/1561.gif",
-    "剑心": Constants_1.default.POCKET_DOMAIN + "/image/head/2184.gif",
-    "飘雪": Constants_1.default.POCKET_DOMAIN + "/image/head/2196.gif",
-    "路路": Constants_1.default.POCKET_DOMAIN + "/image/head/2201.gif",
-    "饭饭": Constants_1.default.POCKET_DOMAIN + "/image/head/3139.gif",
-    "亲戚": Constants_1.default.POCKET_DOMAIN + "/image/head/3188.gif",
-    "马可": Constants_1.default.POCKET_DOMAIN + "/image/head/6169.gif",
-    "青鸟": Constants_1.default.POCKET_DOMAIN + "/image/head/7184.gif",
-    "小明": Constants_1.default.POCKET_DOMAIN + "/image/head/8166.gif",
-    "末末": Constants_1.default.POCKET_DOMAIN + "/image/head/8173.gif",
-    "白皇": Constants_1.default.POCKET_DOMAIN + "/image/head/11134.gif",
-    "莫莫": Constants_1.default.POCKET_DOMAIN + "/image/head/13165.gif",
-    "天翔": Constants_1.default.POCKET_DOMAIN + "/image/head/14129.gif",
+    M_000: Constants_1.default.POCKET_DOMAIN + "/image/etc/0.gif",
+    M_001: Constants_1.default.POCKET_DOMAIN + "/image/etc/1.gif",
+    M_002: Constants_1.default.POCKET_DOMAIN + "/image/etc/2.gif",
+    M_003: Constants_1.default.POCKET_DOMAIN + "/image/etc/3.gif",
+    M_004: Constants_1.default.POCKET_DOMAIN + "/image/etc/4.gif",
+    M_005: Constants_1.default.POCKET_DOMAIN + "/image/etc/5.gif",
+    M_006: Constants_1.default.POCKET_DOMAIN + "/image/etc/6.gif",
+    M_007: Constants_1.default.POCKET_DOMAIN + "/image/etc/7.gif",
+    M_008: Constants_1.default.POCKET_DOMAIN + "/image/etc/8.gif",
+    M_009: Constants_1.default.POCKET_DOMAIN + "/image/etc/9.gif",
+    M_011: Constants_1.default.POCKET_DOMAIN + "/image/etc/11.gif",
+    M_012: Constants_1.default.POCKET_DOMAIN + "/image/etc/12.gif",
+    M_013: Constants_1.default.POCKET_DOMAIN + "/image/etc/13.gif",
+    M_014: Constants_1.default.POCKET_DOMAIN + "/image/etc/14.gif",
+    M_015: Constants_1.default.POCKET_DOMAIN + "/image/etc/15.gif",
+    M_016: Constants_1.default.POCKET_DOMAIN + "/image/etc/16.gif",
+    M_017: Constants_1.default.POCKET_DOMAIN + "/image/etc/17.gif",
+    M_018: Constants_1.default.POCKET_DOMAIN + "/image/etc/18.gif",
+    M_019: Constants_1.default.POCKET_DOMAIN + "/image/etc/19.gif",
+    M_020: Constants_1.default.POCKET_DOMAIN + "/image/etc/20.gif",
+    M_021: Constants_1.default.POCKET_DOMAIN + "/image/etc/21.gif",
+    M_022: Constants_1.default.POCKET_DOMAIN + "/image/etc/22.gif",
+    M_023: Constants_1.default.POCKET_DOMAIN + "/image/etc/23.gif",
+    F_026: Constants_1.default.POCKET_DOMAIN + "/image/etc/26.gif",
+    F_027: Constants_1.default.POCKET_DOMAIN + "/image/etc/27.gif",
+    F_028: Constants_1.default.POCKET_DOMAIN + "/image/etc/28.gif",
+    F_030: Constants_1.default.POCKET_DOMAIN + "/image/etc/30.gif",
+    F_031: Constants_1.default.POCKET_DOMAIN + "/image/etc/31.gif",
+    F_032: Constants_1.default.POCKET_DOMAIN + "/image/etc/32.gif",
+    F_037: Constants_1.default.POCKET_DOMAIN + "/image/etc/37.gif",
+    F_039: Constants_1.default.POCKET_DOMAIN + "/image/etc/39.gif",
+    F_040: Constants_1.default.POCKET_DOMAIN + "/image/etc/40.gif",
+    U_041: Constants_1.default.POCKET_DOMAIN + "/image/etc/41.gif",
+    夜三: Constants_1.default.POCKET_DOMAIN + "/image/head/1117.gif",
+    花子: Constants_1.default.POCKET_DOMAIN + "/image/head/1126.gif",
+    骨头: Constants_1.default.POCKET_DOMAIN + "/image/head/1160.gif",
+    狐狸: Constants_1.default.POCKET_DOMAIN + "/image/head/1196.gif",
+    七七: Constants_1.default.POCKET_DOMAIN + "/image/head/1368.gif",
+    豚豚: Constants_1.default.POCKET_DOMAIN + "/image/head/1389.gif",
+    夜九: Constants_1.default.POCKET_DOMAIN + "/image/head/1561.gif",
+    剑心: Constants_1.default.POCKET_DOMAIN + "/image/head/2184.gif",
+    飘雪: Constants_1.default.POCKET_DOMAIN + "/image/head/2196.gif",
+    路路: Constants_1.default.POCKET_DOMAIN + "/image/head/2201.gif",
+    饭饭: Constants_1.default.POCKET_DOMAIN + "/image/head/1381.gif",
+    亲戚: Constants_1.default.POCKET_DOMAIN + "/image/head/3188.gif",
+    马可: Constants_1.default.POCKET_DOMAIN + "/image/head/6169.gif",
+    青鸟: Constants_1.default.POCKET_DOMAIN + "/image/head/7184.gif",
+    小明: Constants_1.default.POCKET_DOMAIN + "/image/head/8166.gif",
+    末末: Constants_1.default.POCKET_DOMAIN + "/image/head/8173.gif",
+    白皇: Constants_1.default.POCKET_DOMAIN + "/image/head/2411.gif",
+    莫莫: Constants_1.default.POCKET_DOMAIN + "/image/head/13165.gif",
+    天翔: Constants_1.default.POCKET_DOMAIN + "/image/head/14129.gif",
 };
 module.exports = NpcLoader;
 
@@ -21380,7 +21400,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.31) Build: 2024/1/3 15:00:03";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.32) Build: 2024/1/3 16:48:23";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
