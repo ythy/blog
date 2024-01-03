@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+1.30
+// @version      4.2.15-ex+1.31
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21380,7 +21380,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+1.30) Build: 2023/12/19 11:31:58";
+            const version = "Pocketrose Assistant (4.2.15-ex+1.31) Build: 2024/1/3 15:00:03";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -41912,6 +41912,7 @@ function doProcessBattle(credential, html, currentBattleCount) {
         })();
     });
 }
+let clockInterval = -1;
 function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) {
     $("#systemAnnouncement").removeAttr("style");
     $(".battleButton").off("click");
@@ -41957,6 +41958,7 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
             .css("color", "red")
             .css("font-size", "120%");
     }
+    clearInterval(clockInterval);
     const clock = $("input:text[name='clock']");
     if (clock.length > 0) {
         const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
@@ -41966,8 +41968,17 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
-            const start = Date.now() / 1000;
-            _countDownClock(timeout, start, clock);
+            // const start = Date.now() / 1000;
+            // _countDownClock(timeout, start, clock);
+            clockInterval = setInterval(() => {
+                timeout--;
+                if (timeout < 0) {
+                    clearInterval(clockInterval);
+                }
+                else {
+                    clock.val(timeout);
+                }
+            }, 1000);
         }
     }
     // 更新：在线列表
@@ -42078,6 +42089,7 @@ function doProcessPetTZReturn(credential, mainPage, html) {
             .css("color", "red")
             .css("font-size", "120%");
     }
+    clearInterval(clockInterval);
     const clock = $("input:text[name='clock']");
     if (clock.length > 0) {
         const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
@@ -42087,8 +42099,15 @@ function doProcessPetTZReturn(credential, mainPage, html) {
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
-            const start = Date.now() / 1000;
-            _countDownClock(timeout, start, clock);
+            clockInterval = setInterval(() => {
+                timeout--;
+                if (timeout < 0) {
+                    clearInterval(clockInterval);
+                }
+                else {
+                    clock.val(timeout);
+                }
+            }, 1000);
         }
     }
     // 更新：消息通知
@@ -43094,6 +43113,7 @@ function doProcessBattle(credential, html, currentBattleCount) {
         })();
     });
 }
+let clockInterval = -1;
 function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) {
     $("#systemAnnouncement").removeAttr("style");
     $(".battleButton").off("click");
@@ -43139,6 +43159,7 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
             .css("color", "red")
             .css("font-size", "120%");
     }
+    clearInterval(clockInterval);
     const clock = $("input:text[name='clock']");
     if (clock.length > 0) {
         const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
@@ -43148,8 +43169,17 @@ function doProcessBattleReturn(credential, mainPage, additionalRP, harvestList) 
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
-            const start = Date.now() / 1000;
-            _countDownClock1(timeout, start, clock);
+            //const start = Date.now() / 1000;
+            //_countDownClock1(timeout, start, clock);
+            clockInterval = setInterval(() => {
+                timeout--;
+                if (timeout < 0) {
+                    clearInterval(clockInterval);
+                }
+                else {
+                    clock.val(timeout);
+                }
+            }, 1000);
         }
     }
     // 更新：在线列表
@@ -43277,6 +43307,7 @@ function doProcessPetTZReturn(credential, mainPage, html) {
             .css("color", "red")
             .css("font-size", "120%");
     }
+    clearInterval(clockInterval);
     const clock = $("input:text[name='clock']");
     if (clock.length > 0) {
         const enlargeRatio = SetupLoader_1.default.getEnlargeBattleRatio();
@@ -43286,8 +43317,15 @@ function doProcessPetTZReturn(credential, mainPage, html) {
         }
         let timeout = lodash_1.default.parseInt(clock.val());
         if (timeout > 0) {
-            const start = Date.now() / 1000;
-            _countDownClock1(timeout, start, clock);
+            clockInterval = setInterval(() => {
+                timeout--;
+                if (timeout < 0) {
+                    clearInterval(clockInterval);
+                }
+                else {
+                    clock.val(timeout);
+                }
+            }, 1000);
         }
     }
     // 更新：消息通知
