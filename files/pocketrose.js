@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+2.0.1
+// @version      4.2.15-ex+2.0.2
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -20861,7 +20861,7 @@ class Handbook {
         // get div to host the grid
         const eGridDiv = document.getElementById("myGrid");
         // new grid instance, passing in the hosting DIV and Grid Options
-        new window.Grid(eGridDiv, this.gridOptions);
+        new window.agGrid.Grid(eGridDiv, this.gridOptions);
         this.gridApi = this.gridOptions.api;
         for (let key in MonsterProfileLoader_1.MONSTERS) {
             this.mData.push(this.convertObj(key, MonsterProfileLoader_1.MONSTERS[key]));
@@ -21906,7 +21906,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+2.0.1) Build: 2024/1/8 10:24:13";
+            const version = "Pocketrose Assistant (4.2.15-ex+2.0.2) Build: 2024/1/8 13:41:29";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
