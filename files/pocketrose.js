@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+2.0.2
+// @version      4.2.15-ex+2.0.3
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -81,21 +81,21 @@ const MetroDashboardPageInterceptor_1 = __importDefault(__webpack_require__(128)
 const NationInformationPageInterceptor_1 = __importDefault(__webpack_require__(131));
 const PersonalCareerManagementPageInterceptor_1 = __importDefault(__webpack_require__(133));
 const PersonalEquipmentManagementPageInterceptor_1 = __importDefault(__webpack_require__(145));
-const PersonalManualPageInterceptor_1 = __importDefault(__webpack_require__(169));
-const PersonalPetManagementPageInterceptor_1 = __importDefault(__webpack_require__(171));
-const PersonalProfilePageInterceptor_1 = __importDefault(__webpack_require__(181));
-const PersonalSetupPageInterceptor_1 = __importDefault(__webpack_require__(188));
-const PersonalStatisticsPageInterceptor_1 = __importDefault(__webpack_require__(230));
-const PersonalStatusPageInterceptor_1 = __importDefault(__webpack_require__(248));
-const PersonalTeamManagementPageInterceptor_1 = __importDefault(__webpack_require__(252));
-const PersonalTeamPageInterceptor_1 = __importDefault(__webpack_require__(254));
-const RoleInformationPageInterceptor_1 = __importDefault(__webpack_require__(260));
-const TangDashboardPageInterceptor_1 = __importDefault(__webpack_require__(262));
-const TownAccessoryHousePageInterceptor_1 = __importDefault(__webpack_require__(263));
-const TownAdventureGuildPageInterceptor_1 = __importDefault(__webpack_require__(269));
-const TownArmorHousePageInterceptor_1 = __importDefault(__webpack_require__(274));
-const TownBankPageInterceptor_1 = __importDefault(__webpack_require__(279));
-const TownDashboardPageInterceptor_1 = __importDefault(__webpack_require__(281));
+const PersonalManualPageInterceptor_1 = __importDefault(__webpack_require__(167));
+const PersonalPetManagementPageInterceptor_1 = __importDefault(__webpack_require__(169));
+const PersonalProfilePageInterceptor_1 = __importDefault(__webpack_require__(180));
+const PersonalSetupPageInterceptor_1 = __importDefault(__webpack_require__(187));
+const PersonalStatisticsPageInterceptor_1 = __importDefault(__webpack_require__(229));
+const PersonalStatusPageInterceptor_1 = __importDefault(__webpack_require__(247));
+const PersonalTeamManagementPageInterceptor_1 = __importDefault(__webpack_require__(251));
+const PersonalTeamPageInterceptor_1 = __importDefault(__webpack_require__(253));
+const RoleInformationPageInterceptor_1 = __importDefault(__webpack_require__(259));
+const TangDashboardPageInterceptor_1 = __importDefault(__webpack_require__(261));
+const TownAccessoryHousePageInterceptor_1 = __importDefault(__webpack_require__(262));
+const TownAdventureGuildPageInterceptor_1 = __importDefault(__webpack_require__(268));
+const TownArmorHousePageInterceptor_1 = __importDefault(__webpack_require__(273));
+const TownBankPageInterceptor_1 = __importDefault(__webpack_require__(278));
+const TownDashboardPageInterceptor_1 = __importDefault(__webpack_require__(280));
 const TownForgePageInterceptor_1 = __importDefault(__webpack_require__(305));
 const TownGemHousePageInterceptor_1 = __importDefault(__webpack_require__(307));
 const TownInformationPageInterceptor_1 = __importDefault(__webpack_require__(317));
@@ -19227,13 +19227,13 @@ const TownDashboard_1 = __importDefault(__webpack_require__(155));
 const CastleEquipmentExpressHouse_1 = __importDefault(__webpack_require__(147));
 const CastleWarehouse_1 = __importDefault(__webpack_require__(58));
 const Equipment_1 = __importDefault(__webpack_require__(60));
-const EquipmentConsecrateManager_1 = __importDefault(__webpack_require__(162));
+const EquipmentConsecrateManager_1 = __importDefault(__webpack_require__(160));
 const EquipmentSet_1 = __importDefault(__webpack_require__(151));
 const EquipmentSetLoader_1 = __importDefault(__webpack_require__(152));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
-const TownEquipmentExpressHouse_1 = __importDefault(__webpack_require__(165));
+const TownEquipmentExpressHouse_1 = __importDefault(__webpack_require__(163));
 const TreasureBag_1 = __importDefault(__webpack_require__(65));
-const TownForgeHouse_1 = __importDefault(__webpack_require__(167));
+const TownForgeHouse_1 = __importDefault(__webpack_require__(165));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
@@ -20176,7 +20176,6 @@ const RankTitleLoader_1 = __importDefault(__webpack_require__(93));
 const Role_1 = __importDefault(__webpack_require__(50));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const TownDashboardPage_1 = __importDefault(__webpack_require__(159));
-const Handbook_1 = __importDefault(__webpack_require__(160));
 class TownDashboardPageParser {
     constructor(credential, html, battleMode) {
         _TownDashboardPageParser_instances.add(this);
@@ -20190,39 +20189,7 @@ class TownDashboardPageParser {
         __classPrivateFieldSet(this, _TownDashboardPageParser_page, __classPrivateFieldGet(this, _TownDashboardPageParser_instances, "m", _TownDashboardPageParser_doParse).call(this), "f");
     }
     parse() {
-        this.initialDialog();
         return __classPrivateFieldGet(this, _TownDashboardPageParser_page, "f");
-    }
-    initialDialog() {
-        var _a, _b, _c, _d, _e;
-        window.handbook = new Handbook_1.default();
-        const dialog = document.createElement("dialog");
-        dialog.setAttribute("id", "monstorDialog");
-        dialog.innerHTML = `
-      <div style="margin: 10px;">
-        <div></div>
-        ID: <input name="hcode" type="text" style="width: 50px;" /> Name:
-        <input name="hname" type="text" style="width: 100px;" /> Spell:
-        <input name="hskill" type="text" style="width: 100px; margin-left: 20px;"  />
-        <button id="hReset" >Reset</button>
-      </div>
-      <div id="myGrid" class="ag-theme-alpine" style="height: 600px;"></div>
-
-      <div>
-        <form method="dialog">
-          <button>OK</button>
-        </form>
-      </div>
-    `;
-        (_a = document.querySelector("body")) === null || _a === void 0 ? void 0 : _a.appendChild(dialog);
-        (_b = document
-            .querySelector("input[name=hcode]")) === null || _b === void 0 ? void 0 : _b.addEventListener("input", () => window.handbook.onInputChangeHandler());
-        (_c = document
-            .querySelector("input[name=hname]")) === null || _c === void 0 ? void 0 : _c.addEventListener("input", () => window.handbook.onNameInputChangeHandler());
-        (_d = document
-            .querySelector("input[name=hskill]")) === null || _d === void 0 ? void 0 : _d.addEventListener("input", () => window.handbook.onSkillChangeHandler());
-        (_e = document
-            .querySelector("#hReset")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => window.handbook.reset());
     }
 }
 _TownDashboardPageParser_credential = new WeakMap(), _TownDashboardPageParser_html = new WeakMap(), _TownDashboardPageParser_battleMode = new WeakMap(), _TownDashboardPageParser_page = new WeakMap(), _TownDashboardPageParser_instances = new WeakSet(), _TownDashboardPageParser_doParse = function _TownDashboardPageParser_doParse() {
@@ -20804,473 +20771,6 @@ module.exports = TownDashboardPage;
 
 /***/ }),
 /* 160 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const MonsterProfileLoader_1 = __webpack_require__(18);
-const MonsterSpellLoader_1 = __webpack_require__(22);
-const MonsterRelationLoader_1 = __webpack_require__(161);
-class Handbook {
-    constructor() {
-        this.gridApi = {};
-        this.mData = [];
-        this.gridOptions = {
-            // each entry here represents one column
-            columnDefs: [
-                { field: "code" },
-                { field: "name", width: 120 },
-                { field: "total", headerName: "总族" },
-                { field: "location", headerName: "地点" },
-                { field: "degenerate", headerName: "退化", width: 150 },
-                { field: "upgrade", headerName: "进化", width: 150 },
-                { field: "healthBaseStats", headerName: "命族" },
-                { field: "attackBaseStats", headerName: "攻族" },
-                { field: "defenseBaseStats", headerName: "防族" },
-                { field: "specialAttackBaseStats", headerName: "智族" },
-                { field: "specialDefenseBaseStats", headerName: "精族" },
-                { field: "speedBaseStats", headerName: "速族" },
-                { field: "healthEffort", headerName: "命努" },
-                { field: "attackEffort", headerName: "攻努" },
-                { field: "defenseEffort", headerName: "防努" },
-                { field: "specialAttackEffort", headerName: "智努" },
-                { field: "specialDefenseEffort", headerName: "精努" },
-                { field: "speedEffort", headerName: "速努" },
-                { field: "catchRatio", headerName: "捕获" },
-                { field: "growExperience", headerName: "成长" },
-                { field: "pokemon", width: 120 },
-                { field: "spellNames", width: 900 },
-            ],
-            // default col def properties get applied to all columns
-            defaultColDef: { sortable: true, filter: true, width: 80 },
-            rowSelection: "multiple",
-            animateRows: true,
-            pagination: true,
-            paginationPageSize: 500,
-            onCellClicked: (event) => {
-                if (event.colDef.field == "upgrade" && event.data.upgradeCode) {
-                    this.gridApi.setRowData(this.mData.filter((f) => event.data.upgradeCode.includes(Number(f.code))));
-                }
-                else if (event.colDef.field == "degenerate" &&
-                    event.data.degenerateCode) {
-                    this.gridApi.setRowData(this.mData.filter((f) => event.data.degenerateCode == Number(f.code)));
-                }
-            },
-        };
-        // get div to host the grid
-        const eGridDiv = document.getElementById("myGrid");
-        // new grid instance, passing in the hosting DIV and Grid Options
-        new window.agGrid.Grid(eGridDiv, this.gridOptions);
-        this.gridApi = this.gridOptions.api;
-        for (let key in MonsterProfileLoader_1.MONSTERS) {
-            this.mData.push(this.convertObj(key, MonsterProfileLoader_1.MONSTERS[key]));
-        }
-    }
-    bindData(id) {
-        if (id) {
-            document.querySelector("input[name=hcode]").value = id;
-        }
-        this.show();
-    }
-    convertObj(key, value) {
-        var _a;
-        const arr = value.split("/");
-        const total = Number(arr[2]) +
-            Number(arr[3]) +
-            Number(arr[4]) +
-            Number(arr[5]) +
-            Number(arr[6]) +
-            Number(arr[7]);
-        const spellNames = arr[18]
-            .split(",")
-            .map((spell) => MonsterSpellLoader_1.SPELLS[spell])
-            .join(",");
-        const upgrade = (_a = MonsterRelationLoader_1.PET_RELATIONSHIPS[key]) === null || _a === void 0 ? void 0 : _a.map((m) => MonsterProfileLoader_1.MONSTERS[m].split("/")[0] + `(${m})`).join("\n");
-        const upgradeCode = MonsterRelationLoader_1.PET_RELATIONSHIPS[key];
-        let degenerate = "";
-        let degenerateCode = "";
-        for (const code in MonsterRelationLoader_1.PET_RELATIONSHIPS) {
-            if (MonsterRelationLoader_1.PET_RELATIONSHIPS[code].includes(Number(key))) {
-                degenerate = MonsterProfileLoader_1.MONSTERS[code].split("/")[0] + `(${code})`;
-                degenerateCode = code;
-            }
-        }
-        return {
-            code: key,
-            name: arr[0],
-            picture: arr[1],
-            healthBaseStats: Number(arr[2]),
-            attackBaseStats: Number(arr[3]),
-            defenseBaseStats: Number(arr[4]),
-            specialAttackBaseStats: Number(arr[5]),
-            specialDefenseBaseStats: Number(arr[6]),
-            speedBaseStats: Number(arr[7]),
-            total,
-            upgrade,
-            upgradeCode,
-            degenerate,
-            degenerateCode,
-            healthEffort: Number(arr[8]),
-            attackEffort: Number(arr[9]),
-            defenseEffort: Number(arr[10]),
-            specialAttackEffort: Number(arr[11]),
-            specialDefenseEffort: Number(arr[12]),
-            speedEffort: Number(arr[13]),
-            catchRatio: Number(arr[14]),
-            growExperience: Number(arr[15]),
-            location: arr[16],
-            spellNames,
-            pokemon: arr[17],
-        };
-    }
-    onInputChangeHandler() {
-        const num = document.querySelector("input[name=hcode]").value;
-        if (num)
-            this.gridApi.setRowData(this.mData.filter((f) => f.code.indexOf(num) > -1));
-        else
-            this.gridApi.setRowData(this.mData);
-    }
-    onNameInputChangeHandler() {
-        const name = document.querySelector("input[name=hname]").value;
-        if (name)
-            this.gridApi.setRowData(this.mData.filter((f) => f.name.indexOf(name) > -1));
-        else
-            this.gridApi.setRowData(this.mData);
-    }
-    onSkillChangeHandler() {
-        const skill = document.querySelector("input[name=hskill]").value;
-        if (skill)
-            this.gridApi.setRowData(this.mData.filter((f) => f.spellNames.includes(skill)));
-        else
-            this.gridApi.setRowData(this.mData);
-    }
-    reset() {
-        document.querySelector("input[name=hcode]").value =
-            "";
-        document.querySelector("input[name=hname]").value =
-            "";
-        document.querySelector("input[name=hskill]").value =
-            "";
-        this.show();
-    }
-    show() {
-        const num = document.querySelector("input[name=hcode]").value;
-        if (num)
-            this.gridApi.setRowData(this.mData.filter((f) => f.code == num));
-        else
-            this.gridApi.setRowData(this.mData);
-    }
-}
-exports["default"] = Handbook;
-
-
-/***/ }),
-/* 161 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PET_RELATIONSHIPS = void 0;
-const lodash_1 = __importDefault(__webpack_require__(4));
-const MonsterProfile_1 = __importDefault(__webpack_require__(19));
-class MonsterRelationLoader {
-    static getPetRelations(code) {
-        const profile = allProfiles().get(code);
-        let sources = [];
-        findSources(profile.source, sources);
-        sources = sources.reverse();
-        let targets = [];
-        findTargets(profile, targets);
-        const codeList = [];
-        codeList.push(...sources);
-        codeList.push(code);
-        codeList.push(...targets);
-        return codeList;
-    }
-}
-function findSources(profile, sources) {
-    if (!profile)
-        return;
-    sources.push(lodash_1.default.parseInt(profile.code));
-    findSources(profile.source, sources);
-}
-function findTargets(profile, targets) {
-    if (!profile.targets || profile.targets.length === 0)
-        return;
-    for (const target of profile.targets) {
-        targets.push(lodash_1.default.parseInt(target.code));
-        findTargets(target, targets);
-    }
-}
-exports.PET_RELATIONSHIPS = {
-    1: [2],
-    2: [3],
-    4: [5],
-    5: [6],
-    7: [8],
-    8: [9],
-    10: [11],
-    11: [12],
-    13: [14],
-    14: [15],
-    16: [17],
-    17: [18],
-    19: [20],
-    21: [22],
-    23: [24],
-    25: [26],
-    27: [28],
-    29: [30],
-    30: [31],
-    32: [33],
-    33: [34],
-    35: [36],
-    37: [38],
-    39: [40],
-    41: [42],
-    42: [169],
-    43: [44],
-    44: [45, 182],
-    46: [47],
-    48: [49],
-    50: [51],
-    52: [53],
-    54: [55],
-    56: [57],
-    58: [59],
-    60: [61],
-    61: [62, 186],
-    63: [64],
-    64: [65],
-    66: [67],
-    67: [68],
-    69: [70],
-    70: [71],
-    72: [73],
-    74: [75],
-    75: [76],
-    77: [78],
-    79: [80],
-    80: [199],
-    81: [82],
-    82: [462],
-    84: [85],
-    86: [87],
-    88: [89],
-    90: [91],
-    92: [93],
-    93: [94],
-    95: [208],
-    96: [97],
-    98: [99],
-    100: [101],
-    102: [103],
-    104: [105],
-    108: [463],
-    109: [110],
-    111: [112],
-    112: [464],
-    113: [242],
-    114: [465],
-    116: [117],
-    117: [230],
-    118: [119],
-    120: [121],
-    123: [212],
-    125: [466],
-    126: [467],
-    129: [130],
-    133: [134, 135, 136, 196, 197, 470, 471],
-    137: [233],
-    138: [139],
-    140: [141],
-    147: [148],
-    148: [149],
-    152: [153],
-    153: [154],
-    155: [156],
-    156: [157],
-    158: [159],
-    159: [160],
-    161: [162],
-    163: [164],
-    165: [166],
-    167: [168],
-    170: [171],
-    172: [25],
-    173: [35],
-    174: [39],
-    175: [176],
-    176: [468],
-    177: [178],
-    179: [180],
-    180: [181],
-    183: [184],
-    187: [188],
-    188: [189],
-    190: [424],
-    191: [192],
-    193: [469],
-    194: [195],
-    198: [430],
-    200: [429],
-    204: [205],
-    207: [472],
-    209: [210],
-    215: [461],
-    216: [217],
-    218: [219],
-    220: [221],
-    221: [473],
-    223: [224],
-    228: [229],
-    231: [232],
-    233: [474],
-    236: [106, 107, 237],
-    238: [124],
-    239: [125],
-    240: [126],
-    246: [247],
-    247: [248],
-    252: [253],
-    253: [254],
-    255: [256],
-    256: [257],
-    258: [259],
-    259: [260],
-    261: [262],
-    263: [264],
-    265: [266, 268],
-    266: [267],
-    268: [269],
-    270: [271],
-    271: [272],
-    273: [274],
-    274: [275],
-    276: [277],
-    278: [279],
-    280: [281],
-    281: [282],
-    282: [475],
-    283: [284],
-    285: [286],
-    287: [288],
-    288: [289],
-    290: [291],
-    291: [292],
-    293: [294],
-    294: [295],
-    296: [297],
-    298: [183],
-    299: [476],
-    300: [301],
-    304: [305],
-    305: [306],
-    307: [308],
-    309: [310],
-    315: [407],
-    316: [317],
-    318: [319],
-    320: [321],
-    322: [323],
-    325: [326],
-    328: [329],
-    329: [330],
-    331: [332],
-    333: [334],
-    339: [340],
-    341: [342],
-    343: [344],
-    345: [346],
-    347: [348],
-    349: [350],
-    353: [354],
-    355: [356],
-    356: [477],
-    360: [202],
-    361: [362, 478],
-    363: [364],
-    364: [365],
-    366: [367, 368],
-    371: [372],
-    372: [373],
-    374: [375],
-    375: [376],
-    387: [388],
-    388: [389],
-    390: [391],
-    391: [392],
-    393: [394],
-    394: [395],
-    396: [397],
-    397: [398],
-    399: [400],
-    401: [402],
-    403: [404],
-    404: [405],
-    406: [315],
-    408: [409],
-    410: [411],
-    412: [413, 414],
-    415: [416],
-    418: [419],
-    420: [421],
-    422: [423],
-    425: [426],
-    427: [428],
-    431: [432],
-    433: [358],
-    434: [435],
-    436: [437],
-    438: [185],
-    439: [122],
-    440: [113],
-    443: [444],
-    444: [445],
-    446: [143],
-    447: [448],
-    449: [450],
-    451: [452],
-    453: [454],
-    456: [457],
-    458: [226],
-    459: [460],
-};
-function allProfiles() {
-    const profiles = new Map();
-    for (let i = 1; i <= 493; i++) {
-        const profile = new MonsterProfile_1.default();
-        profile.code = lodash_1.default.padStart(i.toString(), 3, "0");
-        profile.targets = [];
-        profiles.set(i, profile);
-    }
-    const keys = Object.keys(exports.PET_RELATIONSHIPS);
-    for (const key of keys) {
-        const id = parseInt(key);
-        // @ts-ignore
-        const arr = exports.PET_RELATIONSHIPS[id];
-        if (arr === undefined) {
-            continue;
-        }
-        const parent = profiles.get(id);
-        for (const it of arr) {
-            const child = profiles.get(it);
-            child.source = parent;
-            parent.targets.push(child);
-        }
-    }
-    return profiles;
-}
-exports["default"] = MonsterRelationLoader;
-
-
-/***/ }),
-/* 162 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21302,8 +20802,8 @@ var _EquipmentConsecrateManager_credential;
 const lodash_1 = __importDefault(__webpack_require__(4));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const EquipmentConsecrateLog_1 = __importDefault(__webpack_require__(163));
-const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(164));
+const EquipmentConsecrateLog_1 = __importDefault(__webpack_require__(161));
+const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(162));
 class EquipmentConsecrateManager {
     constructor(credential) {
         _EquipmentConsecrateManager_credential.set(this, void 0);
@@ -21342,7 +20842,7 @@ module.exports = EquipmentConsecrateManager;
 
 
 /***/ }),
-/* 163 */
+/* 161 */
 /***/ ((module) => {
 
 "use strict";
@@ -21365,7 +20865,7 @@ module.exports = EquipmentConsecrateLog;
 
 
 /***/ }),
-/* 164 */
+/* 162 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21385,7 +20885,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const bson_objectid_1 = __importDefault(__webpack_require__(26));
 const lodash_1 = __importDefault(__webpack_require__(4));
 const PocketDatabase_1 = __importDefault(__webpack_require__(10));
-const EquipmentConsecrateLog_1 = __importDefault(__webpack_require__(163));
+const EquipmentConsecrateLog_1 = __importDefault(__webpack_require__(161));
 class EquipmentConsecrateLogStorage {
     static getInstance() {
         return instance;
@@ -21499,7 +20999,7 @@ module.exports = EquipmentConsecrateLogStorage;
 
 
 /***/ }),
-/* 165 */
+/* 163 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21533,7 +21033,7 @@ const NetworkUtils_1 = __importDefault(__webpack_require__(45));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Role_1 = __importDefault(__webpack_require__(50));
 const Equipment_1 = __importDefault(__webpack_require__(60));
-const TownEquipmentExpressHousePage_1 = __importDefault(__webpack_require__(166));
+const TownEquipmentExpressHousePage_1 = __importDefault(__webpack_require__(164));
 class TownEquipmentExpressHouse {
     constructor(credential, townId) {
         _TownEquipmentExpressHouse_credential.set(this, void 0);
@@ -21668,7 +21168,7 @@ module.exports = TownEquipmentExpressHouse;
 
 
 /***/ }),
-/* 166 */
+/* 164 */
 /***/ ((module) => {
 
 "use strict";
@@ -21679,7 +21179,7 @@ module.exports = TownEquipmentExpressHousePage;
 
 
 /***/ }),
-/* 167 */
+/* 165 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21711,7 +21211,7 @@ var _TownForgeHouse_credential, _TownForgeHouse_townId;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownForgeHousePage_1 = __importDefault(__webpack_require__(168));
+const TownForgeHousePage_1 = __importDefault(__webpack_require__(166));
 class TownForgeHouse {
     constructor(credential, townId) {
         _TownForgeHouse_credential.set(this, void 0);
@@ -21796,7 +21296,7 @@ module.exports = TownForgeHouse;
 
 
 /***/ }),
-/* 168 */
+/* 166 */
 /***/ ((module) => {
 
 "use strict";
@@ -21807,7 +21307,7 @@ module.exports = TownForgeHousePage;
 
 
 /***/ }),
-/* 169 */
+/* 167 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21822,7 +21322,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalManualPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalManualPageProcessor_1 = __importDefault(__webpack_require__(170));
+const PersonalManualPageProcessor_1 = __importDefault(__webpack_require__(168));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class PersonalManualPageInterceptor {
     constructor() {
@@ -21853,7 +21353,7 @@ module.exports = PersonalManualPageInterceptor;
 
 
 /***/ }),
-/* 170 */
+/* 168 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -21906,7 +21406,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+2.0.2) Build: 2024/1/8 13:41:29";
+            const version = "Pocketrose Assistant (4.2.15-ex+2.0.3) Build: 2024/1/9 09:33:59";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -22215,7 +21715,7 @@ module.exports = PersonalManualPageProcessor;
 
 
 /***/ }),
-/* 171 */
+/* 169 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -22230,8 +21730,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalPetManagementPageInterceptor_inTownProcessor, _PersonalPetManagementPageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalPetManagementPageProcessor_Castle_1 = __importDefault(__webpack_require__(172));
-const PersonalPetManagementPageProcessor_Town_1 = __importDefault(__webpack_require__(178));
+const PersonalPetManagementPageProcessor_Castle_1 = __importDefault(__webpack_require__(170));
+const PersonalPetManagementPageProcessor_Town_1 = __importDefault(__webpack_require__(176));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class PersonalPetManagementPageInterceptor {
     constructor() {
@@ -22268,7 +21768,7 @@ module.exports = PersonalPetManagementPageInterceptor;
 
 
 /***/ }),
-/* 172 */
+/* 170 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -22288,12 +21788,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const CastleBank_1 = __importDefault(__webpack_require__(88));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
-const CastlePetExpressHouse_1 = __importDefault(__webpack_require__(173));
+const CastlePetExpressHouse_1 = __importDefault(__webpack_require__(171));
 const CastleRanch_1 = __importDefault(__webpack_require__(68));
 const GoldenCage_1 = __importDefault(__webpack_require__(71));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
-const MonsterSimulator_1 = __importDefault(__webpack_require__(174));
-const PersonalPetEvolution_1 = __importDefault(__webpack_require__(175));
+const MonsterSimulator_1 = __importDefault(__webpack_require__(172));
+const PersonalPetEvolution_1 = __importDefault(__webpack_require__(173));
 const PersonalPetManagement_1 = __importDefault(__webpack_require__(74));
 const Pet_1 = __importDefault(__webpack_require__(70));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
@@ -22301,7 +21801,7 @@ const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const PersonalPetManagementPageProcessor_1 = __importDefault(__webpack_require__(177));
+const PersonalPetManagementPageProcessor_1 = __importDefault(__webpack_require__(175));
 class PersonalPetManagementPageProcessor_Castle extends PersonalPetManagementPageProcessor_1.default {
     doProcessWithPageParsed(credential, page, context) {
         // 修改返回城堡的表单
@@ -23714,7 +23214,7 @@ module.exports = PersonalPetManagementPageProcessor_Castle;
 
 
 /***/ }),
-/* 173 */
+/* 171 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -23797,7 +23297,7 @@ module.exports = CastlePetExpressHouse;
 
 
 /***/ }),
-/* 174 */
+/* 172 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -23913,7 +23413,7 @@ module.exports = MonsterSimulator;
 
 
 /***/ }),
-/* 175 */
+/* 173 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -23944,7 +23444,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _PersonalPetEvolution_credential, _PersonalPetEvolution_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const PersonalPetEvolutionPage_1 = __importDefault(__webpack_require__(176));
+const PersonalPetEvolutionPage_1 = __importDefault(__webpack_require__(174));
 class PersonalPetEvolution {
     constructor(credential, townId) {
         _PersonalPetEvolution_credential.set(this, void 0);
@@ -24051,7 +23551,7 @@ module.exports = PersonalPetEvolution;
 
 
 /***/ }),
-/* 176 */
+/* 174 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -24317,7 +23817,7 @@ module.exports = PersonalPetEvolutionPage;
 
 
 /***/ }),
-/* 177 */
+/* 175 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -24437,7 +23937,7 @@ module.exports = PersonalPetManagementPageProcessor;
 
 
 /***/ }),
-/* 178 */
+/* 176 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -24460,11 +23960,11 @@ const CastleInformation_1 = __importDefault(__webpack_require__(55));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
 const CastleRanch_1 = __importDefault(__webpack_require__(68));
 const GoldenCage_1 = __importDefault(__webpack_require__(71));
-const MonsterDimensionGenerator_1 = __importDefault(__webpack_require__(179));
+const MonsterDimensionGenerator_1 = __importDefault(__webpack_require__(177));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
-const MonsterRelationLoader_1 = __importDefault(__webpack_require__(161));
-const MonsterSimulator_1 = __importDefault(__webpack_require__(174));
-const PersonalPetEvolution_1 = __importDefault(__webpack_require__(175));
+const MonsterRelationLoader_1 = __importDefault(__webpack_require__(179));
+const MonsterSimulator_1 = __importDefault(__webpack_require__(172));
+const PersonalPetEvolution_1 = __importDefault(__webpack_require__(173));
 const PersonalPetManagement_1 = __importDefault(__webpack_require__(74));
 const Pet_1 = __importDefault(__webpack_require__(70));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
@@ -24473,7 +23973,7 @@ const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const PersonalPetManagementPageProcessor_1 = __importDefault(__webpack_require__(177));
+const PersonalPetManagementPageProcessor_1 = __importDefault(__webpack_require__(175));
 class PersonalPetManagementPageProcessor_Town extends PersonalPetManagementPageProcessor_1.default {
     doProcessWithPageParsed(credential, page, context) {
         doProcess(credential, page.petList, page.petStudyStatus);
@@ -25921,7 +25421,7 @@ module.exports = PersonalPetManagementPageProcessor_Town;
 
 
 /***/ }),
-/* 179 */
+/* 177 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -25961,7 +25461,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 class MonsterDimensionGenerator {
     static generate(pet) {
@@ -26015,14 +25515,318 @@ module.exports = MonsterDimensionGenerator;
 
 
 /***/ }),
-/* 180 */
+/* 178 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = echarts;
 
 /***/ }),
-/* 181 */
+/* 179 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PET_RELATIONSHIPS = void 0;
+const lodash_1 = __importDefault(__webpack_require__(4));
+const MonsterProfile_1 = __importDefault(__webpack_require__(19));
+class MonsterRelationLoader {
+    static getPetRelations(code) {
+        const profile = allProfiles().get(code);
+        let sources = [];
+        findSources(profile.source, sources);
+        sources = sources.reverse();
+        let targets = [];
+        findTargets(profile, targets);
+        const codeList = [];
+        codeList.push(...sources);
+        codeList.push(code);
+        codeList.push(...targets);
+        return codeList;
+    }
+}
+function findSources(profile, sources) {
+    if (!profile)
+        return;
+    sources.push(lodash_1.default.parseInt(profile.code));
+    findSources(profile.source, sources);
+}
+function findTargets(profile, targets) {
+    if (!profile.targets || profile.targets.length === 0)
+        return;
+    for (const target of profile.targets) {
+        targets.push(lodash_1.default.parseInt(target.code));
+        findTargets(target, targets);
+    }
+}
+exports.PET_RELATIONSHIPS = {
+    1: [2],
+    2: [3],
+    4: [5],
+    5: [6],
+    7: [8],
+    8: [9],
+    10: [11],
+    11: [12],
+    13: [14],
+    14: [15],
+    16: [17],
+    17: [18],
+    19: [20],
+    21: [22],
+    23: [24],
+    25: [26],
+    27: [28],
+    29: [30],
+    30: [31],
+    32: [33],
+    33: [34],
+    35: [36],
+    37: [38],
+    39: [40],
+    41: [42],
+    42: [169],
+    43: [44],
+    44: [45, 182],
+    46: [47],
+    48: [49],
+    50: [51],
+    52: [53],
+    54: [55],
+    56: [57],
+    58: [59],
+    60: [61],
+    61: [62, 186],
+    63: [64],
+    64: [65],
+    66: [67],
+    67: [68],
+    69: [70],
+    70: [71],
+    72: [73],
+    74: [75],
+    75: [76],
+    77: [78],
+    79: [80],
+    80: [199],
+    81: [82],
+    82: [462],
+    84: [85],
+    86: [87],
+    88: [89],
+    90: [91],
+    92: [93],
+    93: [94],
+    95: [208],
+    96: [97],
+    98: [99],
+    100: [101],
+    102: [103],
+    104: [105],
+    108: [463],
+    109: [110],
+    111: [112],
+    112: [464],
+    113: [242],
+    114: [465],
+    116: [117],
+    117: [230],
+    118: [119],
+    120: [121],
+    123: [212],
+    125: [466],
+    126: [467],
+    129: [130],
+    133: [134, 135, 136, 196, 197, 470, 471],
+    137: [233],
+    138: [139],
+    140: [141],
+    147: [148],
+    148: [149],
+    152: [153],
+    153: [154],
+    155: [156],
+    156: [157],
+    158: [159],
+    159: [160],
+    161: [162],
+    163: [164],
+    165: [166],
+    167: [168],
+    170: [171],
+    172: [25],
+    173: [35],
+    174: [39],
+    175: [176],
+    176: [468],
+    177: [178],
+    179: [180],
+    180: [181],
+    183: [184],
+    187: [188],
+    188: [189],
+    190: [424],
+    191: [192],
+    193: [469],
+    194: [195],
+    198: [430],
+    200: [429],
+    204: [205],
+    207: [472],
+    209: [210],
+    215: [461],
+    216: [217],
+    218: [219],
+    220: [221],
+    221: [473],
+    223: [224],
+    228: [229],
+    231: [232],
+    233: [474],
+    236: [106, 107, 237],
+    238: [124],
+    239: [125],
+    240: [126],
+    246: [247],
+    247: [248],
+    252: [253],
+    253: [254],
+    255: [256],
+    256: [257],
+    258: [259],
+    259: [260],
+    261: [262],
+    263: [264],
+    265: [266, 268],
+    266: [267],
+    268: [269],
+    270: [271],
+    271: [272],
+    273: [274],
+    274: [275],
+    276: [277],
+    278: [279],
+    280: [281],
+    281: [282],
+    282: [475],
+    283: [284],
+    285: [286],
+    287: [288],
+    288: [289],
+    290: [291],
+    291: [292],
+    293: [294],
+    294: [295],
+    296: [297],
+    298: [183],
+    299: [476],
+    300: [301],
+    304: [305],
+    305: [306],
+    307: [308],
+    309: [310],
+    315: [407],
+    316: [317],
+    318: [319],
+    320: [321],
+    322: [323],
+    325: [326],
+    328: [329],
+    329: [330],
+    331: [332],
+    333: [334],
+    339: [340],
+    341: [342],
+    343: [344],
+    345: [346],
+    347: [348],
+    349: [350],
+    353: [354],
+    355: [356],
+    356: [477],
+    360: [202],
+    361: [362, 478],
+    363: [364],
+    364: [365],
+    366: [367, 368],
+    371: [372],
+    372: [373],
+    374: [375],
+    375: [376],
+    387: [388],
+    388: [389],
+    390: [391],
+    391: [392],
+    393: [394],
+    394: [395],
+    396: [397],
+    397: [398],
+    399: [400],
+    401: [402],
+    403: [404],
+    404: [405],
+    406: [315],
+    408: [409],
+    410: [411],
+    412: [413, 414],
+    415: [416],
+    418: [419],
+    420: [421],
+    422: [423],
+    425: [426],
+    427: [428],
+    431: [432],
+    433: [358],
+    434: [435],
+    436: [437],
+    438: [185],
+    439: [122],
+    440: [113],
+    443: [444],
+    444: [445],
+    446: [143],
+    447: [448],
+    449: [450],
+    451: [452],
+    453: [454],
+    456: [457],
+    458: [226],
+    459: [460],
+};
+function allProfiles() {
+    const profiles = new Map();
+    for (let i = 1; i <= 493; i++) {
+        const profile = new MonsterProfile_1.default();
+        profile.code = lodash_1.default.padStart(i.toString(), 3, "0");
+        profile.targets = [];
+        profiles.set(i, profile);
+    }
+    const keys = Object.keys(exports.PET_RELATIONSHIPS);
+    for (const key of keys) {
+        const id = parseInt(key);
+        // @ts-ignore
+        const arr = exports.PET_RELATIONSHIPS[id];
+        if (arr === undefined) {
+            continue;
+        }
+        const parent = profiles.get(id);
+        for (const it of arr) {
+            const child = profiles.get(it);
+            child.source = parent;
+            parent.targets.push(child);
+        }
+    }
+    return profiles;
+}
+exports["default"] = MonsterRelationLoader;
+
+
+/***/ }),
+/* 180 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26037,8 +25841,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalProfilePageInterceptor_inTownProcessor, _PersonalProfilePageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalProfilePageProcessor_Castle_1 = __importDefault(__webpack_require__(182));
-const PersonalProfilePageProcessor_Town_1 = __importDefault(__webpack_require__(187));
+const PersonalProfilePageProcessor_Castle_1 = __importDefault(__webpack_require__(181));
+const PersonalProfilePageProcessor_Town_1 = __importDefault(__webpack_require__(186));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class PersonalProfilePageInterceptor {
     constructor() {
@@ -26075,7 +25879,7 @@ module.exports = PersonalProfilePageInterceptor;
 
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26085,7 +25889,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const CastleBank_1 = __importDefault(__webpack_require__(88));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalProfilePageProcessor_1 = __importDefault(__webpack_require__(183));
+const PersonalProfilePageProcessor_1 = __importDefault(__webpack_require__(182));
 class PersonalProfilePageProcessor_Castle extends PersonalProfilePageProcessor_1.default {
     doBindReturnButton(credential, context) {
         const html = PageUtils_1.default.generateReturnCastleForm(credential);
@@ -26111,7 +25915,7 @@ module.exports = PersonalProfilePageProcessor_Castle;
 
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26157,12 +25961,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _PersonalProfilePageProcessor_instances, _PersonalProfilePageProcessor_renderImmutablePage, _PersonalProfilePageProcessor_welcomeMessageHtml, _PersonalProfilePageProcessor_renderPersonalStatus, _PersonalProfilePageProcessor_renderSpellStatus, _PersonalProfilePageProcessor_renderEquipmentStatus, _PersonalProfilePageProcessor_renderPetStatus, _PersonalProfilePageProcessor_renderMirrorStatus, _PersonalProfilePageProcessor_reload;
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const PersonalSpell_1 = __importDefault(__webpack_require__(140));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
 const PersonalPetManagement_1 = __importDefault(__webpack_require__(74));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
-const PersonalMirror_1 = __importDefault(__webpack_require__(184));
+const PersonalMirror_1 = __importDefault(__webpack_require__(183));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
@@ -26685,7 +26489,7 @@ module.exports = PersonalProfilePageProcessor;
 
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26716,7 +26520,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _PersonalMirror_credential, _PersonalMirror_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const PersonalMirrorPage_1 = __importDefault(__webpack_require__(185));
+const PersonalMirrorPage_1 = __importDefault(__webpack_require__(184));
 class PersonalMirror {
     constructor(credential, townId) {
         _PersonalMirror_credential.set(this, void 0);
@@ -26762,7 +26566,7 @@ module.exports = PersonalMirror;
 
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26771,7 +26575,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const Mirror_1 = __importDefault(__webpack_require__(186));
+const Mirror_1 = __importDefault(__webpack_require__(185));
 class PersonalMirrorPage {
     findByIndex(index) {
         for (const mirror of this.mirrorList) {
@@ -26840,7 +26644,7 @@ module.exports = PersonalMirrorPage;
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26865,7 +26669,7 @@ module.exports = Mirror;
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26876,7 +26680,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalProfilePageProcessor_1 = __importDefault(__webpack_require__(183));
+const PersonalProfilePageProcessor_1 = __importDefault(__webpack_require__(182));
 class PersonalProfilePageProcessor_Town extends PersonalProfilePageProcessor_1.default {
     doBindReturnButton(credential, context) {
         const html = PageUtils_1.default.generateReturnTownForm(credential);
@@ -26903,7 +26707,7 @@ module.exports = PersonalProfilePageProcessor_Town;
 
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26918,8 +26722,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalSetupPageInterceptor_inTownProcessor, _PersonalSetupPageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalSetupPageProcessor_Castle_1 = __importDefault(__webpack_require__(189));
-const PersonalSetupPageProcessor_Town_1 = __importDefault(__webpack_require__(229));
+const PersonalSetupPageProcessor_Castle_1 = __importDefault(__webpack_require__(188));
+const PersonalSetupPageProcessor_Town_1 = __importDefault(__webpack_require__(228));
 class PersonalSetupPageInterceptor {
     constructor() {
         _PersonalSetupPageInterceptor_inTownProcessor.set(this, new PersonalSetupPageProcessor_Town_1.default());
@@ -26951,7 +26755,7 @@ module.exports = PersonalSetupPageInterceptor;
 
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26960,7 +26764,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalSetupPageProcessor_1 = __importDefault(__webpack_require__(190));
+const PersonalSetupPageProcessor_1 = __importDefault(__webpack_require__(189));
 class PersonalSetupPageProcessor_Castle extends PersonalSetupPageProcessor_1.default {
     doGenerateHiddenForm(credential, containerId) {
         const html = PageUtils_1.default.generateReturnCastleForm(credential);
@@ -26976,7 +26780,7 @@ module.exports = PersonalSetupPageProcessor_Castle;
 
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -26999,9 +26803,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _PersonalSetupPageProcessor_instances, _PersonalSetupPageProcessor_render, _PersonalSetupPageProcessor_bindLoadButton, _PersonalSetupPageProcessor_bindRefreshButton, _PersonalSetupPageProcessor_loadEquipments;
-const ConfigManager_1 = __importDefault(__webpack_require__(191));
-const SetupItemManager_1 = __importDefault(__webpack_require__(192));
-const EquipmentLoader_1 = __importDefault(__webpack_require__(228));
+const ConfigManager_1 = __importDefault(__webpack_require__(190));
+const SetupItemManager_1 = __importDefault(__webpack_require__(191));
+const EquipmentLoader_1 = __importDefault(__webpack_require__(227));
 const PersonalEquipmentManagement_1 = __importDefault(__webpack_require__(61));
 const TreasureBag_1 = __importDefault(__webpack_require__(65));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
@@ -27232,7 +27036,7 @@ module.exports = PersonalSetupPageProcessor;
 
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27242,7 +27046,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
 const Constants_1 = __importDefault(__webpack_require__(11));
-const SetupItemManager_1 = __importDefault(__webpack_require__(192));
+const SetupItemManager_1 = __importDefault(__webpack_require__(191));
 class ConfigManager {
     static exportAsJson() {
         const s = {};
@@ -27296,7 +27100,7 @@ module.exports = ConfigManager;
 
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27316,45 +27120,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _SetupItemManager_setupItemList;
-const SetupItem001_1 = __importDefault(__webpack_require__(193));
-const SetupItem002_1 = __importDefault(__webpack_require__(194));
-const SetupItem003_1 = __importDefault(__webpack_require__(195));
-const SetupItem004_1 = __importDefault(__webpack_require__(196));
-const SetupItem005_1 = __importDefault(__webpack_require__(197));
-const SetupItem012_1 = __importDefault(__webpack_require__(198));
-const SetupItem014_1 = __importDefault(__webpack_require__(199));
-const SetupItem019_1 = __importDefault(__webpack_require__(200));
-const SetupItem020_1 = __importDefault(__webpack_require__(201));
-const SetupItem021_1 = __importDefault(__webpack_require__(202));
-const SetupItem022_1 = __importDefault(__webpack_require__(203));
-const SetupItem023_1 = __importDefault(__webpack_require__(204));
+const SetupItem001_1 = __importDefault(__webpack_require__(192));
+const SetupItem002_1 = __importDefault(__webpack_require__(193));
+const SetupItem003_1 = __importDefault(__webpack_require__(194));
+const SetupItem004_1 = __importDefault(__webpack_require__(195));
+const SetupItem005_1 = __importDefault(__webpack_require__(196));
+const SetupItem012_1 = __importDefault(__webpack_require__(197));
+const SetupItem014_1 = __importDefault(__webpack_require__(198));
+const SetupItem019_1 = __importDefault(__webpack_require__(199));
+const SetupItem020_1 = __importDefault(__webpack_require__(200));
+const SetupItem021_1 = __importDefault(__webpack_require__(201));
+const SetupItem022_1 = __importDefault(__webpack_require__(202));
+const SetupItem023_1 = __importDefault(__webpack_require__(203));
 //import SetupItem024 from "./internal/SetupItem024";
 //import SetupItem025 from "./internal/SetupItem025";
 //import SetupItem026 from "./internal/SetupItem026";
-const SetupItem028_1 = __importDefault(__webpack_require__(205));
-const SetupItem030_1 = __importDefault(__webpack_require__(206));
-const SetupItem035_1 = __importDefault(__webpack_require__(207));
-const SetupItem036_1 = __importDefault(__webpack_require__(208));
-const SetupItem037_1 = __importDefault(__webpack_require__(209));
-const SetupItem038_1 = __importDefault(__webpack_require__(210));
-const SetupItem040_1 = __importDefault(__webpack_require__(211));
-const SetupItem041_1 = __importDefault(__webpack_require__(212));
-const SetupItem042_1 = __importDefault(__webpack_require__(213));
-const SetupItem043_1 = __importDefault(__webpack_require__(214));
+const SetupItem028_1 = __importDefault(__webpack_require__(204));
+const SetupItem030_1 = __importDefault(__webpack_require__(205));
+const SetupItem035_1 = __importDefault(__webpack_require__(206));
+const SetupItem036_1 = __importDefault(__webpack_require__(207));
+const SetupItem037_1 = __importDefault(__webpack_require__(208));
+const SetupItem038_1 = __importDefault(__webpack_require__(209));
+const SetupItem040_1 = __importDefault(__webpack_require__(210));
+const SetupItem041_1 = __importDefault(__webpack_require__(211));
+const SetupItem042_1 = __importDefault(__webpack_require__(212));
+const SetupItem043_1 = __importDefault(__webpack_require__(213));
 //import SetupItem044 from "./internal/SetupItem044";
 //import SetupItem045 from "./internal/SetupItem045";
 //import SetupItem046 from "./internal/SetupItem046";
 //import SetupItem048 from "./internal/SetupItem048";
-const SetupItem050_1 = __importDefault(__webpack_require__(215));
-const SetupItem052_1 = __importDefault(__webpack_require__(217));
-const SetupItem053_1 = __importDefault(__webpack_require__(220));
-const SetupItem054_1 = __importDefault(__webpack_require__(221));
-const SetupItem056_1 = __importDefault(__webpack_require__(222));
-const SetupItem061_1 = __importDefault(__webpack_require__(223));
-const SetupItem062_1 = __importDefault(__webpack_require__(224));
-const SetupItem063_1 = __importDefault(__webpack_require__(225));
-const SetupItem064_1 = __importDefault(__webpack_require__(226));
-const SetupItem065_1 = __importDefault(__webpack_require__(227));
+const SetupItem050_1 = __importDefault(__webpack_require__(214));
+const SetupItem052_1 = __importDefault(__webpack_require__(216));
+const SetupItem053_1 = __importDefault(__webpack_require__(219));
+const SetupItem054_1 = __importDefault(__webpack_require__(220));
+const SetupItem056_1 = __importDefault(__webpack_require__(221));
+const SetupItem061_1 = __importDefault(__webpack_require__(222));
+const SetupItem062_1 = __importDefault(__webpack_require__(223));
+const SetupItem063_1 = __importDefault(__webpack_require__(224));
+const SetupItem064_1 = __importDefault(__webpack_require__(225));
+const SetupItem065_1 = __importDefault(__webpack_require__(226));
 //ythy
 class SetupItemManager {
     constructor() {
@@ -27414,7 +27218,7 @@ module.exports = SetupItemManager;
 
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27469,7 +27273,7 @@ module.exports = SetupItem001;
 
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27531,7 +27335,7 @@ module.exports = SetupItem002;
 
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27590,7 +27394,7 @@ module.exports = SetupItem003;
 
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27646,7 +27450,7 @@ module.exports = SetupItem004;
 
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27703,7 +27507,7 @@ module.exports = SetupItem005;
 
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27769,7 +27573,7 @@ module.exports = SetupItem012;
 
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27824,7 +27628,7 @@ module.exports = SetupItem014;
 
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -27945,7 +27749,7 @@ module.exports = SetupItem019;
 
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28066,7 +27870,7 @@ module.exports = SetupItem020;
 
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28187,7 +27991,7 @@ module.exports = SetupItem021;
 
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28308,7 +28112,7 @@ module.exports = SetupItem022;
 
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28429,7 +28233,7 @@ module.exports = SetupItem023;
 
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28484,7 +28288,7 @@ module.exports = SetupItem028;
 
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28539,7 +28343,7 @@ module.exports = SetupItem030;
 
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28594,7 +28398,7 @@ module.exports = SetupItem035;
 
 
 /***/ }),
-/* 208 */
+/* 207 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28653,7 +28457,7 @@ module.exports = SetupItem036;
 
 
 /***/ }),
-/* 209 */
+/* 208 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28708,7 +28512,7 @@ module.exports = SetupItem037;
 
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28763,7 +28567,7 @@ module.exports = SetupItem038;
 
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28822,7 +28626,7 @@ module.exports = SetupItem040;
 
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28916,7 +28720,7 @@ module.exports = SetupItem041;
 
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -28977,7 +28781,7 @@ module.exports = SetupItem042;
 
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29032,7 +28836,7 @@ module.exports = SetupItem043;
 
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29042,7 +28846,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const StorageUtils_1 = __importDefault(__webpack_require__(21));
-const ExtensionShortcutLoader_1 = __importDefault(__webpack_require__(216));
+const ExtensionShortcutLoader_1 = __importDefault(__webpack_require__(215));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
 class SetupItem050 {
     code() {
@@ -29093,7 +28897,7 @@ module.exports = SetupItem050;
 
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29145,7 +28949,7 @@ module.exports = ExtensionShortcutLoader;
 
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29155,7 +28959,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const StorageUtils_1 = __importDefault(__webpack_require__(21));
-const LayoutConfigLoader_1 = __importDefault(__webpack_require__(218));
+const LayoutConfigLoader_1 = __importDefault(__webpack_require__(217));
 class SetupItem052 {
     code() {
         return code;
@@ -29200,7 +29004,7 @@ module.exports = SetupItem052;
 
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29209,7 +29013,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
-const LayoutConfig_1 = __importDefault(__webpack_require__(219));
+const LayoutConfig_1 = __importDefault(__webpack_require__(218));
 //ythy
 class LayoutConfigLoader {
     static loadAll() {
@@ -29236,7 +29040,7 @@ module.exports = LayoutConfigLoader;
 
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ ((module) => {
 
 "use strict";
@@ -29251,7 +29055,7 @@ module.exports = LayoutConfig;
 
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29261,7 +29065,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const StorageUtils_1 = __importDefault(__webpack_require__(21));
-const LayoutConfigLoader_1 = __importDefault(__webpack_require__(218));
+const LayoutConfigLoader_1 = __importDefault(__webpack_require__(217));
 class SetupItem053 {
     code() {
         return code;
@@ -29307,7 +29111,7 @@ module.exports = SetupItem053;
 
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29396,7 +29200,7 @@ module.exports = SetupItem054;
 
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29463,7 +29267,7 @@ module.exports = SetupItem056;
 
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29537,7 +29341,7 @@ module.exports = SetupItem061;
 
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29613,7 +29417,7 @@ module.exports = SetupItem062;
 
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29678,7 +29482,7 @@ module.exports = SetupItem063;
 
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29772,7 +29576,7 @@ module.exports = SetupItem064;
 
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -29849,7 +29653,7 @@ module.exports = SetupItem065;
 
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ ((module) => {
 
 "use strict";
@@ -30086,7 +29890,7 @@ module.exports = EquipmentLoader;
 
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -30095,7 +29899,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalSetupPageProcessor_1 = __importDefault(__webpack_require__(190));
+const PersonalSetupPageProcessor_1 = __importDefault(__webpack_require__(189));
 class PersonalSetupPageProcessor_Town extends PersonalSetupPageProcessor_1.default {
     doGenerateHiddenForm(credential, containerId) {
         const html = PageUtils_1.default.generateReturnTownForm(credential);
@@ -30111,7 +29915,7 @@ module.exports = PersonalSetupPageProcessor_Town;
 
 
 /***/ }),
-/* 230 */
+/* 229 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -30126,8 +29930,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalStatisticsPageInterceptor_inTownProcessor, _PersonalStatisticsPageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalStatisticsPageProcessor_Castle_1 = __importDefault(__webpack_require__(231));
-const PersonalStatisticsPageProcessor_Town_1 = __importDefault(__webpack_require__(247));
+const PersonalStatisticsPageProcessor_Castle_1 = __importDefault(__webpack_require__(230));
+const PersonalStatisticsPageProcessor_Town_1 = __importDefault(__webpack_require__(246));
 class PersonalStatisticsPageInterceptor {
     constructor() {
         _PersonalStatisticsPageInterceptor_inTownProcessor.set(this, new PersonalStatisticsPageProcessor_Town_1.default());
@@ -30159,7 +29963,7 @@ module.exports = PersonalStatisticsPageInterceptor;
 
 
 /***/ }),
-/* 231 */
+/* 230 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -30168,7 +29972,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalStatisticsPageProcessor_1 = __importDefault(__webpack_require__(232));
+const PersonalStatisticsPageProcessor_1 = __importDefault(__webpack_require__(231));
 class PersonalStatisticsPageProcessor_Castle extends PersonalStatisticsPageProcessor_1.default {
     doBindReturnButton(credential) {
         const form = PageUtils_1.default.generateReturnCastleForm(credential);
@@ -30182,7 +29986,7 @@ module.exports = PersonalStatisticsPageProcessor_Castle;
 
 
 /***/ }),
-/* 232 */
+/* 231 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -30207,27 +30011,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _PersonalStatisticsPageProcessor_instances, _PersonalStatisticsPageProcessor_welcomeMessageHtml;
 const BankRecordManager_1 = __importDefault(__webpack_require__(39));
 const BankRecordStorage_1 = __importDefault(__webpack_require__(42));
-const BattleLogService_1 = __importDefault(__webpack_require__(233));
+const BattleLogService_1 = __importDefault(__webpack_require__(232));
 const BattleLogStorage_1 = __importDefault(__webpack_require__(29));
 const BattleResultStorage_1 = __importDefault(__webpack_require__(36));
 const CareerChangeLogStorage_1 = __importDefault(__webpack_require__(138));
-const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(164));
-const BattleReportGenerator_1 = __importDefault(__webpack_require__(234));
-const CareerChangeReportGenerator_1 = __importDefault(__webpack_require__(236));
-const ConsecrateReportGenerator_1 = __importDefault(__webpack_require__(237));
-const DailyReportGenerator_1 = __importDefault(__webpack_require__(238));
-const MonsterReportGenerator_1 = __importDefault(__webpack_require__(240));
-const MonthlyReportGenerator_1 = __importDefault(__webpack_require__(241));
-const TreasureReportGenerator_1 = __importDefault(__webpack_require__(242));
-const WeeklyReportGenerator_1 = __importDefault(__webpack_require__(243));
-const ZodiacReportGenerator_1 = __importDefault(__webpack_require__(244));
+const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(162));
+const BattleReportGenerator_1 = __importDefault(__webpack_require__(233));
+const CareerChangeReportGenerator_1 = __importDefault(__webpack_require__(235));
+const ConsecrateReportGenerator_1 = __importDefault(__webpack_require__(236));
+const DailyReportGenerator_1 = __importDefault(__webpack_require__(237));
+const MonsterReportGenerator_1 = __importDefault(__webpack_require__(239));
+const MonthlyReportGenerator_1 = __importDefault(__webpack_require__(240));
+const TreasureReportGenerator_1 = __importDefault(__webpack_require__(241));
+const WeeklyReportGenerator_1 = __importDefault(__webpack_require__(242));
+const ZodiacReportGenerator_1 = __importDefault(__webpack_require__(243));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 const DayRange_1 = __importDefault(__webpack_require__(40));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
-const MonthRange_1 = __importDefault(__webpack_require__(245));
+const MonthRange_1 = __importDefault(__webpack_require__(244));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const WeekRange_1 = __importDefault(__webpack_require__(246));
+const WeekRange_1 = __importDefault(__webpack_require__(245));
 const PageProcessorCredentialSupport_1 = __importDefault(__webpack_require__(83));
 class PersonalStatisticsPageProcessor extends PageProcessorCredentialSupport_1.default {
     constructor() {
@@ -30930,7 +30734,7 @@ module.exports = PersonalStatisticsPageProcessor;
 
 
 /***/ }),
-/* 233 */
+/* 232 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -31009,7 +30813,7 @@ module.exports = BattleLogService;
 
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -31030,7 +30834,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _BattleReportGenerator_dataList, _BattleReportGenerator_target;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const TreasureLoader_1 = __importDefault(__webpack_require__(16));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class BattleReportGenerator {
@@ -31538,7 +31342,7 @@ module.exports = BattleReportGenerator;
 
 
 /***/ }),
-/* 235 */
+/* 234 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -31692,7 +31496,7 @@ module.exports = ReportUtils;
 
 
 /***/ }),
-/* 236 */
+/* 235 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -31735,7 +31539,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _CareerChangeReportGenerator_instances, _CareerChangeReportGenerator_target, _CareerChangeReportGenerator_generate;
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const lodash_1 = __importDefault(__webpack_require__(4));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const CareerChangeLogStorage_1 = __importDefault(__webpack_require__(138));
@@ -31945,7 +31749,7 @@ module.exports = CareerChangeReportGenerator;
 
 
 /***/ }),
-/* 237 */
+/* 236 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -31975,7 +31779,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _ConsecrateReportGenerator_instances, _ConsecrateReportGenerator_target, _ConsecrateReportGenerator_doGenerate;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(164));
+const EquipmentConsecrateLogStorage_1 = __importDefault(__webpack_require__(162));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class ConsecrateReportGenerator {
     constructor(target) {
@@ -32053,7 +31857,7 @@ module.exports = ConsecrateReportGenerator;
 
 
 /***/ }),
-/* 238 */
+/* 237 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -32074,9 +31878,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _DailyReportGenerator_logList, _DailyReportGenerator_target;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const TreasureLoader_1 = __importDefault(__webpack_require__(16));
-const MonsterGangLoader_1 = __importDefault(__webpack_require__(239));
+const MonsterGangLoader_1 = __importDefault(__webpack_require__(238));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class DailyReportGenerator {
@@ -33012,7 +32816,7 @@ module.exports = DailyReportGenerator;
 
 
 /***/ }),
-/* 239 */
+/* 238 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -33063,7 +32867,7 @@ module.exports = MonsterGangLoader;
 
 
 /***/ }),
-/* 240 */
+/* 239 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -33084,7 +32888,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _MonsterReportGenerator_dataList, _MonsterReportGenerator_target;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
@@ -33464,7 +33268,7 @@ module.exports = MonsterReportGenerator;
 
 
 /***/ }),
-/* 241 */
+/* 240 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -33485,10 +33289,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _MonthlyReportGenerator_instances, _MonthlyReportGenerator_range, _MonthlyReportGenerator_target, _MonthlyReportGenerator_maxSize, _MonthlyReportGenerator_doGenerate;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const BattleLogStorage_1 = __importDefault(__webpack_require__(29));
 const TreasureLoader_1 = __importDefault(__webpack_require__(16));
-const MonsterGangLoader_1 = __importDefault(__webpack_require__(239));
+const MonsterGangLoader_1 = __importDefault(__webpack_require__(238));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class MonthlyReportGenerator {
@@ -34408,7 +34212,7 @@ module.exports = MonthlyReportGenerator;
 
 
 /***/ }),
-/* 242 */
+/* 241 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -34429,7 +34233,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TreasureReportGenerator_dataList, _TreasureReportGenerator_target;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const TreasureLoader_1 = __importDefault(__webpack_require__(16));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
@@ -34542,7 +34346,7 @@ module.exports = TreasureReportGenerator;
 
 
 /***/ }),
-/* 243 */
+/* 242 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -34563,9 +34367,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _WeeklyReportGenerator_logList, _WeeklyReportGenerator_target;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const TreasureLoader_1 = __importDefault(__webpack_require__(16));
-const MonsterGangLoader_1 = __importDefault(__webpack_require__(239));
+const MonsterGangLoader_1 = __importDefault(__webpack_require__(238));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class WeeklyReportGenerator {
@@ -35486,7 +35290,7 @@ module.exports = WeeklyReportGenerator;
 
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35529,10 +35333,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _ZodiacReportGenerator_dataList, _ZodiacReportGenerator_target;
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const lodash_1 = __importDefault(__webpack_require__(4));
 const Constants_1 = __importDefault(__webpack_require__(11));
-const ReportUtils_1 = __importDefault(__webpack_require__(235));
+const ReportUtils_1 = __importDefault(__webpack_require__(234));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 class ZodiacReportGenerator {
@@ -35783,7 +35587,7 @@ module.exports = ZodiacReportGenerator;
 
 
 /***/ }),
-/* 245 */
+/* 244 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35843,7 +35647,7 @@ module.exports = MonthRange;
 
 
 /***/ }),
-/* 246 */
+/* 245 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35900,7 +35704,7 @@ module.exports = WeekRange;
 
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35908,7 +35712,7 @@ module.exports = WeekRange;
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const PersonalStatisticsPageProcessor_1 = __importDefault(__webpack_require__(232));
+const PersonalStatisticsPageProcessor_1 = __importDefault(__webpack_require__(231));
 class PersonalStatisticsPageProcessor_Town extends PersonalStatisticsPageProcessor_1.default {
     doBindReturnButton(credential) {
         $("#returnButton").on("click", () => {
@@ -35920,7 +35724,7 @@ module.exports = PersonalStatisticsPageProcessor_Town;
 
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35935,8 +35739,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalStatusPageInterceptor_inTownProcessor, _PersonalStatusPageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalStatusPageProcessor_Castle_1 = __importDefault(__webpack_require__(249));
-const PersonalStatusPageProcessor_Town_1 = __importDefault(__webpack_require__(251));
+const PersonalStatusPageProcessor_Castle_1 = __importDefault(__webpack_require__(248));
+const PersonalStatusPageProcessor_Town_1 = __importDefault(__webpack_require__(250));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class PersonalStatusPageInterceptor {
     constructor() {
@@ -35971,7 +35775,7 @@ module.exports = PersonalStatusPageInterceptor;
 
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -35980,7 +35784,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalStatusPageProcessor_1 = __importDefault(__webpack_require__(250));
+const PersonalStatusPageProcessor_1 = __importDefault(__webpack_require__(249));
 class PersonalStatusPageProcessor_Castle extends PersonalStatusPageProcessor_1.default {
     constructor() {
         super();
@@ -36008,7 +35812,7 @@ module.exports = PersonalStatusPageProcessor_Castle;
 
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36054,7 +35858,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _PersonalStatusPageProcessor_instances, _PersonalStatusPageProcessor_renderPage;
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
@@ -36212,7 +36016,7 @@ module.exports = PersonalStatusPageProcessor;
 
 
 /***/ }),
-/* 251 */
+/* 250 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36220,10 +36024,10 @@ module.exports = PersonalStatusPageProcessor;
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const PersonalMirror_1 = __importDefault(__webpack_require__(184));
+const PersonalMirror_1 = __importDefault(__webpack_require__(183));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
-const PersonalStatusPageProcessor_1 = __importDefault(__webpack_require__(250));
+const PersonalStatusPageProcessor_1 = __importDefault(__webpack_require__(249));
 class PersonalStatusPageProcessor_Town extends PersonalStatusPageProcessor_1.default {
     constructor() {
         super();
@@ -36291,7 +36095,7 @@ module.exports = PersonalStatusPageProcessor_Town;
 
 
 /***/ }),
-/* 252 */
+/* 251 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36306,7 +36110,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalTeamManagementPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalTeamManagementPageProcessor_1 = __importDefault(__webpack_require__(253));
+const PersonalTeamManagementPageProcessor_1 = __importDefault(__webpack_require__(252));
 class PersonalTeamManagementPageInterceptor {
     constructor() {
         _PersonalTeamManagementPageInterceptor_processor.set(this, new PersonalTeamManagementPageProcessor_1.default());
@@ -36334,7 +36138,7 @@ module.exports = PersonalTeamManagementPageInterceptor;
 
 
 /***/ }),
-/* 253 */
+/* 252 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36619,7 +36423,7 @@ module.exports = PersonalTeamManagementPageProcessor;
 
 
 /***/ }),
-/* 254 */
+/* 253 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36634,8 +36438,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalTeamPageInterceptor_inTownProcessor, _PersonalTeamPageInterceptor_inCastleProcessor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const PersonalTeamPageProcessor_Castle_1 = __importDefault(__webpack_require__(255));
-const PersonalTeamPageProcessor_Town_1 = __importDefault(__webpack_require__(259));
+const PersonalTeamPageProcessor_Castle_1 = __importDefault(__webpack_require__(254));
+const PersonalTeamPageProcessor_Town_1 = __importDefault(__webpack_require__(258));
 class PersonalTeamPageInterceptor {
     constructor() {
         _PersonalTeamPageInterceptor_inTownProcessor.set(this, new PersonalTeamPageProcessor_Town_1.default());
@@ -36667,7 +36471,7 @@ module.exports = PersonalTeamPageInterceptor;
 
 
 /***/ }),
-/* 255 */
+/* 254 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36676,7 +36480,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalTeamPageProcessor_1 = __importDefault(__webpack_require__(256));
+const PersonalTeamPageProcessor_1 = __importDefault(__webpack_require__(255));
 class PersonalTeamPageProcessor_Castle extends PersonalTeamPageProcessor_1.default {
     bindReturnButton(credential) {
         const form = PageUtils_1.default.generateReturnCastleForm(credential);
@@ -36690,7 +36494,7 @@ module.exports = PersonalTeamPageProcessor_Castle;
 
 
 /***/ }),
-/* 256 */
+/* 255 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -36714,11 +36518,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _PersonalTeamPageProcessor_instances, _PersonalTeamPageProcessor_welcomeMessageHtml, _PersonalTeamPageProcessor_bindRefreshButton, _PersonalTeamPageProcessor_bindUpdateEquipmentButton, _PersonalTeamPageProcessor_bindUpdatePetButton, _PersonalTeamPageProcessor_bindListEquipmentButton, _PersonalTeamPageProcessor_bindListPetButton, _PersonalTeamPageProcessor_bindBankRecordButton, _PersonalTeamPageProcessor_bindSimulationButton, _PersonalTeamPageProcessor_doPetSimulation;
 const lodash_1 = __importDefault(__webpack_require__(4));
-const BankRecordReportGenerator_1 = __importDefault(__webpack_require__(257));
+const BankRecordReportGenerator_1 = __importDefault(__webpack_require__(256));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const EquipmentLocalStorage_1 = __importDefault(__webpack_require__(53));
 const RoleEquipmentStatusStorage_1 = __importDefault(__webpack_require__(63));
-const MonsterPageUtils_1 = __importDefault(__webpack_require__(258));
+const MonsterPageUtils_1 = __importDefault(__webpack_require__(257));
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
 const Pet_1 = __importDefault(__webpack_require__(70));
 const PetLocalStorage_1 = __importDefault(__webpack_require__(67));
@@ -37227,7 +37031,7 @@ module.exports = PersonalTeamPageProcessor;
 
 
 /***/ }),
-/* 257 */
+/* 256 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37267,7 +37071,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const echarts = __importStar(__webpack_require__(180));
+const echarts = __importStar(__webpack_require__(178));
 const lodash_1 = __importDefault(__webpack_require__(4));
 const TeamMemberLoader_1 = __importDefault(__webpack_require__(117));
 const BankRecordStorage_1 = __importDefault(__webpack_require__(42));
@@ -37389,7 +37193,7 @@ module.exports = BankRecordReportGenerator;
 
 
 /***/ }),
-/* 258 */
+/* 257 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37398,7 +37202,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const MonsterProfileLoader_1 = __importDefault(__webpack_require__(18));
-const MonsterRelationLoader_1 = __importDefault(__webpack_require__(161));
+const MonsterRelationLoader_1 = __importDefault(__webpack_require__(179));
 class MonsterPageUtils {
     static generateMonsterProfileHtml(code) {
         var _a;
@@ -37474,7 +37278,7 @@ module.exports = MonsterPageUtils;
 
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37483,7 +37287,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const PersonalTeamPageProcessor_1 = __importDefault(__webpack_require__(256));
+const PersonalTeamPageProcessor_1 = __importDefault(__webpack_require__(255));
 class PersonalTeamPageProcessor_Town extends PersonalTeamPageProcessor_1.default {
     bindReturnButton(credential) {
         const form = PageUtils_1.default.generateReturnTownForm(credential);
@@ -37497,7 +37301,7 @@ module.exports = PersonalTeamPageProcessor_Town;
 
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37511,7 +37315,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _RoleInformationPageInterceptor_processor;
-const RoleInformationPageProcessor_1 = __importDefault(__webpack_require__(261));
+const RoleInformationPageProcessor_1 = __importDefault(__webpack_require__(260));
 class RoleInformationPageInterceptor {
     constructor() {
         _RoleInformationPageInterceptor_processor.set(this, new RoleInformationPageProcessor_1.default());
@@ -37531,7 +37335,7 @@ module.exports = RoleInformationPageInterceptor;
 
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37599,7 +37403,7 @@ module.exports = RoleInformationPageProcessor;
 
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37623,7 +37427,7 @@ module.exports = TangDashboardPageInterceptor;
 
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37638,7 +37442,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownAccessoryHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownAccessoryHousePageProcessor_1 = __importDefault(__webpack_require__(264));
+const TownAccessoryHousePageProcessor_1 = __importDefault(__webpack_require__(263));
 class TownAccessoryHousePageInterceptor {
     constructor() {
         _TownAccessoryHousePageInterceptor_processor.set(this, new TownAccessoryHousePageProcessor_1.default());
@@ -37666,7 +37470,7 @@ module.exports = TownAccessoryHousePageInterceptor;
 
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -37691,8 +37495,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownAccessoryHousePageProcessor_instances, _TownAccessoryHousePageProcessor_renderImmutablePage, _TownAccessoryHousePageProcessor_bindImmutableButtons, _TownAccessoryHousePageProcessor_renderMutablePage, _TownAccessoryHousePageProcessor_bindMutableButtons, _TownAccessoryHousePageProcessor_refreshMutablePage;
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
-const TownAccessoryHouse_1 = __importDefault(__webpack_require__(265));
-const TownAccessoryHousePageParser_1 = __importDefault(__webpack_require__(266));
+const TownAccessoryHouse_1 = __importDefault(__webpack_require__(264));
+const TownAccessoryHousePageParser_1 = __importDefault(__webpack_require__(265));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const PocketUtils_1 = __importDefault(__webpack_require__(46));
@@ -37980,7 +37784,7 @@ module.exports = TownAccessoryHousePageProcessor;
 
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38011,7 +37815,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownAccessoryHouse_credential, _TownAccessoryHouse_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownAccessoryHousePageParser_1 = __importDefault(__webpack_require__(266));
+const TownAccessoryHousePageParser_1 = __importDefault(__webpack_require__(265));
 class TownAccessoryHouse {
     constructor(credential, townId) {
         _TownAccessoryHouse_credential.set(this, void 0);
@@ -38083,7 +37887,7 @@ module.exports = TownAccessoryHouse;
 
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38103,8 +37907,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const Merchandise_1 = __importDefault(__webpack_require__(267));
-const TownAccessoryHousePage_1 = __importDefault(__webpack_require__(268));
+const Merchandise_1 = __importDefault(__webpack_require__(266));
+const TownAccessoryHousePage_1 = __importDefault(__webpack_require__(267));
 class TownAccessoryHousePageParser {
     parse(pageHtml) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -38239,7 +38043,7 @@ module.exports = TownAccessoryHousePageParser;
 
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ ((module) => {
 
 "use strict";
@@ -38378,7 +38182,7 @@ module.exports = Merchandise;
 
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38412,7 +38216,7 @@ module.exports = TownAccessoryHousePage;
 
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38427,7 +38231,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownAdventureGuildPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownAdventureGuildPageProcessor_1 = __importDefault(__webpack_require__(270));
+const TownAdventureGuildPageProcessor_1 = __importDefault(__webpack_require__(269));
 class TownAdventureGuildPageInterceptor {
     constructor() {
         _TownAdventureGuildPageInterceptor_processor.set(this, new TownAdventureGuildPageProcessor_1.default());
@@ -38455,7 +38259,7 @@ module.exports = TownAdventureGuildPageInterceptor;
 
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38474,10 +38278,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const MapBuilder_1 = __importDefault(__webpack_require__(99));
-const MapExplorer_1 = __importDefault(__webpack_require__(271));
+const MapExplorer_1 = __importDefault(__webpack_require__(270));
 const TravelPlan_1 = __importDefault(__webpack_require__(98));
 const TravelPlanExecutor_1 = __importDefault(__webpack_require__(103));
-const TreasureHintParser_1 = __importDefault(__webpack_require__(272));
+const TreasureHintParser_1 = __importDefault(__webpack_require__(271));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const TownEntrance_1 = __importDefault(__webpack_require__(107));
@@ -38834,7 +38638,7 @@ module.exports = TownAdventureGuildPageProcessor;
 
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38903,7 +38707,7 @@ module.exports = MapExplorer;
 
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38912,7 +38716,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const Coordinate_1 = __importDefault(__webpack_require__(5));
-const TreasureHint_1 = __importDefault(__webpack_require__(273));
+const TreasureHint_1 = __importDefault(__webpack_require__(272));
 class TreasureHintParser {
     static parseTreasureHintList(pageHtml) {
         const treasureHintList = [];
@@ -38940,7 +38744,7 @@ module.exports = TreasureHintParser;
 
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38967,7 +38771,7 @@ module.exports = TreasureHint;
 
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -38982,7 +38786,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownArmorHousePageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownArmorHousePageProcessor_1 = __importDefault(__webpack_require__(275));
+const TownArmorHousePageProcessor_1 = __importDefault(__webpack_require__(274));
 class TownArmorHousePageInterceptor {
     constructor() {
         _TownArmorHousePageInterceptor_processor.set(this, new TownArmorHousePageProcessor_1.default());
@@ -39010,7 +38814,7 @@ module.exports = TownArmorHousePageInterceptor;
 
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -39035,8 +38839,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownArmorHousePageProcessor_instances, _TownArmorHousePageProcessor_renderImmutablePage, _TownArmorHousePageProcessor_bindImmutableButtons, _TownArmorHousePageProcessor_renderMutablePage, _TownArmorHousePageProcessor_bindMutableButtons, _TownArmorHousePageProcessor_refreshMutablePage;
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
-const TownArmorHouse_1 = __importDefault(__webpack_require__(276));
-const TownArmorHousePageParser_1 = __importDefault(__webpack_require__(277));
+const TownArmorHouse_1 = __importDefault(__webpack_require__(275));
+const TownArmorHousePageParser_1 = __importDefault(__webpack_require__(276));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const PocketUtils_1 = __importDefault(__webpack_require__(46));
@@ -39335,7 +39139,7 @@ module.exports = TownArmorHousePageProcessor;
 
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -39366,7 +39170,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownArmorHouse_credential, _TownArmorHouse_townId;
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownArmorHousePageParser_1 = __importDefault(__webpack_require__(277));
+const TownArmorHousePageParser_1 = __importDefault(__webpack_require__(276));
 class TownArmorHouse {
     constructor(credential, townId) {
         _TownArmorHouse_credential.set(this, void 0);
@@ -39438,7 +39242,7 @@ module.exports = TownArmorHouse;
 
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -39458,8 +39262,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const Merchandise_1 = __importDefault(__webpack_require__(267));
-const TownArmorHousePage_1 = __importDefault(__webpack_require__(278));
+const Merchandise_1 = __importDefault(__webpack_require__(266));
+const TownArmorHousePage_1 = __importDefault(__webpack_require__(277));
 class TownArmorHousePageParser {
     parse(pageHtml) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -39594,7 +39398,7 @@ module.exports = TownArmorHousePageParser;
 
 
 /***/ }),
-/* 278 */
+/* 277 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -39628,7 +39432,7 @@ module.exports = TownArmorHousePage;
 
 
 /***/ }),
-/* 279 */
+/* 278 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -39643,7 +39447,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownBankPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownBankPageProcessor_1 = __importDefault(__webpack_require__(280));
+const TownBankPageProcessor_1 = __importDefault(__webpack_require__(279));
 const PageProcessorContext_1 = __importDefault(__webpack_require__(85));
 class TownBankPageInterceptor {
     constructor() {
@@ -39674,7 +39478,7 @@ module.exports = TownBankPageInterceptor;
 
 
 /***/ }),
-/* 280 */
+/* 279 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40009,7 +39813,7 @@ module.exports = TownBankPageProcessor;
 
 
 /***/ }),
-/* 281 */
+/* 280 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40024,7 +39828,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownDashboardPageInterceptor_processor;
 const RoleStateMachineManager_1 = __importDefault(__webpack_require__(3));
-const TownDashboardPageProcessor_1 = __importDefault(__webpack_require__(282));
+const TownDashboardPageProcessor_1 = __importDefault(__webpack_require__(281));
 class TownDashboardPageInterceptor {
     constructor() {
         _TownDashboardPageInterceptor_processor.set(this, new TownDashboardPageProcessor_1.default());
@@ -40048,7 +39852,7 @@ module.exports = TownDashboardPageInterceptor;
 
 
 /***/ }),
-/* 282 */
+/* 281 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40071,15 +39875,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 var _TownDashboardPageProcessor_instances, _TownDashboardPageProcessor_internalProcess;
-const BattleButtonManager_1 = __importDefault(__webpack_require__(283));
+const BattleButtonManager_1 = __importDefault(__webpack_require__(282));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
-const ExtensionShortcutLoader_1 = __importDefault(__webpack_require__(216));
-const TownDashboardLayoutManager_1 = __importDefault(__webpack_require__(284));
+const ExtensionShortcutLoader_1 = __importDefault(__webpack_require__(215));
+const TownDashboardLayoutManager_1 = __importDefault(__webpack_require__(283));
 const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
 const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const PageProcessorCredentialSupport_1 = __importDefault(__webpack_require__(83));
+const Handbook_1 = __importDefault(__webpack_require__(304));
 const LAYOUT_MANAGER = new TownDashboardLayoutManager_1.default();
 //ythy
 class TownDashboardPageProcessor extends PageProcessorCredentialSupport_1.default {
@@ -40121,6 +39926,7 @@ _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcess
             "<p style='display:none' id='eden-3'></p>" +
             "<p style='display:none' id='eden-4'></p>" +
             "<p style='display:none' id='eden-5'></p>"));
+        initialDialog(); //ythy
         doMarkElement();
         doRenderMobilization(page);
         doRenderMenu(credential, page);
@@ -40133,6 +39939,37 @@ _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcess
         }
     });
 };
+function initialDialog() {
+    var _a, _b, _c, _d, _e;
+    window.handbook = new Handbook_1.default();
+    const dialog = document.createElement("dialog");
+    dialog.setAttribute("id", "monstorDialog");
+    dialog.innerHTML = `
+    <div style="margin: 10px;width:80vw">
+      <div></div>
+      ID: <input name="hcode" type="text" style="width: 50px;" /> Name:
+      <input name="hname" type="text" style="width: 100px;" /> Spell:
+      <input name="hskill" type="text" style="width: 100px; margin-left: 20px;"  />
+      <button id="hReset" >Reset</button>
+    </div>
+    <div id="myGrid" class="ag-theme-alpine" style="height: 480px;"></div>
+
+    <div>
+      <form method="dialog">
+        <button>关闭</button>
+      </form>
+    </div>
+  `;
+    (_a = document.querySelector("body")) === null || _a === void 0 ? void 0 : _a.appendChild(dialog);
+    (_b = document
+        .querySelector("input[name=hcode]")) === null || _b === void 0 ? void 0 : _b.addEventListener("input", () => window.handbook.onInputChangeHandler());
+    (_c = document
+        .querySelector("input[name=hname]")) === null || _c === void 0 ? void 0 : _c.addEventListener("input", () => window.handbook.onNameInputChangeHandler());
+    (_d = document
+        .querySelector("input[name=hskill]")) === null || _d === void 0 ? void 0 : _d.addEventListener("input", () => window.handbook.onSkillChangeHandler());
+    (_e = document
+        .querySelector("#hReset")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => window.handbook.reset());
+}
 function doMarkElement() {
     const t0 = $("table:first");
     $(t0)
@@ -40700,7 +40537,7 @@ module.exports = TownDashboardPageProcessor;
 
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40781,7 +40618,7 @@ module.exports = BattleButtonManager;
 
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40802,11 +40639,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownDashboardLayoutManager_buffer;
 const StorageUtils_1 = __importDefault(__webpack_require__(21));
-const TownDashboardLayout001_1 = __importDefault(__webpack_require__(285));
-const TownDashboardLayout004_1 = __importDefault(__webpack_require__(289));
-const TownDashboardLayout006_1 = __importDefault(__webpack_require__(292));
-const TownDashboardLayout007_1 = __importDefault(__webpack_require__(293));
-const TownDashboardLayout009_1 = __importDefault(__webpack_require__(304));
+const TownDashboardLayout001_1 = __importDefault(__webpack_require__(284));
+const TownDashboardLayout004_1 = __importDefault(__webpack_require__(288));
+const TownDashboardLayout006_1 = __importDefault(__webpack_require__(291));
+const TownDashboardLayout007_1 = __importDefault(__webpack_require__(292));
+const TownDashboardLayout009_1 = __importDefault(__webpack_require__(303));
 //ythy
 class TownDashboardLayoutManager {
     constructor() {
@@ -40840,7 +40677,7 @@ module.exports = TownDashboardLayoutManager;
 
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40857,9 +40694,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(286));
-const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(287));
-const TownDashboardLayout_1 = __importDefault(__webpack_require__(288));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(285));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(286));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(287));
 class TownDashboardLayout001 extends TownDashboardLayout_1.default {
     id() {
         return 1;
@@ -40900,7 +40737,7 @@ module.exports = TownDashboardLayout001;
 
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -40971,7 +40808,7 @@ module.exports = TownDashboardTaxManager;
 
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module) {
 
 "use strict";
@@ -41049,7 +40886,7 @@ module.exports = KeyboardShortcutManager;
 
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module) {
 
 "use strict";
@@ -41073,7 +40910,7 @@ module.exports = TownDashboardLayout;
 
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -41091,10 +40928,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const StorageUtils_1 = __importDefault(__webpack_require__(21));
-const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(286));
-const Conversation_1 = __importDefault(__webpack_require__(290));
-const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(287));
-const TownDashboardLayout_1 = __importDefault(__webpack_require__(288));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(285));
+const Conversation_1 = __importDefault(__webpack_require__(289));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(286));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(287));
 class TownDashboardLayout004 extends TownDashboardLayout_1.default {
     id() {
         return 4;
@@ -41277,7 +41114,7 @@ module.exports = TownDashboardLayout004;
 
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -41307,7 +41144,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _Conversation_credential;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const ConversationPage_1 = __importDefault(__webpack_require__(291));
+const ConversationPage_1 = __importDefault(__webpack_require__(290));
 class Conversation {
     constructor(credential) {
         _Conversation_credential.set(this, void 0);
@@ -41333,7 +41170,7 @@ module.exports = Conversation;
 
 
 /***/ }),
-/* 291 */
+/* 290 */
 /***/ ((module) => {
 
 "use strict";
@@ -41365,7 +41202,7 @@ module.exports = ConversationPage;
 
 
 /***/ }),
-/* 292 */
+/* 291 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -41390,9 +41227,9 @@ const BattleRecordStorage_1 = __importDefault(__webpack_require__(35));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
 const EquipmentLocalStorage_1 = __importDefault(__webpack_require__(53));
 const PetLocalStorage_1 = __importDefault(__webpack_require__(67));
-const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(286));
-const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(287));
-const TownDashboardLayout_1 = __importDefault(__webpack_require__(288));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(285));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(286));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(287));
 class TownDashboardLayout006 extends TownDashboardLayout_1.default {
     id() {
         return 6;
@@ -41731,7 +41568,7 @@ module.exports = TownDashboardLayout006;
 
 
 /***/ }),
-/* 293 */
+/* 292 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -41750,24 +41587,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownUtils_1 = __importDefault(__webpack_require__(294));
+const TownUtils_1 = __importDefault(__webpack_require__(293));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const BattleButtonManager_1 = __importDefault(__webpack_require__(283));
+const BattleButtonManager_1 = __importDefault(__webpack_require__(282));
 const BattleProcessor_1 = __importDefault(__webpack_require__(13));
 const BattleRecord_1 = __importDefault(__webpack_require__(34));
 const BattleRecordStorage_1 = __importDefault(__webpack_require__(35));
 const BattleReturnInterceptor_1 = __importDefault(__webpack_require__(38));
-const BattleScene_1 = __importDefault(__webpack_require__(295));
-const BattleSceneStorage_1 = __importDefault(__webpack_require__(296));
+const BattleScene_1 = __importDefault(__webpack_require__(294));
+const BattleSceneStorage_1 = __importDefault(__webpack_require__(295));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
-const TownForge_1 = __importDefault(__webpack_require__(297));
-const TownInn_1 = __importDefault(__webpack_require__(300));
+const TownForge_1 = __importDefault(__webpack_require__(296));
+const TownInn_1 = __importDefault(__webpack_require__(299));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
-const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(286));
-const DashboardPageUtils_1 = __importDefault(__webpack_require__(303));
-const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(287));
-const TownDashboardLayout_1 = __importDefault(__webpack_require__(288));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(285));
+const DashboardPageUtils_1 = __importDefault(__webpack_require__(302));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(286));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(287));
 const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
 class TownDashboardLayout007 extends TownDashboardLayout_1.default {
     id() {
@@ -42341,7 +42178,7 @@ module.exports = TownDashboardLayout007;
 
 
 /***/ }),
-/* 294 */
+/* 293 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42404,7 +42241,7 @@ module.exports = TownUtils;
 
 
 /***/ }),
-/* 295 */
+/* 294 */
 /***/ ((module) => {
 
 "use strict";
@@ -42428,7 +42265,7 @@ module.exports = BattleScene;
 
 
 /***/ }),
-/* 296 */
+/* 295 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42446,7 +42283,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const PocketDatabase_1 = __importDefault(__webpack_require__(10));
-const BattleScene_1 = __importDefault(__webpack_require__(295));
+const BattleScene_1 = __importDefault(__webpack_require__(294));
 class BattleSceneStorage {
     static getInstance() {
         return instance;
@@ -42500,7 +42337,7 @@ module.exports = BattleSceneStorage;
 
 
 /***/ }),
-/* 297 */
+/* 296 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42530,7 +42367,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownForge_credential, _TownForge_townId;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownForgePageParser_1 = __importDefault(__webpack_require__(298));
+const TownForgePageParser_1 = __importDefault(__webpack_require__(297));
 class TownForge {
     constructor(credential, townId) {
         _TownForge_credential.set(this, void 0);
@@ -42580,7 +42417,7 @@ module.exports = TownForge;
 
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42601,7 +42438,7 @@ const lodash_1 = __importDefault(__webpack_require__(4));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownForgePage_1 = __importDefault(__webpack_require__(299));
+const TownForgePage_1 = __importDefault(__webpack_require__(298));
 class TownForgePageParser {
     static parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42678,7 +42515,7 @@ module.exports = TownForgePageParser;
 
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ ((module) => {
 
 "use strict";
@@ -42693,7 +42530,7 @@ module.exports = TownForgePage;
 
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42723,7 +42560,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _TownInn_credential, _TownInn_townId;
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownInnPageParser_1 = __importDefault(__webpack_require__(301));
+const TownInnPageParser_1 = __importDefault(__webpack_require__(300));
 class TownInn {
     constructor(credential, townId) {
         _TownInn_credential.set(this, void 0);
@@ -42763,7 +42600,7 @@ module.exports = TownInn;
 
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42783,7 +42620,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const lodash_1 = __importDefault(__webpack_require__(4));
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Role_1 = __importDefault(__webpack_require__(50));
-const TownInnPage_1 = __importDefault(__webpack_require__(302));
+const TownInnPage_1 = __importDefault(__webpack_require__(301));
 class TownInnPageParser {
     parse(html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42833,7 +42670,7 @@ module.exports = TownInnPageParser;
 
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ ((module) => {
 
 "use strict";
@@ -42848,7 +42685,7 @@ module.exports = TownInnPage;
 
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ ((module) => {
 
 "use strict";
@@ -42878,7 +42715,7 @@ module.exports = DashboardPageUtils;
 
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -42897,24 +42734,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
 const NetworkUtils_1 = __importDefault(__webpack_require__(45));
-const TownUtils_1 = __importDefault(__webpack_require__(294));
+const TownUtils_1 = __importDefault(__webpack_require__(293));
 const PageUtils_1 = __importDefault(__webpack_require__(14));
-const BattleButtonManager_1 = __importDefault(__webpack_require__(283));
+const BattleButtonManager_1 = __importDefault(__webpack_require__(282));
 const BattleProcessor_1 = __importDefault(__webpack_require__(13));
 const BattleRecord_1 = __importDefault(__webpack_require__(34));
 const BattleRecordStorage_1 = __importDefault(__webpack_require__(35));
 const BattleReturnInterceptor_1 = __importDefault(__webpack_require__(38));
-const BattleScene_1 = __importDefault(__webpack_require__(295));
-const BattleSceneStorage_1 = __importDefault(__webpack_require__(296));
+const BattleScene_1 = __importDefault(__webpack_require__(294));
+const BattleSceneStorage_1 = __importDefault(__webpack_require__(295));
 const SetupLoader_1 = __importDefault(__webpack_require__(20));
-const TownForge_1 = __importDefault(__webpack_require__(297));
-const TownInn_1 = __importDefault(__webpack_require__(300));
+const TownForge_1 = __importDefault(__webpack_require__(296));
+const TownInn_1 = __importDefault(__webpack_require__(299));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
 const PalaceTaskManager_1 = __importDefault(__webpack_require__(17));
-const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(286));
-const DashboardPageUtils_1 = __importDefault(__webpack_require__(303));
-const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(287));
-const TownDashboardLayout_1 = __importDefault(__webpack_require__(288));
+const TownDashboardTaxManager_1 = __importDefault(__webpack_require__(285));
+const DashboardPageUtils_1 = __importDefault(__webpack_require__(302));
+const KeyboardShortcutManager_1 = __importDefault(__webpack_require__(286));
+const TownDashboardLayout_1 = __importDefault(__webpack_require__(287));
 const TownDashboardPageParser_1 = __importDefault(__webpack_require__(156));
 class TownDashboardLayout009 extends TownDashboardLayout_1.default {
     id() {
@@ -43558,6 +43395,173 @@ module.exports = TownDashboardLayout009;
 
 
 /***/ }),
+/* 304 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const MonsterProfileLoader_1 = __webpack_require__(18);
+const MonsterSpellLoader_1 = __webpack_require__(22);
+const MonsterRelationLoader_1 = __webpack_require__(179);
+class Handbook {
+    constructor() {
+        this.LOCAL = { 1: "初森", 2: "中塔", 3: "上洞" };
+        this.gridApi = {};
+        this.mData = [];
+        this.gridOptions = {
+            // each entry here represents one column
+            columnDefs: [
+                { field: "code" },
+                { field: "name", width: 120 },
+                { field: "total", headerName: "总族" },
+                { field: "locationName", headerName: "地点" },
+                { field: "degenerate", headerName: "退化", width: 150 },
+                { field: "upgrade", headerName: "进化", width: 150 },
+                { field: "healthBaseStats", headerName: "命族" },
+                { field: "attackBaseStats", headerName: "攻族" },
+                { field: "defenseBaseStats", headerName: "防族" },
+                { field: "specialAttackBaseStats", headerName: "智族" },
+                { field: "specialDefenseBaseStats", headerName: "精族" },
+                { field: "speedBaseStats", headerName: "速族" },
+                { field: "healthEffort", headerName: "命努" },
+                { field: "attackEffort", headerName: "攻努" },
+                { field: "defenseEffort", headerName: "防努" },
+                { field: "specialAttackEffort", headerName: "智努" },
+                { field: "specialDefenseEffort", headerName: "精努" },
+                { field: "speedEffort", headerName: "速努" },
+                { field: "catchRatio", headerName: "捕获" },
+                { field: "growExperience", headerName: "成长" },
+                { field: "pokemon", width: 120 },
+                { field: "spellNames", width: 900 },
+            ],
+            // default col def properties get applied to all columns
+            defaultColDef: { sortable: true, filter: true, width: 80 },
+            rowSelection: "multiple",
+            animateRows: true,
+            pagination: true,
+            paginationPageSize: 500,
+            onCellClicked: (event) => {
+                if (event.colDef.field == "upgrade" && event.data.upgradeCode) {
+                    this.gridApi.setRowData(this.mData.filter((f) => event.data.upgradeCode.includes(Number(f.code))));
+                }
+                else if (event.colDef.field == "degenerate" &&
+                    event.data.degenerateCode) {
+                    this.gridApi.setRowData(this.mData.filter((f) => event.data.degenerateCode == Number(f.code)));
+                }
+            },
+        };
+        // get div to host the grid
+        const eGridDiv = document.getElementById("myGrid");
+        // new grid instance, passing in the hosting DIV and Grid Options
+        new window.agGrid.Grid(eGridDiv, this.gridOptions);
+        this.gridApi = this.gridOptions.api;
+        for (let key in MonsterProfileLoader_1.MONSTERS) {
+            this.mData.push(this.convertObj(key, MonsterProfileLoader_1.MONSTERS[key]));
+        }
+    }
+    bindData(id) {
+        if (id) {
+            const input = document.querySelector("input[name=hcode]");
+            input.value = id;
+            input.blur();
+        }
+        this.show();
+    }
+    convertObj(key, value) {
+        var _a;
+        const arr = value.split("/");
+        const total = Number(arr[2]) +
+            Number(arr[3]) +
+            Number(arr[4]) +
+            Number(arr[5]) +
+            Number(arr[6]) +
+            Number(arr[7]);
+        const spellNames = arr[18]
+            .split(",")
+            .map((spell) => MonsterSpellLoader_1.SPELLS[spell])
+            .join(",");
+        const upgrade = (_a = MonsterRelationLoader_1.PET_RELATIONSHIPS[key]) === null || _a === void 0 ? void 0 : _a.map((m) => MonsterProfileLoader_1.MONSTERS[m].split("/")[0] + `(${m})`).join("\n");
+        const upgradeCode = MonsterRelationLoader_1.PET_RELATIONSHIPS[key];
+        let degenerate = "";
+        let degenerateCode = "";
+        for (const code in MonsterRelationLoader_1.PET_RELATIONSHIPS) {
+            if (MonsterRelationLoader_1.PET_RELATIONSHIPS[code].includes(Number(key))) {
+                degenerate = MonsterProfileLoader_1.MONSTERS[code].split("/")[0] + `(${code})`;
+                degenerateCode = code;
+            }
+        }
+        return {
+            code: key,
+            name: arr[0],
+            picture: arr[1],
+            healthBaseStats: Number(arr[2]),
+            attackBaseStats: Number(arr[3]),
+            defenseBaseStats: Number(arr[4]),
+            specialAttackBaseStats: Number(arr[5]),
+            specialDefenseBaseStats: Number(arr[6]),
+            speedBaseStats: Number(arr[7]),
+            total,
+            upgrade,
+            upgradeCode,
+            degenerate,
+            degenerateCode,
+            healthEffort: Number(arr[8]),
+            attackEffort: Number(arr[9]),
+            defenseEffort: Number(arr[10]),
+            specialAttackEffort: Number(arr[11]),
+            specialDefenseEffort: Number(arr[12]),
+            speedEffort: Number(arr[13]),
+            catchRatio: Number(arr[14]),
+            growExperience: Number(arr[15]),
+            location: arr[16],
+            locationName: this.LOCAL[arr[16]],
+            spellNames,
+            pokemon: arr[17],
+        };
+    }
+    onInputChangeHandler() {
+        const num = document.querySelector("input[name=hcode]").value;
+        if (num)
+            this.gridApi.setRowData(this.mData.filter((f) => f.code.indexOf(num) > -1));
+        else
+            this.gridApi.setRowData(this.mData);
+    }
+    onNameInputChangeHandler() {
+        const name = document.querySelector("input[name=hname]").value;
+        if (name)
+            this.gridApi.setRowData(this.mData.filter((f) => f.name.indexOf(name) > -1));
+        else
+            this.gridApi.setRowData(this.mData);
+    }
+    onSkillChangeHandler() {
+        const skill = document.querySelector("input[name=hskill]").value;
+        if (skill)
+            this.gridApi.setRowData(this.mData.filter((f) => f.spellNames.includes(skill)));
+        else
+            this.gridApi.setRowData(this.mData);
+    }
+    reset() {
+        document.querySelector("input[name=hcode]").value =
+            "";
+        document.querySelector("input[name=hname]").value =
+            "";
+        document.querySelector("input[name=hskill]").value =
+            "";
+        this.show();
+    }
+    show() {
+        const num = document.querySelector("input[name=hcode]").value;
+        if (num)
+            this.gridApi.setRowData(this.mData.filter((f) => f.code == num));
+        else
+            this.gridApi.setRowData(this.mData);
+    }
+}
+exports["default"] = Handbook;
+
+
+/***/ }),
 /* 305 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -43622,8 +43626,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const lodash_1 = __importDefault(__webpack_require__(4));
-const TownForge_1 = __importDefault(__webpack_require__(297));
-const TownForgePageParser_1 = __importDefault(__webpack_require__(298));
+const TownForge_1 = __importDefault(__webpack_require__(296));
+const TownForgePageParser_1 = __importDefault(__webpack_require__(297));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
 const TownLoader_1 = __importDefault(__webpack_require__(47));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
@@ -45049,7 +45053,7 @@ const TownBank_1 = __importDefault(__webpack_require__(43));
 const Castle_1 = __importDefault(__webpack_require__(56));
 const CastleEntrance_1 = __importDefault(__webpack_require__(96));
 const CastleInformation_1 = __importDefault(__webpack_require__(55));
-const TownInnPageParser_1 = __importDefault(__webpack_require__(301));
+const TownInnPageParser_1 = __importDefault(__webpack_require__(300));
 const MapBuilder_1 = __importDefault(__webpack_require__(99));
 const TravelPlanExecutor_1 = __importDefault(__webpack_require__(103));
 const PersonalStatus_1 = __importDefault(__webpack_require__(105));
@@ -45417,7 +45421,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _TownItemHousePageProcessor_instances, _TownItemHousePageProcessor_renderImmutablePage, _TownItemHousePageProcessor_bindImmutableButtons, _TownItemHousePageProcessor_renderMutablePage, _TownItemHousePageProcessor_bindMutableButtons, _TownItemHousePageProcessor_refreshMutablePage;
 const TownBank_1 = __importDefault(__webpack_require__(43));
 const NpcLoader_1 = __importDefault(__webpack_require__(27));
-const TownAccessoryHouse_1 = __importDefault(__webpack_require__(265));
+const TownAccessoryHouse_1 = __importDefault(__webpack_require__(264));
 const TownItemHouse_1 = __importDefault(__webpack_require__(323));
 const TownItemHousePageParser_1 = __importDefault(__webpack_require__(324));
 const MessageBoard_1 = __importDefault(__webpack_require__(44));
@@ -45820,7 +45824,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
 const Role_1 = __importDefault(__webpack_require__(50));
-const Merchandise_1 = __importDefault(__webpack_require__(267));
+const Merchandise_1 = __importDefault(__webpack_require__(266));
 const TownItemHousePage_1 = __importDefault(__webpack_require__(325));
 class TownItemHousePageParser {
     parse(html) {
@@ -47992,7 +47996,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const StringUtils_1 = __importDefault(__webpack_require__(6));
 const Equipment_1 = __importDefault(__webpack_require__(60));
-const Merchandise_1 = __importDefault(__webpack_require__(267));
+const Merchandise_1 = __importDefault(__webpack_require__(266));
 const TownWeaponHousePage_1 = __importDefault(__webpack_require__(336));
 class TownWeaponHousePageParser {
     parse(pageHtml) {
