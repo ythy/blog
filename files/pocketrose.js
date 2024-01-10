@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+2.0.5
+// @version      4.2.15-ex+2.0.6
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21406,7 +21406,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+2.0.5) Build: 2024/1/10 10:01:46";
+            const version = "Pocketrose Assistant (4.2.15-ex+2.0.6) Build: 2024/1/10 10:08:59";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -39906,6 +39906,7 @@ class TownDashboardPageProcessor extends PageProcessorCredentialSupport_1.defaul
 }
 _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcessor_internalProcess = function _TownDashboardPageProcessor_internalProcess(credential) {
     return __awaiter(this, void 0, void 0, function* () {
+        initialDialog(); //ythy
         const configId = TownDashboardLayoutManager_1.default.loadDashboardLayoutConfigId(credential);
         const layout = LAYOUT_MANAGER.getLayout(configId);
         const parser = new TownDashboardPageParser_1.default(credential, PageUtils_1.default.currentPageHtml(), layout === null || layout === void 0 ? void 0 : layout.battleMode());
@@ -39926,7 +39927,6 @@ _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcess
             "<p style='display:none' id='eden-3'></p>" +
             "<p style='display:none' id='eden-4'></p>" +
             "<p style='display:none' id='eden-5'></p>"));
-        initialDialog(); //ythy
         doMarkElement();
         doRenderMobilization(page);
         doRenderMenu(credential, page);
