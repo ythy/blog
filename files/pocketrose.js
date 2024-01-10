@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+2.0.3
+// @version      4.2.15-ex+2.0.4
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21406,7 +21406,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+2.0.3) Build: 2024/1/9 09:33:59";
+            const version = "Pocketrose Assistant (4.2.15-ex+2.0.4) Build: 2024/1/10 09:43:48";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -39945,19 +39945,27 @@ function initialDialog() {
     const dialog = document.createElement("dialog");
     dialog.setAttribute("id", "monstorDialog");
     dialog.innerHTML = `
-    <div style="margin: 10px;width:80vw">
-      <div></div>
-      ID: <input name="hcode" type="text" style="width: 50px;" /> Name:
-      <input name="hname" type="text" style="width: 100px;" /> Spell:
-      <input name="hskill" type="text" style="width: 100px; margin-left: 20px;"  />
-      <button id="hReset" >Reset</button>
-    </div>
-    <div id="myGrid" class="ag-theme-alpine" style="height: 480px;"></div>
+      <div style="margin: 2vw;width:80vw;display:flex;flex-wrap: wrap;">
+        <div style="margin-right: 1vw;">
+          <span>ID:</span> <input name="hcode" type="text" style="width: 30px;" /> 
+        </div>
+        <div style="margin-right: 1vw;">
+          <span>名:</span> <input name="hname" type="text" style="width: 50px;" /> 
+        </div>
+        <div style="margin-right: 1vw;">
+          <span>技:</span> <input name="hskill" type="text" style="width: 50px;" />
+        </div>
+        <div style="flex:1" ></div>
+        <div>
+          <button id="hReset" >Reset</button>
+        </div>
+      </div>
+      <div id="myGrid" class="ag-theme-alpine" style="height: 50vh;"></div>
 
-    <div>
-      <form method="dialog">
-        <button>关闭</button>
-      </form>
+      <div>
+        <form method="dialog">
+          <button>关闭</button>
+        </form>
     </div>
   `;
     (_a = document.querySelector("body")) === null || _a === void 0 ? void 0 : _a.appendChild(dialog);
@@ -43407,12 +43415,11 @@ const MonsterRelationLoader_1 = __webpack_require__(179);
 class Handbook {
     constructor() {
         this.LOCAL = { 1: "初森", 2: "中塔", 3: "上洞" };
-        this.gridApi = {};
         this.mData = [];
         this.gridOptions = {
             // each entry here represents one column
             columnDefs: [
-                { field: "code" },
+                { field: "code", headerName: "No" },
                 { field: "name", width: 120 },
                 { field: "total", headerName: "总族" },
                 { field: "locationName", headerName: "地点" },
@@ -43443,11 +43450,11 @@ class Handbook {
             paginationPageSize: 500,
             onCellClicked: (event) => {
                 if (event.colDef.field == "upgrade" && event.data.upgradeCode) {
-                    this.gridApi.setRowData(this.mData.filter((f) => event.data.upgradeCode.includes(Number(f.code))));
+                    this.gridOptions.api.setRowData(this.mData.filter((f) => event.data.upgradeCode.includes(Number(f.code))));
                 }
                 else if (event.colDef.field == "degenerate" &&
                     event.data.degenerateCode) {
-                    this.gridApi.setRowData(this.mData.filter((f) => event.data.degenerateCode == Number(f.code)));
+                    this.gridOptions.api.setRowData(this.mData.filter((f) => event.data.degenerateCode == Number(f.code)));
                 }
             },
         };
@@ -43455,7 +43462,6 @@ class Handbook {
         const eGridDiv = document.getElementById("myGrid");
         // new grid instance, passing in the hosting DIV and Grid Options
         new window.agGrid.Grid(eGridDiv, this.gridOptions);
-        this.gridApi = this.gridOptions.api;
         for (let key in MonsterProfileLoader_1.MONSTERS) {
             this.mData.push(this.convertObj(key, MonsterProfileLoader_1.MONSTERS[key]));
         }
@@ -43523,23 +43529,23 @@ class Handbook {
     onInputChangeHandler() {
         const num = document.querySelector("input[name=hcode]").value;
         if (num)
-            this.gridApi.setRowData(this.mData.filter((f) => f.code.indexOf(num) > -1));
+            this.gridOptions.api.setRowData(this.mData.filter((f) => f.code.indexOf(num) > -1));
         else
-            this.gridApi.setRowData(this.mData);
+            this.gridOptions.api.setRowData(this.mData);
     }
     onNameInputChangeHandler() {
         const name = document.querySelector("input[name=hname]").value;
         if (name)
-            this.gridApi.setRowData(this.mData.filter((f) => f.name.indexOf(name) > -1));
+            this.gridOptions.api.setRowData(this.mData.filter((f) => f.name.indexOf(name) > -1));
         else
-            this.gridApi.setRowData(this.mData);
+            this.gridOptions.api.setRowData(this.mData);
     }
     onSkillChangeHandler() {
         const skill = document.querySelector("input[name=hskill]").value;
         if (skill)
-            this.gridApi.setRowData(this.mData.filter((f) => f.spellNames.includes(skill)));
+            this.gridOptions.api.setRowData(this.mData.filter((f) => f.spellNames.includes(skill)));
         else
-            this.gridApi.setRowData(this.mData);
+            this.gridOptions.api.setRowData(this.mData);
     }
     reset() {
         document.querySelector("input[name=hcode]").value =
@@ -43553,9 +43559,9 @@ class Handbook {
     show() {
         const num = document.querySelector("input[name=hcode]").value;
         if (num)
-            this.gridApi.setRowData(this.mData.filter((f) => f.code == num));
+            this.gridOptions.api.setRowData(this.mData.filter((f) => f.code == num));
         else
-            this.gridApi.setRowData(this.mData);
+            this.gridOptions.api.setRowData(this.mData);
     }
 }
 exports["default"] = Handbook;
