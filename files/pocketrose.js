@@ -5,7 +5,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      mit
 // @author       xiaohaiz,fugue
-// @version      4.2.15-ex+2.0.4
+// @version      4.2.15-ex+2.0.5
 // @grant        unsafeWindow
 // @match        *://pocketrose.itsns.net.cn/*
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js
@@ -21406,7 +21406,7 @@ class PersonalManualPageProcessor extends PageProcessorCredentialSupport_1.defau
                 .parent()
                 .after("<tr><td id='version'></td></tr>");
             // @ts-ignore
-            const version = "Pocketrose Assistant (4.2.15-ex+2.0.4) Build: 2024/1/10 09:43:48";
+            const version = "Pocketrose Assistant (4.2.15-ex+2.0.5) Build: 2024/1/10 10:01:46";
             $("#version")
                 .css("background-color", "wheat")
                 .css("color", "navy")
@@ -39941,7 +39941,6 @@ _TownDashboardPageProcessor_instances = new WeakSet(), _TownDashboardPageProcess
 };
 function initialDialog() {
     var _a, _b, _c, _d, _e;
-    window.handbook = new Handbook_1.default();
     const dialog = document.createElement("dialog");
     dialog.setAttribute("id", "monstorDialog");
     dialog.innerHTML = `
@@ -39968,6 +39967,7 @@ function initialDialog() {
         </form>
     </div>
   `;
+    window.handbook = new Handbook_1.default();
     (_a = document.querySelector("body")) === null || _a === void 0 ? void 0 : _a.appendChild(dialog);
     (_b = document
         .querySelector("input[name=hcode]")) === null || _b === void 0 ? void 0 : _b.addEventListener("input", () => window.handbook.onInputChangeHandler());
